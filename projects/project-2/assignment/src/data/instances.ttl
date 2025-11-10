@@ -1,0 +1,176 @@
+@prefix : <https://www.commoncoreontologies.org/CommonCoreOntologiesMerged/> .
+@prefix cco: <https://www.commoncoreontologies.org/> .
+@prefix obo: <http://purl.obolibrary.org/obo/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@base <https://www.commoncoreontologies.org/CommonCoreOntologiesMerged/> .
+@prefix ex:   <http://example.org/aircraft/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix cco: <https://www.commoncoreontologies.org/ontology/> .
+@prefix ex:   <http://example.org/aircraft/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+# Using the class at https://www.commoncoreontologies.org/ont00000958 for the ICEs
+# (assuming it is something like InformationContentEntity or equivalent)
+
+# ICAO_Code
+ex:ICAO_Code_A20N a <https://www.commoncoreontologies.org/ont00000958> ;
+    cco:has_text_value "A20N"^^xsd:string .
+
+# FAA_Designator
+ex:FAA_Designator_A20N a <https://www.commoncoreontologies.org/ont00000958> ;
+    cco:has_text_value "A20N"^^xsd:string .
+
+# Manufacturer
+ex:Manufacturer_A20N a <https://www.commoncoreontologies.org/ont00000958> ;
+    cco:has_text_value "AIRBUS"^^xsd:string .
+
+# Model_FAA
+ex:Model_FAA_A20N a <https://www.commoncoreontologies.org/ont00000958> ;
+    cco:has_text_value "Airbus A320 Neo"^^xsd:string .
+
+# Model_BADA
+ex:Model_BADA_A20N a <https://www.commoncoreontologies.org/ont00000958> ;
+    cco:has_text_value "Airbus A320-271N"^^xsd:string .
+
+# Physical_Class_Engine
+ex:Physical_Class_Engine_A20N a <https://www.commoncoreontologies.org/ont00000958> ;
+    cco:has_text_value "Jet"^^xsd:string .
+
+# Num_Engines
+ex:Num_Engines_A20N a <https://www.commoncoreontologies.org/ont00000958> ;
+    cco:has_number_value "2"^^xsd:integer .
+
+# AAC
+ex:AAC_A20N a <https://www.commoncoreontologies.org/ont00000958> ;
+    cco:has_text_value "C"^^xsd:string .
+
+# AAC_minimum
+ex:AAC_minimum_A20N a <https://www.commoncoreontologies.org/ont00000958> ;
+    cco:has_text_value ""^^xsd:string .
+
+# AAC_maximum
+ex:AAC_maximum_A20N a <https://www.commoncoreontologies.org/ont00000958> ;
+    cco:has_text_value ""^^xsd:string .
+
+# ADG
+ex:ADG_A20N a <https://www.commoncoreontologies.org/ont00000958> ;
+    cco:has_text_value "III"^^xsd:string .
+
+# TDG
+ex:TDG_A20N a <https://www.commoncoreontologies.org/ont00000958> ;
+    cco:has_number_value "3"^^xsd:integer .
+
+# Approach_Speed_knot
+ex:Approach_Speed_knot_A20N a <https://www.commoncoreontologies.org/ont00000958> ;
+    cco:has_number_value "137"^^xsd:decimal .
+
+# Approach_Speed_minimum_knot
+ex:Approach_Speed_minimum_knot_A20N a <https://www.commoncoreontologies.org/ont00000958> ;
+    cco:has_text_value ""^^xsd:string .
+
+# Approach_Speed_maximum_knot
+ex:Approach_Speed_maximum_knot_A20N a <https://www.commoncoreontologies.org/ont00000958> ;
+    cco:has_text_value ""^^xsd:string .
+
+# Wingspan_ft_without_winglets_sharklets
+ex:Wingspan_ft_without_winglets_sharklets_A20N a <https://www.commoncoreontologies.org/ont00000958> ;
+    cco:has_number_value "117.5"^^xsd:decimal .
+
+# Wingspan_ft_with_winglets_sharklets
+ex:Wingspan_ft_with_winglets_sharklets_A20N a <https://www.commoncoreontologies.org/ont00000958> ;
+    cco:has_number_value "123.3"^^xsd:decimal .
+
+# Length_ft
+ex:Length_ft_A20N a <https://www.commoncoreontologies.org/ont00000958> ;
+    cco:has_number_value "39.6"^^xsd:decimal .
+
+# Tail_Height_at_OEW_ft
+ex:Tail_Height_at_OEW_ft_A20N a <https://www.commoncoreontologies.org/ont00000958> ;
+    cco:has_number_value "41.5"^^xsd:decimal .
+
+# Wheelbase_ft
+ex:Wheelbase_ft_A20N a <https://www.commoncoreontologies.org/ont00000958> ;
+    cco:has_number_value "50.2"^^xsd:decimal .
+
+# Cockpit_to_Main_Gear_ft
+ex:Cockpit_to_Main_Gear_ft_A20N a <https://www.commoncoreontologies.org/ont00000958> ;
+    cco:has_number_value "29.4"^^xsd:decimal .
+
+# MTOW_lb
+ex:MTOW_lb_A20N a <https://www.commoncoreontologies.org/ont00000958> ;
+    cco:has_number_value "174165"^^xsd:decimal .
+
+# MALW_lb
+ex:MALW_lb_A20N a <https://www.commoncoreontologies.org/ont00000958> ;
+    cco:has_number_value "148591"^^xsd:decimal .
+
+# Main_Gear_Config
+ex:Main_Gear_Config_A20N a <https://www.commoncoreontologies.org/ont00000958> ;
+    cco:has_text_value "D"^^xsd:string .
+
+# ICAO_WTC
+ex:ICAO_WTC_A20N a <https://www.commoncoreontologies.org/ont00000958> ;
+    cco:has_text_value "Medium"^^xsd:string .
+
+# Parking_Area_ft2
+ex:Parking_Area_ft2_A20N a <https://www.commoncoreontologies.org/ont00000958> ;
+    cco:has_number_value "16358.3"^^xsd:decimal .
+
+# Class
+ex:Class_A20N a <https://www.commoncoreontologies.org/ont00000958> ;
+    cco:has_text_value "Fixed-wing"^^xsd:string .
+
+# FAA_Weight
+ex:FAA_Weight_A20N a <https://www.commoncoreontologies.org/ont00000958> ;
+    cco:has_text_value "Large"^^xsd:string .
+
+# CWT
+ex:CWT_A20N a <https://www.commoncoreontologies.org/ont00000958> ;
+    cco:has_text_value "F"^^xsd:string .
+
+# One_Half_Wake_Category
+ex:One_Half_Wake_Category_A20N a <https://www.commoncoreontologies.org/ont00000958> ;
+    cco:has_text_value "D"^^xsd:string .
+
+# Two_Wake_Category_Appx_A
+ex:Two_Wake_Category_Appx_A_A20N a <https://www.commoncoreontologies.org/ont00000958> ;
+    cco:has_text_value "D"^^xsd:string .
+
+# Two_Wake_Category_Appx_B
+ex:Two_Wake_Category_Appx_B_A20N a <https://www.commoncoreontologies.org/ont00000958> ;
+    cco:has_text_value "C"^^xsd:string .
+
+# Rotor_Diameter_ft
+ex:Rotor_Diameter_ft_A20N a <https://www.commoncoreontologies.org/ont00000958> ;
+    cco:has_text_value ""^^xsd:string .
+
+# SRS
+ex:SRS_A20N a <https://www.commoncoreontologies.org/ont00000958> ;
+    cco:has_text_value "III"^^xsd:string .
+
+# LAHSO
+ex:LAHSO_A20N a <https://www.commoncoreontologies.org/ont00000958> ;
+    cco:has_number_value "7"^^xsd:integer .
+
+# FAA_Registry
+ex:FAA_Registry_A20N a <https://www.commoncoreontologies.org/ont00000958> ;
+    cco:has_text_value "Yes"^^xsd:string .
+
+# Registration_Count
+ex:Registration_Count_A20N a <https://www.commoncoreontologies.org/ont00000958> ;
+    cco:has_number_value "147"^^xsd:integer .
+
+# TMFS_Operations_FY24
+ex:TMFS_Operations_FY24_A20N a <https://www.commoncoreontologies.org/ont00000958> ;
+    cco:has_number_value "540276"^^xsd:integer .
+
+# Remarks
+ex:Remarks_A20N a <https://www.commoncoreontologies.org/ont00000958> ;
+    cco:has_text_value "AAC validated by Flight Standardization Board (FSB) report."^^xsd:string .

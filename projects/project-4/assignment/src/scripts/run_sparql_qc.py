@@ -4,9 +4,8 @@ import sys
   
 TTL = Path("src/measure_cco.ttl")
 # Adjust path relative to the PROJECT_ROOT environment variable, assuming default setup
-# This ensures it finds the file in the correct location for the autograder
+# This handles the assignment's nested directory structure
 if not TTL.exists() and Path(__file__).resolve().parents[2].name == 'assignment':
-    # If run_sparql_qc.py is under projects/project-4/assignment/src/scripts/
     BASE_DIR = Path(__file__).resolve().parents[2]
     TTL = BASE_DIR / "src" / "measure_cco.ttl"
   
@@ -21,7 +20,7 @@ except Exception as e:
     print(f"❌ Error loading TTL file: {e}")
     sys.exit(1)
   
-# Exact IRIs to enforce
+# Exact IRIs to enforce (must match the IRIs used in measure_rdflib.py)
 IRI_SDC   = "http://purl.obolibrary.org/obo/BFO_0000020"
 IRI_ART   = "https://www.commoncoreontologies.org/ont00000995"
 IRI_MU    = "https://www.commoncoreontologies.org/ont00000120"
@@ -67,20 +66,19 @@ assert bool(g.query(q_pattern_strict).askAnswer), "❌ No complete pattern found
 print("✅ Complete pattern found with exact property IRIs.")
   
 # 3) Optional: verify every MICE uses the exact property IRIs (no alternative predicates)
+# THIS IS THE FIXED QUERY WITH MINIMAL INDENTATION TO PREVENT PARSING CRASH
 q_all_mice_ok = f"""
 SELECT (COUNT(DISTINCT ?m) AS ?n_bad)
 WHERE {{
-  # Check for MICE missing IS_MEASURE_OF link
-  {{
-    ?m a <{IRI_MICE}> .
-    FILTER NOT EXISTS {{ ?m <{IRI_IS_MEASURE_OF}> ?sdc . ?sdc a <{IRI_SDC}> . }}
-  }}
-  UNION
-  # Check for MICE missing USES_MU link
-  {{
-    ?m a <{IRI_MICE}> .
-    FILTER NOT EXISTS {{ ?m <{IRI_USES_MU}> ?u . ?u a <{IRI_MU}> . }}
-  }}
+{{
+?m a <{IRI_MICE}> .
+FILTER NOT EXISTS {{ ?m <{IRI_IS_MEASURE_OF}> ?sdc . ?sdc a <{IRI_SDC}> . }}
+}}
+UNION
+{{
+?m a <{IRI_MICE}> .
+FILTER NOT EXISTS {{ ?m <{IRI_USES_MU}> ?u . ?u a <{IRI_MU}> . }}
+}}
 }}
 """
 n_bad = int(list(g.query(q_all_mice_ok))[0][0])

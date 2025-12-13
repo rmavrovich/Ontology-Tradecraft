@@ -1,6 +1,18 @@
-# Title:  
-#    No cyclical definitions
-# Constraint Description:  
-#    No class definition should be self-referential. 
-# Severity:  
-#    Error
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX iao:  <http://purl.obolibrary.org/obo/IAO_>
+PREFIX owl:  <http://www.w3.org/2002/07/owl#>
+
+SELECT ?class ?label ?definition
+WHERE {
+  ?class a owl:Class ;
+         rdfs:label ?label ;
+         iao:0000115 ?definition .
+
+  # Compare normalized lexical forms
+  FILTER(
+    CONTAINS(
+      LCASE(STR(?definition)),
+      LCASE(STR(?label))
+    )
+  )
+}

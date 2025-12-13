@@ -1,0 +1,754 @@
+<?xml version="1.0"?>
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Declaration>
+        <Class IRI="http://www.co-ode.org/ontologies/ont.owl#Continuant"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.co-ode.org/ontologies/ont.owl#Independent_Continuant"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.co-ode.org/ontologies/ont.owl#Information_Content_Entity"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.co-ode.org/ontologies/ont.owl#Material_Entity"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.co-ode.org/ontologies/ont.owl#Occurent"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.co-ode.org/ontologies/ont.owl#Process"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.co-ode.org/ontologies/ont.owl#Temporal_Region"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Material_Artifact"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Information_Content_Entity"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Unit"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Specifically_Dependent_Continuant"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Temporal_Instant"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://example.org/measurements/Boiler07"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://example.org/measurements/Chiller3"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://example.org/measurements/Chiller4"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://example.org/measurements/Circuit12"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://example.org/measurements/MICE_00001"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://example.org/measurements/MICE_00002"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://example.org/measurements/MICE_00003"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://example.org/measurements/MICE_00004"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://example.org/measurements/MICE_00005"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://example.org/measurements/MICE_00006"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://example.org/measurements/MICE_00007"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://example.org/measurements/MU_C"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://example.org/measurements/MU_F"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://example.org/measurements/MU_V"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://example.org/measurements/MU_kPa"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://example.org/measurements/MU_unknown"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://example.org/measurements/Measurement_00001"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://example.org/measurements/Measurement_00002"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://example.org/measurements/Measurement_00003"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://example.org/measurements/Measurement_00004"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://example.org/measurements/Measurement_00005"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://example.org/measurements/Measurement_00006"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://example.org/measurements/Measurement_00007"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://example.org/measurements/SDC_resistance"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://example.org/measurements/SDC_temp"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://example.org/measurements/SDC_voltage"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://example.org/measurements/TemporalInstant_00001"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://example.org/measurements/TemporalInstant_00002"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://example.org/measurements/TemporalInstant_00003"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://example.org/measurements/TemporalInstant_00004"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://example.org/measurements/TemporalInstant_00005"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://example.org/measurements/TemporalInstant_00006"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://example.org/measurements/TemporalInstant_00007"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://www.co-ode.org/ontologies/ont.owl#pressure"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="http://purl.obolibrary.org/obo/BFO_0000066"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="http://www.w3.org/2006/time#inXSDDateTime"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#bearer_of"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#has_measurement_value"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#has_output"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#inheres_in"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#is_measure_of"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#uses_measurement_unit"/>
+    </Declaration>
+    <SubClassOf>
+        <Class IRI="http://www.co-ode.org/ontologies/ont.owl#Independent_Continuant"/>
+        <Class IRI="http://www.co-ode.org/ontologies/ont.owl#Continuant"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.co-ode.org/ontologies/ont.owl#Information_Content_Entity"/>
+        <Class IRI="http://www.co-ode.org/ontologies/ont.owl#Continuant"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.co-ode.org/ontologies/ont.owl#Material_Entity"/>
+        <Class IRI="http://www.co-ode.org/ontologies/ont.owl#Independent_Continuant"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.co-ode.org/ontologies/ont.owl#Process"/>
+        <Class IRI="http://www.co-ode.org/ontologies/ont.owl#Occurent"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.co-ode.org/ontologies/ont.owl#Temporal_Region"/>
+        <Class IRI="http://www.co-ode.org/ontologies/ont.owl#Occurent"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Material_Artifact"/>
+        <Class IRI="http://www.co-ode.org/ontologies/ont.owl#Material_Entity"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Information_Content_Entity"/>
+        <Class IRI="http://www.co-ode.org/ontologies/ont.owl#Information_Content_Entity"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Unit"/>
+        <Class IRI="http://www.co-ode.org/ontologies/ont.owl#Information_Content_Entity"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Specifically_Dependent_Continuant"/>
+        <Class IRI="http://www.co-ode.org/ontologies/ont.owl#Continuant"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Temporal_Instant"/>
+        <Class IRI="http://www.co-ode.org/ontologies/ont.owl#Temporal_Region"/>
+    </SubClassOf>
+    <ClassAssertion>
+        <Class IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Material_Artifact"/>
+        <NamedIndividual IRI="http://example.org/measurements/Boiler07"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Material_Artifact"/>
+        <NamedIndividual IRI="http://example.org/measurements/Chiller3"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Material_Artifact"/>
+        <NamedIndividual IRI="http://example.org/measurements/Chiller4"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Material_Artifact"/>
+        <NamedIndividual IRI="http://example.org/measurements/Circuit12"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Information_Content_Entity"/>
+        <NamedIndividual IRI="http://example.org/measurements/MICE_00001"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Information_Content_Entity"/>
+        <NamedIndividual IRI="http://example.org/measurements/MICE_00002"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Information_Content_Entity"/>
+        <NamedIndividual IRI="http://example.org/measurements/MICE_00003"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Information_Content_Entity"/>
+        <NamedIndividual IRI="http://example.org/measurements/MICE_00004"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Information_Content_Entity"/>
+        <NamedIndividual IRI="http://example.org/measurements/MICE_00005"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Information_Content_Entity"/>
+        <NamedIndividual IRI="http://example.org/measurements/MICE_00006"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Information_Content_Entity"/>
+        <NamedIndividual IRI="http://example.org/measurements/MICE_00007"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Unit"/>
+        <NamedIndividual IRI="http://example.org/measurements/MU_C"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Unit"/>
+        <NamedIndividual IRI="http://example.org/measurements/MU_F"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Unit"/>
+        <NamedIndividual IRI="http://example.org/measurements/MU_V"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Unit"/>
+        <NamedIndividual IRI="http://example.org/measurements/MU_kPa"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Unit"/>
+        <NamedIndividual IRI="http://example.org/measurements/MU_unknown"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement"/>
+        <NamedIndividual IRI="http://example.org/measurements/Measurement_00001"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement"/>
+        <NamedIndividual IRI="http://example.org/measurements/Measurement_00002"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement"/>
+        <NamedIndividual IRI="http://example.org/measurements/Measurement_00003"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement"/>
+        <NamedIndividual IRI="http://example.org/measurements/Measurement_00004"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement"/>
+        <NamedIndividual IRI="http://example.org/measurements/Measurement_00005"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement"/>
+        <NamedIndividual IRI="http://example.org/measurements/Measurement_00006"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement"/>
+        <NamedIndividual IRI="http://example.org/measurements/Measurement_00007"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Specifically_Dependent_Continuant"/>
+        <NamedIndividual IRI="http://example.org/measurements/SDC_resistance"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Specifically_Dependent_Continuant"/>
+        <NamedIndividual IRI="http://example.org/measurements/SDC_temp"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Specifically_Dependent_Continuant"/>
+        <NamedIndividual IRI="http://example.org/measurements/SDC_voltage"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Temporal_Instant"/>
+        <NamedIndividual IRI="http://example.org/measurements/TemporalInstant_00001"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Temporal_Instant"/>
+        <NamedIndividual IRI="http://example.org/measurements/TemporalInstant_00002"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Temporal_Instant"/>
+        <NamedIndividual IRI="http://example.org/measurements/TemporalInstant_00003"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Temporal_Instant"/>
+        <NamedIndividual IRI="http://example.org/measurements/TemporalInstant_00004"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Temporal_Instant"/>
+        <NamedIndividual IRI="http://example.org/measurements/TemporalInstant_00005"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Temporal_Instant"/>
+        <NamedIndividual IRI="http://example.org/measurements/TemporalInstant_00006"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Temporal_Instant"/>
+        <NamedIndividual IRI="http://example.org/measurements/TemporalInstant_00007"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Specifically_Dependent_Continuant"/>
+        <NamedIndividual IRI="http://www.co-ode.org/ontologies/ont.owl#pressure"/>
+    </ClassAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://example.org/measurements/Boiler07</IRI>
+        <Literal>Boiler-07</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#bearer_of"/>
+        <IRI>http://example.org/measurements/Boiler07</IRI>
+        <IRI>http://example.org/measurements/SDC_temp</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://example.org/measurements/Chiller3</IRI>
+        <Literal>Chiller-3</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#bearer_of"/>
+        <IRI>http://example.org/measurements/Chiller3</IRI>
+        <IRI>http://example.org/measurements/SDC_temp</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://example.org/measurements/Chiller4</IRI>
+        <Literal>Chiller-4</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#bearer_of"/>
+        <IRI>http://example.org/measurements/Chiller4</IRI>
+        <IRI>http://example.org/measurements/SDC_temp</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://example.org/measurements/Circuit12</IRI>
+        <Literal>Circuit-12</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#bearer_of"/>
+        <IRI>http://example.org/measurements/Circuit12</IRI>
+        <IRI>http://example.org/measurements/SDC_resistance</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#bearer_of"/>
+        <IRI>http://example.org/measurements/Circuit12</IRI>
+        <IRI>http://example.org/measurements/SDC_voltage</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://example.org/measurements/MICE_00001</IRI>
+        <Literal>measurement value 100.0</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#has_measurement_value"/>
+        <IRI>http://example.org/measurements/MICE_00001</IRI>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#float">100.0</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#uses_measurement_unit"/>
+        <IRI>http://example.org/measurements/MICE_00001</IRI>
+        <IRI>http://example.org/measurements/MU_C</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://example.org/measurements/MICE_00002</IRI>
+        <Literal>measurement value 101.325</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#has_measurement_value"/>
+        <IRI>http://example.org/measurements/MICE_00002</IRI>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#float">101.325</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#uses_measurement_unit"/>
+        <IRI>http://example.org/measurements/MICE_00002</IRI>
+        <IRI>http://example.org/measurements/MU_kPa</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://example.org/measurements/MICE_00003</IRI>
+        <Literal>measurement value 19.5</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#has_measurement_value"/>
+        <IRI>http://example.org/measurements/MICE_00003</IRI>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#float">19.5</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#uses_measurement_unit"/>
+        <IRI>http://example.org/measurements/MICE_00003</IRI>
+        <IRI>http://example.org/measurements/MU_C</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://example.org/measurements/MICE_00004</IRI>
+        <Literal>measurement value 6.5</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#has_measurement_value"/>
+        <IRI>http://example.org/measurements/MICE_00004</IRI>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#float">6.5</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#uses_measurement_unit"/>
+        <IRI>http://example.org/measurements/MICE_00004</IRI>
+        <IRI>http://example.org/measurements/MU_F</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://example.org/measurements/MICE_00005</IRI>
+        <Literal>measurement value 19.5</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#has_measurement_value"/>
+        <IRI>http://example.org/measurements/MICE_00005</IRI>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#float">19.5</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#uses_measurement_unit"/>
+        <IRI>http://example.org/measurements/MICE_00005</IRI>
+        <IRI>http://example.org/measurements/MU_F</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://example.org/measurements/MICE_00006</IRI>
+        <Literal>measurement value 2.0</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#has_measurement_value"/>
+        <IRI>http://example.org/measurements/MICE_00006</IRI>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#float">2.0</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#uses_measurement_unit"/>
+        <IRI>http://example.org/measurements/MICE_00006</IRI>
+        <IRI>http://example.org/measurements/MU_V</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://example.org/measurements/MICE_00007</IRI>
+        <Literal>measurement value 1.3</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#has_measurement_value"/>
+        <IRI>http://example.org/measurements/MICE_00007</IRI>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#float">1.3</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#uses_measurement_unit"/>
+        <IRI>http://example.org/measurements/MICE_00007</IRI>
+        <IRI>http://example.org/measurements/MU_unknown</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://example.org/measurements/MU_C</IRI>
+        <Literal>C</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://example.org/measurements/MU_F</IRI>
+        <Literal>F</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://example.org/measurements/MU_V</IRI>
+        <Literal>V</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://example.org/measurements/MU_kPa</IRI>
+        <Literal>kPa</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://example.org/measurements/MU_unknown</IRI>
+        <Literal>Ω</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.obolibrary.org/obo/BFO_0000066"/>
+        <IRI>http://example.org/measurements/Measurement_00001</IRI>
+        <IRI>http://example.org/measurements/TemporalInstant_00001</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://example.org/measurements/Measurement_00001</IRI>
+        <Literal>temp measurement of Boiler-07</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#has_output"/>
+        <IRI>http://example.org/measurements/Measurement_00001</IRI>
+        <IRI>http://example.org/measurements/MICE_00001</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#inheres_in"/>
+        <IRI>http://example.org/measurements/Measurement_00001</IRI>
+        <IRI>http://example.org/measurements/Boiler07</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#is_measure_of"/>
+        <IRI>http://example.org/measurements/Measurement_00001</IRI>
+        <IRI>http://example.org/measurements/SDC_temp</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.obolibrary.org/obo/BFO_0000066"/>
+        <IRI>http://example.org/measurements/Measurement_00002</IRI>
+        <IRI>http://example.org/measurements/TemporalInstant_00002</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://example.org/measurements/Measurement_00002</IRI>
+        <Literal>pressure measurement of Boiler-07</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#has_output"/>
+        <IRI>http://example.org/measurements/Measurement_00002</IRI>
+        <IRI>http://example.org/measurements/MICE_00002</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#inheres_in"/>
+        <IRI>http://example.org/measurements/Measurement_00002</IRI>
+        <IRI>http://example.org/measurements/Boiler07</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.obolibrary.org/obo/BFO_0000066"/>
+        <IRI>http://example.org/measurements/Measurement_00003</IRI>
+        <IRI>http://example.org/measurements/TemporalInstant_00003</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://example.org/measurements/Measurement_00003</IRI>
+        <Literal>temp measurement of Chiller-3</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#has_output"/>
+        <IRI>http://example.org/measurements/Measurement_00003</IRI>
+        <IRI>http://example.org/measurements/MICE_00003</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#inheres_in"/>
+        <IRI>http://example.org/measurements/Measurement_00003</IRI>
+        <IRI>http://example.org/measurements/Chiller3</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#is_measure_of"/>
+        <IRI>http://example.org/measurements/Measurement_00003</IRI>
+        <IRI>http://example.org/measurements/SDC_temp</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.obolibrary.org/obo/BFO_0000066"/>
+        <IRI>http://example.org/measurements/Measurement_00004</IRI>
+        <IRI>http://example.org/measurements/TemporalInstant_00004</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://example.org/measurements/Measurement_00004</IRI>
+        <Literal>temp measurement of Chiller-4</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#has_output"/>
+        <IRI>http://example.org/measurements/Measurement_00004</IRI>
+        <IRI>http://example.org/measurements/MICE_00004</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#inheres_in"/>
+        <IRI>http://example.org/measurements/Measurement_00004</IRI>
+        <IRI>http://example.org/measurements/Chiller4</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#is_measure_of"/>
+        <IRI>http://example.org/measurements/Measurement_00004</IRI>
+        <IRI>http://example.org/measurements/SDC_temp</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.obolibrary.org/obo/BFO_0000066"/>
+        <IRI>http://example.org/measurements/Measurement_00005</IRI>
+        <IRI>http://example.org/measurements/TemporalInstant_00005</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://example.org/measurements/Measurement_00005</IRI>
+        <Literal>temp measurement of Chiller-4</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#has_output"/>
+        <IRI>http://example.org/measurements/Measurement_00005</IRI>
+        <IRI>http://example.org/measurements/MICE_00005</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#inheres_in"/>
+        <IRI>http://example.org/measurements/Measurement_00005</IRI>
+        <IRI>http://example.org/measurements/Chiller4</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#is_measure_of"/>
+        <IRI>http://example.org/measurements/Measurement_00005</IRI>
+        <IRI>http://example.org/measurements/SDC_temp</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.obolibrary.org/obo/BFO_0000066"/>
+        <IRI>http://example.org/measurements/Measurement_00006</IRI>
+        <IRI>http://example.org/measurements/TemporalInstant_00006</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://example.org/measurements/Measurement_00006</IRI>
+        <Literal>voltage measurement of Circuit-12</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#has_output"/>
+        <IRI>http://example.org/measurements/Measurement_00006</IRI>
+        <IRI>http://example.org/measurements/MICE_00006</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#inheres_in"/>
+        <IRI>http://example.org/measurements/Measurement_00006</IRI>
+        <IRI>http://example.org/measurements/Circuit12</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#is_measure_of"/>
+        <IRI>http://example.org/measurements/Measurement_00006</IRI>
+        <IRI>http://example.org/measurements/SDC_voltage</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://purl.obolibrary.org/obo/BFO_0000066"/>
+        <IRI>http://example.org/measurements/Measurement_00007</IRI>
+        <IRI>http://example.org/measurements/TemporalInstant_00007</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://example.org/measurements/Measurement_00007</IRI>
+        <Literal>resistance measurement of Circuit-12</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#has_output"/>
+        <IRI>http://example.org/measurements/Measurement_00007</IRI>
+        <IRI>http://example.org/measurements/MICE_00007</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#inheres_in"/>
+        <IRI>http://example.org/measurements/Measurement_00007</IRI>
+        <IRI>http://example.org/measurements/Circuit12</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#is_measure_of"/>
+        <IRI>http://example.org/measurements/Measurement_00007</IRI>
+        <IRI>http://example.org/measurements/SDC_resistance</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://example.org/measurements/SDC_resistance</IRI>
+        <Literal>resistance</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://example.org/measurements/SDC_temp</IRI>
+        <Literal>temp</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://example.org/measurements/SDC_voltage</IRI>
+        <Literal>voltage</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.w3.org/2006/time#inXSDDateTime"/>
+        <IRI>http://example.org/measurements/TemporalInstant_00001</IRI>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#dateTime">2024-03-17T23:03:00+00:00</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.w3.org/2006/time#inXSDDateTime"/>
+        <IRI>http://example.org/measurements/TemporalInstant_00002</IRI>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#dateTime">2024-03-17T23:04:00+00:00</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.w3.org/2006/time#inXSDDateTime"/>
+        <IRI>http://example.org/measurements/TemporalInstant_00003</IRI>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#dateTime">2024-03-18T12:01:00+00:00</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.w3.org/2006/time#inXSDDateTime"/>
+        <IRI>http://example.org/measurements/TemporalInstant_00004</IRI>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#dateTime">2024-03-18T12:01:00+00:00</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.w3.org/2006/time#inXSDDateTime"/>
+        <IRI>http://example.org/measurements/TemporalInstant_00005</IRI>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#dateTime">2024-03-18T12:06:00+00:00</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.w3.org/2006/time#inXSDDateTime"/>
+        <IRI>http://example.org/measurements/TemporalInstant_00006</IRI>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#dateTime">2024-03-18T12:01:01+00:00</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.w3.org/2006/time#inXSDDateTime"/>
+        <IRI>http://example.org/measurements/TemporalInstant_00007</IRI>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#dateTime">2024-03-18T12:06:00+00:00</Literal>
+    </AnnotationAssertion>
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi -->
+

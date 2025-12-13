@@ -1,0 +1,334 @@
+@prefix ex: <http://example.org/measurements/> .
+@prefix cco: <http://www.ontologyrepository.com/CommonCoreOntologies/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@base <http://www.w3.org/2002/07/owl#> .
+
+[ rdf:type owl:Ontology
+ ] .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://www.ontologyrepository.com/CommonCoreOntologies/bearer_of
+cco:bearer_of rdf:type owl:AnnotationProperty .
+
+
+###  http://www.ontologyrepository.com/CommonCoreOntologies/has_measurement_value
+cco:has_measurement_value rdf:type owl:AnnotationProperty .
+
+
+###  http://www.ontologyrepository.com/CommonCoreOntologies/has_output
+cco:has_output rdf:type owl:AnnotationProperty .
+
+
+###  http://www.ontologyrepository.com/CommonCoreOntologies/inheres_in
+cco:inheres_in rdf:type owl:AnnotationProperty .
+
+
+###  http://www.ontologyrepository.com/CommonCoreOntologies/is_measure_of
+cco:is_measure_of rdf:type owl:AnnotationProperty .
+
+
+###  http://www.ontologyrepository.com/CommonCoreOntologies/occurs_during
+cco:occurs_during rdf:type owl:AnnotationProperty .
+
+
+###  http://www.ontologyrepository.com/CommonCoreOntologies/uses_measurement_unit
+cco:uses_measurement_unit rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2006/time#inXSDDateTime
+time:inXSDDateTime rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.ontologyrepository.com/CommonCoreOntologies/Artifact
+cco:Artifact rdf:type owl:Class .
+
+
+###  http://www.ontologyrepository.com/CommonCoreOntologies/Measurement
+cco:Measurement rdf:type owl:Class .
+
+
+###  http://www.ontologyrepository.com/CommonCoreOntologies/MeasurementInformationContentEntity
+cco:MeasurementInformationContentEntity rdf:type owl:Class .
+
+
+###  http://www.ontologyrepository.com/CommonCoreOntologies/MeasurementUnit
+cco:MeasurementUnit rdf:type owl:Class .
+
+
+###  http://www.ontologyrepository.com/CommonCoreOntologies/SpecificallyDependentContinuant
+cco:SpecificallyDependentContinuant rdf:type owl:Class .
+
+
+###  http://www.ontologyrepository.com/CommonCoreOntologies/TemporalInstant
+cco:TemporalInstant rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://example.org/measurements/Boiler07
+ex:Boiler07 rdf:type owl:NamedIndividual ,
+                     cco:Artifact ;
+            cco:bearer_of ex:SDC_pressure ,
+                          ex:SDC_temp ;
+            rdfs:label "Boiler-07" .
+
+
+###  http://example.org/measurements/Chiller3
+ex:Chiller3 rdf:type owl:NamedIndividual ,
+                     cco:Artifact ;
+            cco:bearer_of ex:SDC_temp ;
+            rdfs:label "Chiller-3" .
+
+
+###  http://example.org/measurements/Chiller4
+ex:Chiller4 rdf:type owl:NamedIndividual ,
+                     cco:Artifact ;
+            cco:bearer_of ex:SDC_temp ;
+            rdfs:label "Chiller-4" .
+
+
+###  http://example.org/measurements/Circuit12
+ex:Circuit12 rdf:type owl:NamedIndividual ,
+                      cco:Artifact ;
+             cco:bearer_of ex:SDC_resistance ,
+                           ex:SDC_voltage ;
+             rdfs:label "Circuit-12" .
+
+
+###  http://example.org/measurements/MICE_00001
+ex:MICE_00001 rdf:type owl:NamedIndividual ,
+                       cco:MeasurementInformationContentEntity ;
+              cco:has_measurement_value "100.0"^^xsd:float ;
+              cco:uses_measurement_unit ex:MU_C ;
+              rdfs:label "measurement value 100.0" .
+
+
+###  http://example.org/measurements/MICE_00002
+ex:MICE_00002 rdf:type owl:NamedIndividual ,
+                       cco:MeasurementInformationContentEntity ;
+              cco:has_measurement_value "101.325"^^xsd:float ;
+              cco:uses_measurement_unit ex:MU_kPa ;
+              rdfs:label "measurement value 101.325" .
+
+
+###  http://example.org/measurements/MICE_00003
+ex:MICE_00003 rdf:type owl:NamedIndividual ,
+                       cco:MeasurementInformationContentEntity ;
+              cco:has_measurement_value "19.5"^^xsd:float ;
+              cco:uses_measurement_unit ex:MU_C ;
+              rdfs:label "measurement value 19.5" .
+
+
+###  http://example.org/measurements/MICE_00004
+ex:MICE_00004 rdf:type owl:NamedIndividual ,
+                       cco:MeasurementInformationContentEntity ;
+              cco:has_measurement_value "6.5"^^xsd:float ;
+              cco:uses_measurement_unit ex:MU_F ;
+              rdfs:label "measurement value 6.5" .
+
+
+###  http://example.org/measurements/MICE_00005
+ex:MICE_00005 rdf:type owl:NamedIndividual ,
+                       cco:MeasurementInformationContentEntity ;
+              cco:has_measurement_value "19.5"^^xsd:float ;
+              cco:uses_measurement_unit ex:MU_F ;
+              rdfs:label "measurement value 19.5" .
+
+
+###  http://example.org/measurements/MICE_00006
+ex:MICE_00006 rdf:type owl:NamedIndividual ,
+                       cco:MeasurementInformationContentEntity ;
+              cco:has_measurement_value "2.0"^^xsd:float ;
+              cco:uses_measurement_unit ex:MU_V ;
+              rdfs:label "measurement value 2.0" .
+
+
+###  http://example.org/measurements/MICE_00007
+ex:MICE_00007 rdf:type owl:NamedIndividual ,
+                       cco:MeasurementInformationContentEntity ;
+              cco:has_measurement_value "1.3"^^xsd:float ;
+              cco:uses_measurement_unit ex:MU_unknown ;
+              rdfs:label "measurement value 1.3" .
+
+
+###  http://example.org/measurements/MU_C
+ex:MU_C rdf:type owl:NamedIndividual ,
+                 cco:MeasurementUnit ;
+        rdfs:label "C" .
+
+
+###  http://example.org/measurements/MU_F
+ex:MU_F rdf:type owl:NamedIndividual ,
+                 cco:MeasurementUnit ;
+        rdfs:label "F" .
+
+
+###  http://example.org/measurements/MU_V
+ex:MU_V rdf:type owl:NamedIndividual ,
+                 cco:MeasurementUnit ;
+        rdfs:label "V" .
+
+
+###  http://example.org/measurements/MU_kPa
+ex:MU_kPa rdf:type owl:NamedIndividual ,
+                   cco:MeasurementUnit ;
+          rdfs:label "kPa" .
+
+
+###  http://example.org/measurements/MU_unknown
+ex:MU_unknown rdf:type owl:NamedIndividual ,
+                       cco:MeasurementUnit ;
+              rdfs:label "Ω" .
+
+
+###  http://example.org/measurements/Measurement_00001
+ex:Measurement_00001 rdf:type owl:NamedIndividual ,
+                              cco:Measurement ;
+                     cco:has_output ex:MICE_00001 ;
+                     cco:inheres_in ex:Boiler07 ;
+                     cco:is_measure_of ex:SDC_temp ;
+                     cco:occurs_during ex:TemporalInstant_00001 ;
+                     rdfs:label "temp measurement of Boiler-07" .
+
+
+###  http://example.org/measurements/Measurement_00002
+ex:Measurement_00002 rdf:type owl:NamedIndividual ,
+                              cco:Measurement ;
+                     cco:has_output ex:MICE_00002 ;
+                     cco:inheres_in ex:Boiler07 ;
+                     cco:is_measure_of ex:SDC_pressure ;
+                     cco:occurs_during ex:TemporalInstant_00002 ;
+                     rdfs:label "pressure measurement of Boiler-07" .
+
+
+###  http://example.org/measurements/Measurement_00003
+ex:Measurement_00003 rdf:type owl:NamedIndividual ,
+                              cco:Measurement ;
+                     cco:has_output ex:MICE_00003 ;
+                     cco:inheres_in ex:Chiller3 ;
+                     cco:is_measure_of ex:SDC_temp ;
+                     cco:occurs_during ex:TemporalInstant_00003 ;
+                     rdfs:label "temp measurement of Chiller-3" .
+
+
+###  http://example.org/measurements/Measurement_00004
+ex:Measurement_00004 rdf:type owl:NamedIndividual ,
+                              cco:Measurement ;
+                     cco:has_output ex:MICE_00004 ;
+                     cco:inheres_in ex:Chiller4 ;
+                     cco:is_measure_of ex:SDC_temp ;
+                     cco:occurs_during ex:TemporalInstant_00004 ;
+                     rdfs:label "temp measurement of Chiller-4" .
+
+
+###  http://example.org/measurements/Measurement_00005
+ex:Measurement_00005 rdf:type owl:NamedIndividual ,
+                              cco:Measurement ;
+                     cco:has_output ex:MICE_00005 ;
+                     cco:inheres_in ex:Chiller4 ;
+                     cco:is_measure_of ex:SDC_temp ;
+                     cco:occurs_during ex:TemporalInstant_00005 ;
+                     rdfs:label "temp measurement of Chiller-4" .
+
+
+###  http://example.org/measurements/Measurement_00006
+ex:Measurement_00006 rdf:type owl:NamedIndividual ,
+                              cco:Measurement ;
+                     cco:has_output ex:MICE_00006 ;
+                     cco:inheres_in ex:Circuit12 ;
+                     cco:is_measure_of ex:SDC_voltage ;
+                     cco:occurs_during ex:TemporalInstant_00006 ;
+                     rdfs:label "voltage measurement of Circuit-12" .
+
+
+###  http://example.org/measurements/Measurement_00007
+ex:Measurement_00007 rdf:type owl:NamedIndividual ,
+                              cco:Measurement ;
+                     cco:has_output ex:MICE_00007 ;
+                     cco:inheres_in ex:Circuit12 ;
+                     cco:is_measure_of ex:SDC_resistance ;
+                     cco:occurs_during ex:TemporalInstant_00007 ;
+                     rdfs:label "resistance measurement of Circuit-12" .
+
+
+###  http://example.org/measurements/SDC_pressure
+ex:SDC_pressure rdf:type owl:NamedIndividual ,
+                         cco:SpecificallyDependentContinuant ;
+                rdfs:label "pressure" .
+
+
+###  http://example.org/measurements/SDC_resistance
+ex:SDC_resistance rdf:type owl:NamedIndividual ,
+                           cco:SpecificallyDependentContinuant ;
+                  rdfs:label "resistance" .
+
+
+###  http://example.org/measurements/SDC_temp
+ex:SDC_temp rdf:type owl:NamedIndividual ,
+                     cco:SpecificallyDependentContinuant ;
+            rdfs:label "temp" .
+
+
+###  http://example.org/measurements/SDC_voltage
+ex:SDC_voltage rdf:type owl:NamedIndividual ,
+                        cco:SpecificallyDependentContinuant ;
+               rdfs:label "voltage" .
+
+
+###  http://example.org/measurements/TemporalInstant_00001
+ex:TemporalInstant_00001 rdf:type owl:NamedIndividual ,
+                                  cco:TemporalInstant ;
+                         time:inXSDDateTime "2024-03-17T23:03:00+00:00"^^xsd:dateTime .
+
+
+###  http://example.org/measurements/TemporalInstant_00002
+ex:TemporalInstant_00002 rdf:type owl:NamedIndividual ,
+                                  cco:TemporalInstant ;
+                         time:inXSDDateTime "2024-03-17T23:04:00+00:00"^^xsd:dateTime .
+
+
+###  http://example.org/measurements/TemporalInstant_00003
+ex:TemporalInstant_00003 rdf:type owl:NamedIndividual ,
+                                  cco:TemporalInstant ;
+                         time:inXSDDateTime "2024-03-18T12:01:00+00:00"^^xsd:dateTime .
+
+
+###  http://example.org/measurements/TemporalInstant_00004
+ex:TemporalInstant_00004 rdf:type owl:NamedIndividual ,
+                                  cco:TemporalInstant ;
+                         time:inXSDDateTime "2024-03-18T12:01:00+00:00"^^xsd:dateTime .
+
+
+###  http://example.org/measurements/TemporalInstant_00005
+ex:TemporalInstant_00005 rdf:type owl:NamedIndividual ,
+                                  cco:TemporalInstant ;
+                         time:inXSDDateTime "2024-03-18T12:06:00+00:00"^^xsd:dateTime .
+
+
+###  http://example.org/measurements/TemporalInstant_00006
+ex:TemporalInstant_00006 rdf:type owl:NamedIndividual ,
+                                  cco:TemporalInstant ;
+                         time:inXSDDateTime "2024-03-18T12:01:01+00:00"^^xsd:dateTime .
+
+
+###  http://example.org/measurements/TemporalInstant_00007
+ex:TemporalInstant_00007 rdf:type owl:NamedIndividual ,
+                                  cco:TemporalInstant ;
+                         time:inXSDDateTime "2024-03-18T12:06:00+00:00"^^xsd:dateTime .
+
+
+###  Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi

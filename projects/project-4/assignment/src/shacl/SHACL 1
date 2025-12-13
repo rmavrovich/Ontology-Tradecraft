@@ -1,0 +1,139 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix cco: <http://www.ontologyrepository.com/CommonCoreOntologies/> .
+@prefix bfo: <http://purl.obolibrary.org/obo/BFO_/> .
+@prefix ex: <http://example.org/shapes/> .
+
+#################################################################
+# 1) Artifact bears at least one SDC
+#################################################################
+ex:ArtifactHasSDCShape
+  a sh:NodeShape ;
+  sh:targetClass cco:Artifact ;
+  sh:property [
+    sh:path bfo:bearer_of ;
+    sh:minCount 1 ;
+    sh:class bfo:SpecificallyDependentContinuant ;
+    sh:message "Every Artifact must bear at least one SDC (Specifically Dependent Continuant)." ;
+    sh:severity sh:Violation
+  ] .
+
+#################################################################
+# 2) SDC is measured by at least one MICE (inverse)
+#################################################################
+ex:SDCMeasuredByMICEShape
+  a sh:NodeShape ;
+  sh:targetClass bfo:SpecificallyDependentContinuant ;
+  sh:property [
+    sh:path [ sh:inversePath cco:measures ] ;
+    sh:minCount 1 ;
+    sh:class cco:MeasurementInformationContentEntity ;
+    sh:message "Each SDC must be measured by at least one Measurement Information Content Entity." ;
+    sh:severity sh:Violation
+  ] .
+
+#################################################################
+# 3) MICE measures exactly one SDC (functional)
+#################################################################
+ex:MICEMeasuresExactlyOneSDCShape
+  a sh:NodeShape ;
+  sh:targetClass cco:MeasurementInformationContentEntity ;
+  sh:property [
+    sh:path cco:measures ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:class bfo:SpecificallyDependentContinuant ;
+    sh:message "Every MICE must measure exactly one SDC." ;
+    sh:severity sh:Violation
+  ] .
+
+#################################################################
+# 4) MICE must have one unit and one numeric value (completeness)
+#################################################################
+ex:MICECompletenessShape
+  a sh:NodeShape ;
+  sh:targetClass cco:MeasurementInformationContentEntity ;
+  sh:property [
+    sh:path cco:hasUnit ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:message "Each MICE must have exactly one unit." ;
+    sh:severity sh:Violation
+  ] ;
+  sh:property [
+    sh:path cco:hasMagnitude ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:datatype xsd:decimal ;
+    sh:message "Each MICE must have exactly one numeric value (xsd:decimal)." ;
+    sh:severity sh:Violation
+  ] .
+
+#################################################################
+# 5) No empty literal values
+#################################################################
+ex:NoEmptyLiteralsShape
+  a sh:NodeShape ;
+  sh:targetSubjectsOf rdfs:label, cco:hasMagnitude, cco:hasUnit ;
+  sh:property [
+    sh:path rdfs:label ;
+    sh:minLength 1 ;
+    sh:message "Literal values must not be empty." ;
+    sh:severity sh:Violation
+  ] .
+
+#################################################################
+# 6) Unit must match SDC being measured
+#################################################################
+# Placeholder: modify ex:TemperatureSDC, units as needed.
+ex:ValidUnitForSDCShape
+  a sh:NodeShape ;
+  sh:targetClass cco:MeasurementInformationContentEntity ;
+  sh:property [
+    sh:path cco:hasUnit ;
+    sh:condition [ sh:path cco:measures ; sh:class ex:TemperatureSDC ] ;
+    sh:in ( ex:Celsius ex:Fahrenheit ) ;
+    sh:message "Unit does not match the Temperature SDC type." ;
+    sh:severity sh:Violation
+  ] .
+
+#################################################################
+# 7) No duplicate MICE
+#################################################################
+ex:NoDuplicateMICERule
+  a sh:NodeShape ;
+  sh:targetClass cco:MeasurementInformationContentEntity ;
+  sh:sparql [
+    sh:message "Duplicate MICE detected (same SDC, unit, value, time)." ;
+    sh:severity sh:Violation ;
+    sh:select """
+      SELECT $this WHERE {
+        $this cco:measures ?sdc ;
+              cco:hasUnit ?unit ;
+              cco:hasMagnitude ?val ;
+              cco:hasTime ?t .
+
+        ?other cco:measures ?sdc ;
+               cco:hasUnit ?unit ;
+               cco:hasMagnitude ?val ;
+               cco:hasTime ?t .
+
+        FILTER(?other != $this)
+      }
+    """ ;
+  ] .
+
+#################################################################
+# 8) No dangling or mistyped nodes
+#################################################################
+ex:NoDanglingNodesShape
+  a sh:NodeShape ;
+  sh:targetSubjectsOf rdf:type ;
+  sh:property [
+    sh:path rdf:type ;
+    sh:minCount 1 ;
+    sh:message "Every node must have at least one rdf:type." ;
+    sh:severity sh:Violation
+  ] .

@@ -1,6 +1,15 @@
-# Title: 
-#    No Class Should Be Outside the BFO Hierarchy
-# Constraint Description: 
-#     All classes must have a BFO superclass.
-# Severity:
-#     Error
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?class
+WHERE {
+  ?class a rdfs:Class .
+
+  # Exclude BFO classes themselves
+  FILTER( !STRSTARTS(STR(?class), "http://purl.obolibrary.org/obo/BFO_") )
+
+  # Get all superclasses (transitive)
+  FILTER NOT EXISTS {
+    ?class rdfs:subClassOf+ ?super .
+    FILTER( STRSTARTS(STR(?super), "http://purl.obolibrary.org/obo/BFO_") )
+  }
+}

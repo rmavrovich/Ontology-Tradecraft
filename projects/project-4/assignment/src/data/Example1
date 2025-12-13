@@ -1,0 +1,167 @@
+@prefix : <http://example.org/measure/> .
+@prefix cco: <http://www.ontologyrepository.com/CommonCoreOntologies/> .
+@prefix bfo: <http://purl.obolibrary.org/obo/> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix qudt-unit: <http://qudt.org/vocab/unit/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# ===================================================================
+# ARTIFACTS (cco:Material_Artifact)
+# ===================================================================
+
+:Boiler-07 a cco:Artifact ;
+    rdfs:label "Boiler-07" .
+
+:Chiller-3 a cco:Artifact ;
+    rdfs:label "Chiller-3" .
+
+:Chiller-4 a cco:Artifact ;
+    rdfs:label "Chiller-4" .
+
+:Circuit-12 a cco:Artifact ;
+    rdfs:label "Circuit-12" .
+
+:Pump-A1 a cco:Artifact ;
+    rdfs:label "Pump-A1" .
+
+
+# ===================================================================
+# MEASUREMENT UNITS (cco:MU) — QUDT-based
+# ===================================================================
+
+:MU_C a cco:MU ;
+    rdfs:label "Degree Celsius" ;
+    cco:usesMeasurementUnit qudt-unit:DEG_C .
+
+:MU_kPa a cco:MU ;
+    rdfs:label "Kilopascal" ;
+    cco:usesMeasurementUnit qudt-unit:KiloPa .
+
+:MU_volt a cco:MU ;
+    rdfs:label "Volt" ;
+    cco:usesMeasurementUnit qudt-unit:V .
+
+:MU_ohm a cco:MU ;
+    rdfs:label "Ohm" ;
+    cco:usesMeasurementUnit qudt-unit:OHM .
+
+
+# ===================================================================
+# MEASUREMENT INFORMATION CONTENT ENTITIES (cco:MICE)
+# ===================================================================
+
+:mice_boiler07_temp_001 a cco:MICE ;
+    rdfs:label "MICE: Temperature of Boiler-07 at 2024-03-17T23:03:00Z" ;
+    cco:isMeasureOf :Boiler-07 ;
+    cco:usesMeasurementUnit :MU_C ;
+    cco:hasValue 100.0 ;
+    cco:atTime "2024-03-17T23:03:00Z"^^xsd:dateTimeStamp .
+
+:mice_boiler07_press_001 a cco:MICE ;
+    rdfs:label "MICE: Pressure of Boiler-07 at 2024-03-17T23:04:00Z" ;
+    cco:isMeasureOf :Boiler-07 ;
+    cco:usesMeasurementUnit :MU_kPa ;
+    cco:hasValue 101.325 ;
+    cco:atTime "2024-03-17T23:04:00Z"^^xsd:dateTimeStamp .
+
+:mice_chiller3_temp_001 a cco:MICE ;
+    rdfs:label "MICE: Temperature of Chiller-3 at 2024-03-18T12:01:00Z" ;
+    cco:isMeasureOf :Chiller-3 ;
+    cco:usesMeasurementUnit :MU_C ;
+    cco:hasValue 20.0 ;
+    cco:atTime "2024-03-18T12:01:00Z"^^xsd:dateTimeStamp .
+
+:mice_chiller4_temp_001 a cco:MICE ;
+    rdfs:label "MICE: Temperature of Chiller-4 at 2024-03-18T12:01:00Z" ;
+    cco:isMeasureOf :Chiller-4 ;
+    cco:usesMeasurementUnit :MU_C ;
+    cco:hasValue -14.1667 ;
+    cco:atTime "2024-03-18T12:01:00Z"^^xsd:dateTimeStamp .
+
+:mice_chiller4_temp_002 a cco:MICE ;
+    rdfs:label "MICE: Temperature of Chiller-4 at 2024-03-18T12:06:00Z" ;
+    cco:isMeasureOf :Chiller-4 ;
+    cco:usesMeasurementUnit :MU_C ;
+    cco:hasValue -6.9444 ;
+    cco:atTime "2024-03-18T12:06:00Z"^^xsd:dateTimeStamp .
+
+:mice_circuit12_volt_001 a cco:MICE ;
+    rdfs:label "MICE: Voltage of Circuit-12 at 2024-03-18T12:01:01Z" ;
+    cco:isMeasureOf :Circuit-12 ;
+    cco:usesMeasurementUnit :MU_volt ;
+    cco:hasValue 2.0 ;
+    cco:atTime "2024-03-18T12:01:01Z"^^xsd:dateTimeStamp .
+
+:mice_circuit12_res_001 a cco:MICE ;
+    rdfs:label "MICE: Resistance of Circuit-12 at 2024-03-18T12:06:00Z" ;
+    cco:isMeasureOf :Circuit-12 ;
+    cco:usesMeasurementUnit :MU_ohm ;
+    cco:hasValue 1.3 ;
+    cco:atTime "2024-03-18T12:06:00Z"^^xsd:dateTimeStamp .
+
+:mice_pumpa1_press_001 a cco:MICE ;
+    rdfs:label "MICE: Pressure of Pump-A1 at 2024-03-18T12:07:00Z" ;
+    cco:isMeasureOf :Pump-A1 ;
+    cco:usesMeasurementUnit :MU_kPa ;
+    cco:hasValue 101.325 ;
+    cco:atTime "2024-03-18T12:07:00Z"^^xsd:dateTimeStamp .
+
+
+# ===================================================================
+# SPECIFICALLY DEPENDENT CONTINUANTS (bfo:SDC)
+# ===================================================================
+
+:sdc_boiler07_temp_001 a bfo:SDC ;
+    rdfs:label "Temperature of Boiler-07 at 2024-03-17T23:03:00Z" ;
+    bfo:bearerOf :Boiler-07 ;
+    rdf:type cco:Temperature .
+
+:sdc_boiler07_press_001 a bfo:SDC ;
+    rdfs:label "Pressure of Boiler-07 at 2024-03-17T23:04:00Z" ;
+    bfo:bearerOf :Boiler-07 ;
+    rdf:type cco:Pressure .
+
+:sdc_chiller3_temp_001 a bfo:SDC ;
+    rdfs:label "Temperature of Chiller-3 at 2024-03-18T12:01:00Z" ;
+    bfo:bearerOf :Chiller-3 ;
+    rdf:type cco:Temperature .
+
+:sdc_chiller4_temp_001 a bfo:SDC ;
+    rdfs:label "Temperature of Chiller-4 at 2024-03-18T12:01:00Z" ;
+    bfo:bearerOf :Chiller-4 ;
+    rdf:type cco:Temperature .
+
+:sdc_chiller4_temp_002 a bfo:SDC ;
+    rdfs:label "Temperature of Chiller-4 at 2024-03-18T12:06:00Z" ;
+    bfo:bearerOf :Chiller-4 ;
+    rdf:type cco:Temperature .
+
+:sdc_circuit12_volt_001 a bfo:SDC ;
+    rdfs:label "Voltage of Circuit-12 at 2024-03-18T12:01:01Z" ;
+    bfo:bearerOf :Circuit-12 ;
+    rdf:type cco:Voltage .
+
+:sdc_circuit12_res_001 a bfo:SDC ;
+    rdfs:label "Resistance of Circuit-12 at 2024-03-18T12:06:00Z" ;
+    bfo:bearerOf :Circuit-12 ;
+    rdf:type cco:ElectricalResistance .
+
+:sdc_pumpa1_press_001 a bfo:SDC ;
+    rdfs:label "Pressure of Pump-A1 at 2024-03-18T12:07:00Z" ;
+    bfo:bearerOf :Pump-A1 ;
+    rdf:type cco:Pressure .
+
+
+# ===================================================================
+# LINKING MICE TO SDC (Optional: cco:isAbout)
+# ===================================================================
+
+:mice_boiler07_temp_001 cco:isAbout :sdc_boiler07_temp_001 .
+:mice_boiler07_press_001 cco:isAbout :sdc_boiler07_press_001 .
+:mice_chiller3_temp_001 cco:isAbout :sdc_chiller3_temp_001 .
+:mice_chiller4_temp_001 cco:isAbout :sdc_chiller4_temp_001 .
+:mice_chiller4_temp_002 cco:isAbout :sdc_chiller4_temp_002 .
+:mice_circuit12_volt_001 cco:isAbout :sdc_circuit12_volt_001 .
+:mice_circuit12_res_001 cco:isAbout :sdc_circuit12_res_001 .
+:mice_pumpa1_press_001 cco:isAbout :sdc_pumpa1_press_001 .

@@ -1,0 +1,548 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.w3.org/2002/07/owl"
+     xmlns:obo="http://purl.obolibrary.org/obo/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:time="http://www.w3.org/2006/time#"
+     xmlns:CommonCoreOntologiesMerged="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#">
+    <Ontology/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/BFO_0000066 -->
+
+    <AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/BFO_0000066"/>
+    
+
+
+    <!-- http://www.w3.org/2006/time#inXSDDateTime -->
+
+    <AnnotationProperty rdf:about="http://www.w3.org/2006/time#inXSDDateTime"/>
+    
+
+
+    <!-- https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#bearer_of -->
+
+    <AnnotationProperty rdf:about="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#bearer_of"/>
+    
+
+
+    <!-- https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#has_measurement_value -->
+
+    <AnnotationProperty rdf:about="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#has_measurement_value"/>
+    
+
+
+    <!-- https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#has_output -->
+
+    <AnnotationProperty rdf:about="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#has_output"/>
+    
+
+
+    <!-- https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#inheres_in -->
+
+    <AnnotationProperty rdf:about="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#inheres_in"/>
+    
+
+
+    <!-- https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#is_measure_of -->
+
+    <AnnotationProperty rdf:about="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#is_measure_of"/>
+    
+
+
+    <!-- https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#uses_measurement_unit -->
+
+    <AnnotationProperty rdf:about="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#uses_measurement_unit"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Continuant -->
+
+    <Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#Continuant"/>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Independent_Continuant -->
+
+    <Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#Independent_Continuant">
+        <rdfs:subClassOf rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Continuant"/>
+    </Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Information_Content_Entity -->
+
+    <Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#Information_Content_Entity">
+        <rdfs:subClassOf rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Continuant"/>
+    </Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Material_Entity -->
+
+    <Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#Material_Entity">
+        <rdfs:subClassOf rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Independent_Continuant"/>
+    </Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Occurent -->
+
+    <Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#Occurent"/>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Process -->
+
+    <Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#Process">
+        <rdfs:subClassOf rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Occurent"/>
+    </Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Temporal_Region -->
+
+    <Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#Temporal_Region">
+        <rdfs:subClassOf rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Occurent"/>
+    </Class>
+    
+
+
+    <!-- https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Material_Artifact -->
+
+    <Class rdf:about="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Material_Artifact">
+        <rdfs:subClassOf rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Material_Entity"/>
+    </Class>
+    
+
+
+    <!-- https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement -->
+
+    <Class rdf:about="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement"/>
+    
+
+
+    <!-- https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Information_Content_Entity -->
+
+    <Class rdf:about="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Information_Content_Entity">
+        <rdfs:subClassOf rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Information_Content_Entity"/>
+    </Class>
+    
+
+
+    <!-- https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Unit -->
+
+    <Class rdf:about="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Unit">
+        <rdfs:subClassOf rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Information_Content_Entity"/>
+    </Class>
+    
+
+
+    <!-- https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Specifically_Dependent_Continuant -->
+
+    <Class rdf:about="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Specifically_Dependent_Continuant">
+        <rdfs:subClassOf rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Continuant"/>
+    </Class>
+    
+
+
+    <!-- https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Temporal_Instant -->
+
+    <Class rdf:about="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Temporal_Instant">
+        <rdfs:subClassOf rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Temporal_Region"/>
+    </Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://example.org/measurements/Boiler07 -->
+
+    <NamedIndividual rdf:about="http://example.org/measurements/Boiler07">
+        <rdf:type rdf:resource="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Material_Artifact"/>
+        <rdfs:label>Boiler-07</rdfs:label>
+        <CommonCoreOntologiesMerged:bearer_of rdf:resource="http://example.org/measurements/SDC_temp"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://example.org/measurements/Chiller3 -->
+
+    <NamedIndividual rdf:about="http://example.org/measurements/Chiller3">
+        <rdf:type rdf:resource="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Material_Artifact"/>
+        <rdfs:label>Chiller-3</rdfs:label>
+        <CommonCoreOntologiesMerged:bearer_of rdf:resource="http://example.org/measurements/SDC_temp"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://example.org/measurements/Chiller4 -->
+
+    <NamedIndividual rdf:about="http://example.org/measurements/Chiller4">
+        <rdf:type rdf:resource="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Material_Artifact"/>
+        <rdfs:label>Chiller-4</rdfs:label>
+        <CommonCoreOntologiesMerged:bearer_of rdf:resource="http://example.org/measurements/SDC_temp"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://example.org/measurements/Circuit12 -->
+
+    <NamedIndividual rdf:about="http://example.org/measurements/Circuit12">
+        <rdf:type rdf:resource="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Material_Artifact"/>
+        <rdfs:label>Circuit-12</rdfs:label>
+        <CommonCoreOntologiesMerged:bearer_of rdf:resource="http://example.org/measurements/SDC_resistance"/>
+        <CommonCoreOntologiesMerged:bearer_of rdf:resource="http://example.org/measurements/SDC_voltage"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://example.org/measurements/MICE_00001 -->
+
+    <NamedIndividual rdf:about="http://example.org/measurements/MICE_00001">
+        <rdf:type rdf:resource="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Information_Content_Entity"/>
+        <rdfs:label>measurement value 100.0</rdfs:label>
+        <CommonCoreOntologiesMerged:has_measurement_value rdf:datatype="http://www.w3.org/2001/XMLSchema#float">100.0</CommonCoreOntologiesMerged:has_measurement_value>
+        <CommonCoreOntologiesMerged:uses_measurement_unit rdf:resource="http://example.org/measurements/MU_C"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://example.org/measurements/MICE_00002 -->
+
+    <NamedIndividual rdf:about="http://example.org/measurements/MICE_00002">
+        <rdf:type rdf:resource="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Information_Content_Entity"/>
+        <rdfs:label>measurement value 101.325</rdfs:label>
+        <CommonCoreOntologiesMerged:has_measurement_value rdf:datatype="http://www.w3.org/2001/XMLSchema#float">101.325</CommonCoreOntologiesMerged:has_measurement_value>
+        <CommonCoreOntologiesMerged:uses_measurement_unit rdf:resource="http://example.org/measurements/MU_kPa"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://example.org/measurements/MICE_00003 -->
+
+    <NamedIndividual rdf:about="http://example.org/measurements/MICE_00003">
+        <rdf:type rdf:resource="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Information_Content_Entity"/>
+        <rdfs:label>measurement value 19.5</rdfs:label>
+        <CommonCoreOntologiesMerged:has_measurement_value rdf:datatype="http://www.w3.org/2001/XMLSchema#float">19.5</CommonCoreOntologiesMerged:has_measurement_value>
+        <CommonCoreOntologiesMerged:uses_measurement_unit rdf:resource="http://example.org/measurements/MU_C"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://example.org/measurements/MICE_00004 -->
+
+    <NamedIndividual rdf:about="http://example.org/measurements/MICE_00004">
+        <rdf:type rdf:resource="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Information_Content_Entity"/>
+        <rdfs:label>measurement value 6.5</rdfs:label>
+        <CommonCoreOntologiesMerged:has_measurement_value rdf:datatype="http://www.w3.org/2001/XMLSchema#float">6.5</CommonCoreOntologiesMerged:has_measurement_value>
+        <CommonCoreOntologiesMerged:uses_measurement_unit rdf:resource="http://example.org/measurements/MU_F"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://example.org/measurements/MICE_00005 -->
+
+    <NamedIndividual rdf:about="http://example.org/measurements/MICE_00005">
+        <rdf:type rdf:resource="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Information_Content_Entity"/>
+        <rdfs:label>measurement value 19.5</rdfs:label>
+        <CommonCoreOntologiesMerged:has_measurement_value rdf:datatype="http://www.w3.org/2001/XMLSchema#float">19.5</CommonCoreOntologiesMerged:has_measurement_value>
+        <CommonCoreOntologiesMerged:uses_measurement_unit rdf:resource="http://example.org/measurements/MU_F"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://example.org/measurements/MICE_00006 -->
+
+    <NamedIndividual rdf:about="http://example.org/measurements/MICE_00006">
+        <rdf:type rdf:resource="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Information_Content_Entity"/>
+        <rdfs:label>measurement value 2.0</rdfs:label>
+        <CommonCoreOntologiesMerged:has_measurement_value rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.0</CommonCoreOntologiesMerged:has_measurement_value>
+        <CommonCoreOntologiesMerged:uses_measurement_unit rdf:resource="http://example.org/measurements/MU_V"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://example.org/measurements/MICE_00007 -->
+
+    <NamedIndividual rdf:about="http://example.org/measurements/MICE_00007">
+        <rdf:type rdf:resource="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Information_Content_Entity"/>
+        <rdfs:label>measurement value 1.3</rdfs:label>
+        <CommonCoreOntologiesMerged:has_measurement_value rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.3</CommonCoreOntologiesMerged:has_measurement_value>
+        <CommonCoreOntologiesMerged:uses_measurement_unit rdf:resource="http://example.org/measurements/MU_unknown"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://example.org/measurements/MU_C -->
+
+    <NamedIndividual rdf:about="http://example.org/measurements/MU_C">
+        <rdf:type rdf:resource="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Unit"/>
+        <rdfs:label>C</rdfs:label>
+    </NamedIndividual>
+    
+
+
+    <!-- http://example.org/measurements/MU_F -->
+
+    <NamedIndividual rdf:about="http://example.org/measurements/MU_F">
+        <rdf:type rdf:resource="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Unit"/>
+        <rdfs:label>F</rdfs:label>
+    </NamedIndividual>
+    
+
+
+    <!-- http://example.org/measurements/MU_V -->
+
+    <NamedIndividual rdf:about="http://example.org/measurements/MU_V">
+        <rdf:type rdf:resource="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Unit"/>
+        <rdfs:label>V</rdfs:label>
+    </NamedIndividual>
+    
+
+
+    <!-- http://example.org/measurements/MU_kPa -->
+
+    <NamedIndividual rdf:about="http://example.org/measurements/MU_kPa">
+        <rdf:type rdf:resource="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Unit"/>
+        <rdfs:label>kPa</rdfs:label>
+    </NamedIndividual>
+    
+
+
+    <!-- http://example.org/measurements/MU_unknown -->
+
+    <NamedIndividual rdf:about="http://example.org/measurements/MU_unknown">
+        <rdf:type rdf:resource="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Unit"/>
+        <rdfs:label>Ω</rdfs:label>
+    </NamedIndividual>
+    
+
+
+    <!-- http://example.org/measurements/Measurement_00001 -->
+
+    <NamedIndividual rdf:about="http://example.org/measurements/Measurement_00001">
+        <rdf:type rdf:resource="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement"/>
+        <obo:BFO_0000066 rdf:resource="http://example.org/measurements/TemporalInstant_00001"/>
+        <rdfs:label>temp measurement of Boiler-07</rdfs:label>
+        <CommonCoreOntologiesMerged:has_output rdf:resource="http://example.org/measurements/MICE_00001"/>
+        <CommonCoreOntologiesMerged:inheres_in rdf:resource="http://example.org/measurements/Boiler07"/>
+        <CommonCoreOntologiesMerged:is_measure_of rdf:resource="http://example.org/measurements/SDC_temp"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://example.org/measurements/Measurement_00002 -->
+
+    <NamedIndividual rdf:about="http://example.org/measurements/Measurement_00002">
+        <rdf:type rdf:resource="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement"/>
+        <obo:BFO_0000066 rdf:resource="http://example.org/measurements/TemporalInstant_00002"/>
+        <rdfs:label>pressure measurement of Boiler-07</rdfs:label>
+        <CommonCoreOntologiesMerged:has_output rdf:resource="http://example.org/measurements/MICE_00002"/>
+        <CommonCoreOntologiesMerged:inheres_in rdf:resource="http://example.org/measurements/Boiler07"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://example.org/measurements/Measurement_00003 -->
+
+    <NamedIndividual rdf:about="http://example.org/measurements/Measurement_00003">
+        <rdf:type rdf:resource="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement"/>
+        <obo:BFO_0000066 rdf:resource="http://example.org/measurements/TemporalInstant_00003"/>
+        <rdfs:label>temp measurement of Chiller-3</rdfs:label>
+        <CommonCoreOntologiesMerged:has_output rdf:resource="http://example.org/measurements/MICE_00003"/>
+        <CommonCoreOntologiesMerged:inheres_in rdf:resource="http://example.org/measurements/Chiller3"/>
+        <CommonCoreOntologiesMerged:is_measure_of rdf:resource="http://example.org/measurements/SDC_temp"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://example.org/measurements/Measurement_00004 -->
+
+    <NamedIndividual rdf:about="http://example.org/measurements/Measurement_00004">
+        <rdf:type rdf:resource="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement"/>
+        <obo:BFO_0000066 rdf:resource="http://example.org/measurements/TemporalInstant_00004"/>
+        <rdfs:label>temp measurement of Chiller-4</rdfs:label>
+        <CommonCoreOntologiesMerged:has_output rdf:resource="http://example.org/measurements/MICE_00004"/>
+        <CommonCoreOntologiesMerged:inheres_in rdf:resource="http://example.org/measurements/Chiller4"/>
+        <CommonCoreOntologiesMerged:is_measure_of rdf:resource="http://example.org/measurements/SDC_temp"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://example.org/measurements/Measurement_00005 -->
+
+    <NamedIndividual rdf:about="http://example.org/measurements/Measurement_00005">
+        <rdf:type rdf:resource="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement"/>
+        <obo:BFO_0000066 rdf:resource="http://example.org/measurements/TemporalInstant_00005"/>
+        <rdfs:label>temp measurement of Chiller-4</rdfs:label>
+        <CommonCoreOntologiesMerged:has_output rdf:resource="http://example.org/measurements/MICE_00005"/>
+        <CommonCoreOntologiesMerged:inheres_in rdf:resource="http://example.org/measurements/Chiller4"/>
+        <CommonCoreOntologiesMerged:is_measure_of rdf:resource="http://example.org/measurements/SDC_temp"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://example.org/measurements/Measurement_00006 -->
+
+    <NamedIndividual rdf:about="http://example.org/measurements/Measurement_00006">
+        <rdf:type rdf:resource="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement"/>
+        <obo:BFO_0000066 rdf:resource="http://example.org/measurements/TemporalInstant_00006"/>
+        <rdfs:label>voltage measurement of Circuit-12</rdfs:label>
+        <CommonCoreOntologiesMerged:has_output rdf:resource="http://example.org/measurements/MICE_00006"/>
+        <CommonCoreOntologiesMerged:inheres_in rdf:resource="http://example.org/measurements/Circuit12"/>
+        <CommonCoreOntologiesMerged:is_measure_of rdf:resource="http://example.org/measurements/SDC_voltage"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://example.org/measurements/Measurement_00007 -->
+
+    <NamedIndividual rdf:about="http://example.org/measurements/Measurement_00007">
+        <rdf:type rdf:resource="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement"/>
+        <obo:BFO_0000066 rdf:resource="http://example.org/measurements/TemporalInstant_00007"/>
+        <rdfs:label>resistance measurement of Circuit-12</rdfs:label>
+        <CommonCoreOntologiesMerged:has_output rdf:resource="http://example.org/measurements/MICE_00007"/>
+        <CommonCoreOntologiesMerged:inheres_in rdf:resource="http://example.org/measurements/Circuit12"/>
+        <CommonCoreOntologiesMerged:is_measure_of rdf:resource="http://example.org/measurements/SDC_resistance"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://example.org/measurements/SDC_resistance -->
+
+    <NamedIndividual rdf:about="http://example.org/measurements/SDC_resistance">
+        <rdf:type rdf:resource="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Specifically_Dependent_Continuant"/>
+        <rdfs:label>resistance</rdfs:label>
+    </NamedIndividual>
+    
+
+
+    <!-- http://example.org/measurements/SDC_temp -->
+
+    <NamedIndividual rdf:about="http://example.org/measurements/SDC_temp">
+        <rdf:type rdf:resource="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Specifically_Dependent_Continuant"/>
+        <rdfs:label>temp</rdfs:label>
+    </NamedIndividual>
+    
+
+
+    <!-- http://example.org/measurements/SDC_voltage -->
+
+    <NamedIndividual rdf:about="http://example.org/measurements/SDC_voltage">
+        <rdf:type rdf:resource="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Specifically_Dependent_Continuant"/>
+        <rdfs:label>voltage</rdfs:label>
+    </NamedIndividual>
+    
+
+
+    <!-- http://example.org/measurements/TemporalInstant_00001 -->
+
+    <NamedIndividual rdf:about="http://example.org/measurements/TemporalInstant_00001">
+        <rdf:type rdf:resource="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Temporal_Instant"/>
+        <time:inXSDDateTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2024-03-17T23:03:00+00:00</time:inXSDDateTime>
+    </NamedIndividual>
+    
+
+
+    <!-- http://example.org/measurements/TemporalInstant_00002 -->
+
+    <NamedIndividual rdf:about="http://example.org/measurements/TemporalInstant_00002">
+        <rdf:type rdf:resource="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Temporal_Instant"/>
+        <time:inXSDDateTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2024-03-17T23:04:00+00:00</time:inXSDDateTime>
+    </NamedIndividual>
+    
+
+
+    <!-- http://example.org/measurements/TemporalInstant_00003 -->
+
+    <NamedIndividual rdf:about="http://example.org/measurements/TemporalInstant_00003">
+        <rdf:type rdf:resource="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Temporal_Instant"/>
+        <time:inXSDDateTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2024-03-18T12:01:00+00:00</time:inXSDDateTime>
+    </NamedIndividual>
+    
+
+
+    <!-- http://example.org/measurements/TemporalInstant_00004 -->
+
+    <NamedIndividual rdf:about="http://example.org/measurements/TemporalInstant_00004">
+        <rdf:type rdf:resource="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Temporal_Instant"/>
+        <time:inXSDDateTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2024-03-18T12:01:00+00:00</time:inXSDDateTime>
+    </NamedIndividual>
+    
+
+
+    <!-- http://example.org/measurements/TemporalInstant_00005 -->
+
+    <NamedIndividual rdf:about="http://example.org/measurements/TemporalInstant_00005">
+        <rdf:type rdf:resource="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Temporal_Instant"/>
+        <time:inXSDDateTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2024-03-18T12:06:00+00:00</time:inXSDDateTime>
+    </NamedIndividual>
+    
+
+
+    <!-- http://example.org/measurements/TemporalInstant_00006 -->
+
+    <NamedIndividual rdf:about="http://example.org/measurements/TemporalInstant_00006">
+        <rdf:type rdf:resource="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Temporal_Instant"/>
+        <time:inXSDDateTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2024-03-18T12:01:01+00:00</time:inXSDDateTime>
+    </NamedIndividual>
+    
+
+
+    <!-- http://example.org/measurements/TemporalInstant_00007 -->
+
+    <NamedIndividual rdf:about="http://example.org/measurements/TemporalInstant_00007">
+        <rdf:type rdf:resource="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Temporal_Instant"/>
+        <time:inXSDDateTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2024-03-18T12:06:00+00:00</time:inXSDDateTime>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#pressure -->
+
+    <NamedIndividual rdf:about="http://www.co-ode.org/ontologies/ont.owl#pressure">
+        <rdf:type rdf:resource="https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Specifically_Dependent_Continuant"/>
+    </NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi -->
+

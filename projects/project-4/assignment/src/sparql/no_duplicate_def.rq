@@ -1,6 +1,11 @@
-# Title: 
-#    No Duplicate Definitions
-# Constraint Description: 
-#    No two ontology elements may have the exact same definition.    
-# Severity:
-#     Error 
+PREFIX iao: <http://purl.obolibrary.org/obo/IAO_>
+
+SELECT ?def ?entity1 ?entity2
+WHERE {
+  ?entity1 iao:0000115 ?def .
+  ?entity2 iao:0000115 ?def .
+
+  # Ensure two distinct entities
+  FILTER( ?entity1 != ?entity2 )
+}
+ORDER BY ?def

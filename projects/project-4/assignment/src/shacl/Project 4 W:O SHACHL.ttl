@@ -1,0 +1,365 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.w3.org/2002/07/owl#> .
+
+[ rdf:type owl:Ontology
+ ] .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.obolibrary.org/obo/BFO_0000066
+<http://purl.obolibrary.org/obo/BFO_0000066> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2006/time#inXSDDateTime
+<http://www.w3.org/2006/time#inXSDDateTime> rdf:type owl:AnnotationProperty .
+
+
+###  https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#bearer_of
+<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#bearer_of> rdf:type owl:AnnotationProperty .
+
+
+###  https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#has_measurement_value
+<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#has_measurement_value> rdf:type owl:AnnotationProperty .
+
+
+###  https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#has_output
+<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#has_output> rdf:type owl:AnnotationProperty .
+
+
+###  https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#inheres_in
+<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#inheres_in> rdf:type owl:AnnotationProperty .
+
+
+###  https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#is_measure_of
+<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#is_measure_of> rdf:type owl:AnnotationProperty .
+
+
+###  https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#uses_measurement_unit
+<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#uses_measurement_unit> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.co-ode.org/ontologies/ont.owl#Continuant
+<http://www.co-ode.org/ontologies/ont.owl#Continuant> rdf:type owl:Class .
+
+
+###  http://www.co-ode.org/ontologies/ont.owl#Independent_Continuant
+<http://www.co-ode.org/ontologies/ont.owl#Independent_Continuant> rdf:type owl:Class ;
+                                                                  rdfs:subClassOf <http://www.co-ode.org/ontologies/ont.owl#Continuant> .
+
+
+###  http://www.co-ode.org/ontologies/ont.owl#Information_Content_Entity
+<http://www.co-ode.org/ontologies/ont.owl#Information_Content_Entity> rdf:type owl:Class .
+
+
+###  http://www.co-ode.org/ontologies/ont.owl#Material_Entity
+<http://www.co-ode.org/ontologies/ont.owl#Material_Entity> rdf:type owl:Class ;
+                                                           rdfs:subClassOf <http://www.co-ode.org/ontologies/ont.owl#Independent_Continuant> .
+
+
+###  http://www.co-ode.org/ontologies/ont.owl#Occurent
+<http://www.co-ode.org/ontologies/ont.owl#Occurent> rdf:type owl:Class .
+
+
+###  http://www.co-ode.org/ontologies/ont.owl#Process
+<http://www.co-ode.org/ontologies/ont.owl#Process> rdf:type owl:Class ;
+                                                   rdfs:subClassOf <http://www.co-ode.org/ontologies/ont.owl#Occurent> .
+
+
+###  http://www.co-ode.org/ontologies/ont.owl#Temporal_Region
+<http://www.co-ode.org/ontologies/ont.owl#Temporal_Region> rdf:type owl:Class ;
+                                                           rdfs:subClassOf <http://www.co-ode.org/ontologies/ont.owl#Occurent> .
+
+
+###  https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Material_Artifact
+<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Material_Artifact> rdf:type owl:Class ;
+                                                                                               rdfs:subClassOf <http://www.co-ode.org/ontologies/ont.owl#Material_Entity> .
+
+
+###  https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement
+<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement> rdf:type owl:Class .
+
+
+###  https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Information_Content_Entity
+<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Information_Content_Entity> rdf:type owl:Class ;
+                                                                                                                    rdfs:subClassOf <http://www.co-ode.org/ontologies/ont.owl#Information_Content_Entity> .
+
+
+###  https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Unit
+<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Unit> rdf:type owl:Class ;
+                                                                                              rdfs:subClassOf <http://www.co-ode.org/ontologies/ont.owl#Information_Content_Entity> .
+
+
+###  https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Specifically_Dependent_Continuant
+<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Specifically_Dependent_Continuant> rdf:type owl:Class ;
+                                                                                                               rdfs:subClassOf <http://www.co-ode.org/ontologies/ont.owl#Continuant> .
+
+
+###  https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Temporal_Instant
+<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Temporal_Instant> rdf:type owl:Class ;
+                                                                                              rdfs:subClassOf <http://www.co-ode.org/ontologies/ont.owl#Temporal_Region> .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://example.org/measurements/Boiler07
+<http://example.org/measurements/Boiler07> rdf:type owl:NamedIndividual ,
+                                                    <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Material_Artifact> ;
+                                           rdfs:label "Boiler-07" ;
+                                           <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#bearer_of> <http://example.org/measurements/SDC_temp> .
+
+
+###  http://example.org/measurements/Chiller3
+<http://example.org/measurements/Chiller3> rdf:type owl:NamedIndividual ,
+                                                    <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Material_Artifact> ;
+                                           rdfs:label "Chiller-3" ;
+                                           <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#bearer_of> <http://example.org/measurements/SDC_temp> .
+
+
+###  http://example.org/measurements/Chiller4
+<http://example.org/measurements/Chiller4> rdf:type owl:NamedIndividual ,
+                                                    <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Material_Artifact> ;
+                                           rdfs:label "Chiller-4" ;
+                                           <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#bearer_of> <http://example.org/measurements/SDC_temp> .
+
+
+###  http://example.org/measurements/Circuit12
+<http://example.org/measurements/Circuit12> rdf:type owl:NamedIndividual ,
+                                                     <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Material_Artifact> ;
+                                            rdfs:label "Circuit-12" ;
+                                            <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#bearer_of> <http://example.org/measurements/SDC_resistance> ,
+                                                                                                                                   <http://example.org/measurements/SDC_voltage> .
+
+
+###  http://example.org/measurements/MICE_00001
+<http://example.org/measurements/MICE_00001> rdf:type owl:NamedIndividual ,
+                                                      <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Information_Content_Entity> ;
+                                             rdfs:label "measurement value 100.0" ;
+                                             <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#has_measurement_value> "100.0"^^xsd:float ;
+                                             <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#uses_measurement_unit> <http://example.org/measurements/MU_C> .
+
+
+###  http://example.org/measurements/MICE_00002
+<http://example.org/measurements/MICE_00002> rdf:type owl:NamedIndividual ,
+                                                      <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Information_Content_Entity> ;
+                                             rdfs:label "measurement value 101.325" ;
+                                             <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#has_measurement_value> "101.325"^^xsd:float ;
+                                             <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#uses_measurement_unit> <http://example.org/measurements/MU_kPa> .
+
+
+###  http://example.org/measurements/MICE_00003
+<http://example.org/measurements/MICE_00003> rdf:type owl:NamedIndividual ,
+                                                      <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Information_Content_Entity> ;
+                                             rdfs:label "measurement value 19.5" ;
+                                             <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#has_measurement_value> "19.5"^^xsd:float ;
+                                             <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#uses_measurement_unit> <http://example.org/measurements/MU_C> .
+
+
+###  http://example.org/measurements/MICE_00004
+<http://example.org/measurements/MICE_00004> rdf:type owl:NamedIndividual ,
+                                                      <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Information_Content_Entity> ;
+                                             rdfs:label "measurement value 6.5" ;
+                                             <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#has_measurement_value> "6.5"^^xsd:float ;
+                                             <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#uses_measurement_unit> <http://example.org/measurements/MU_F> .
+
+
+###  http://example.org/measurements/MICE_00005
+<http://example.org/measurements/MICE_00005> rdf:type owl:NamedIndividual ,
+                                                      <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Information_Content_Entity> ;
+                                             rdfs:label "measurement value 19.5" ;
+                                             <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#has_measurement_value> "19.5"^^xsd:float ;
+                                             <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#uses_measurement_unit> <http://example.org/measurements/MU_F> .
+
+
+###  http://example.org/measurements/MICE_00006
+<http://example.org/measurements/MICE_00006> rdf:type owl:NamedIndividual ,
+                                                      <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Information_Content_Entity> ;
+                                             rdfs:label "measurement value 2.0" ;
+                                             <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#has_measurement_value> "2.0"^^xsd:float ;
+                                             <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#uses_measurement_unit> <http://example.org/measurements/MU_V> .
+
+
+###  http://example.org/measurements/MICE_00007
+<http://example.org/measurements/MICE_00007> rdf:type owl:NamedIndividual ,
+                                                      <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Information_Content_Entity> ;
+                                             rdfs:label "measurement value 1.3" ;
+                                             <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#has_measurement_value> "1.3"^^xsd:float ;
+                                             <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#uses_measurement_unit> <http://example.org/measurements/MU_unknown> .
+
+
+###  http://example.org/measurements/MU_C
+<http://example.org/measurements/MU_C> rdf:type owl:NamedIndividual ,
+                                                <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Unit> ;
+                                       rdfs:label "C" .
+
+
+###  http://example.org/measurements/MU_F
+<http://example.org/measurements/MU_F> rdf:type owl:NamedIndividual ,
+                                                <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Unit> ;
+                                       rdfs:label "F" .
+
+
+###  http://example.org/measurements/MU_V
+<http://example.org/measurements/MU_V> rdf:type owl:NamedIndividual ,
+                                                <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Unit> ;
+                                       rdfs:label "V" .
+
+
+###  http://example.org/measurements/MU_kPa
+<http://example.org/measurements/MU_kPa> rdf:type owl:NamedIndividual ,
+                                                  <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Unit> ;
+                                         rdfs:label "kPa" .
+
+
+###  http://example.org/measurements/MU_unknown
+<http://example.org/measurements/MU_unknown> rdf:type owl:NamedIndividual ,
+                                                      <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Unit> ;
+                                             rdfs:label "Ω" .
+
+
+###  http://example.org/measurements/Measurement_00001
+<http://example.org/measurements/Measurement_00001> rdf:type owl:NamedIndividual ,
+                                                             <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement> ;
+                                                    <http://purl.obolibrary.org/obo/BFO_0000066> <http://example.org/measurements/TemporalInstant_00001> ;
+                                                    rdfs:label "temp measurement of Boiler-07" ;
+                                                    <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#has_output> <http://example.org/measurements/MICE_00001> ;
+                                                    <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#inheres_in> <http://example.org/measurements/Boiler07> ;
+                                                    <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#is_measure_of> <http://example.org/measurements/SDC_temp> .
+
+
+###  http://example.org/measurements/Measurement_00002
+<http://example.org/measurements/Measurement_00002> rdf:type owl:NamedIndividual ,
+                                                             <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement> ;
+                                                    <http://purl.obolibrary.org/obo/BFO_0000066> <http://example.org/measurements/TemporalInstant_00002> ;
+                                                    rdfs:label "pressure measurement of Boiler-07" ;
+                                                    <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#has_output> <http://example.org/measurements/MICE_00002> ;
+                                                    <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#inheres_in> <http://example.org/measurements/Boiler07> .
+
+
+###  http://example.org/measurements/Measurement_00003
+<http://example.org/measurements/Measurement_00003> rdf:type owl:NamedIndividual ,
+                                                             <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement> ;
+                                                    <http://purl.obolibrary.org/obo/BFO_0000066> <http://example.org/measurements/TemporalInstant_00003> ;
+                                                    rdfs:label "temp measurement of Chiller-3" ;
+                                                    <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#has_output> <http://example.org/measurements/MICE_00003> ;
+                                                    <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#inheres_in> <http://example.org/measurements/Chiller3> ;
+                                                    <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#is_measure_of> <http://example.org/measurements/SDC_temp> .
+
+
+###  http://example.org/measurements/Measurement_00004
+<http://example.org/measurements/Measurement_00004> rdf:type owl:NamedIndividual ,
+                                                             <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement> ;
+                                                    <http://purl.obolibrary.org/obo/BFO_0000066> <http://example.org/measurements/TemporalInstant_00004> ;
+                                                    rdfs:label "temp measurement of Chiller-4" ;
+                                                    <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#has_output> <http://example.org/measurements/MICE_00004> ;
+                                                    <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#inheres_in> <http://example.org/measurements/Chiller4> ;
+                                                    <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#is_measure_of> <http://example.org/measurements/SDC_temp> .
+
+
+###  http://example.org/measurements/Measurement_00005
+<http://example.org/measurements/Measurement_00005> rdf:type owl:NamedIndividual ,
+                                                             <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement> ;
+                                                    <http://purl.obolibrary.org/obo/BFO_0000066> <http://example.org/measurements/TemporalInstant_00005> ;
+                                                    rdfs:label "temp measurement of Chiller-4" ;
+                                                    <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#has_output> <http://example.org/measurements/MICE_00005> ;
+                                                    <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#inheres_in> <http://example.org/measurements/Chiller4> ;
+                                                    <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#is_measure_of> <http://example.org/measurements/SDC_temp> .
+
+
+###  http://example.org/measurements/Measurement_00006
+<http://example.org/measurements/Measurement_00006> rdf:type owl:NamedIndividual ,
+                                                             <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement> ;
+                                                    <http://purl.obolibrary.org/obo/BFO_0000066> <http://example.org/measurements/TemporalInstant_00006> ;
+                                                    rdfs:label "voltage measurement of Circuit-12" ;
+                                                    <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#has_output> <http://example.org/measurements/MICE_00006> ;
+                                                    <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#inheres_in> <http://example.org/measurements/Circuit12> ;
+                                                    <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#is_measure_of> <http://example.org/measurements/SDC_voltage> .
+
+
+###  http://example.org/measurements/Measurement_00007
+<http://example.org/measurements/Measurement_00007> rdf:type owl:NamedIndividual ,
+                                                             <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement> ;
+                                                    <http://purl.obolibrary.org/obo/BFO_0000066> <http://example.org/measurements/TemporalInstant_00007> ;
+                                                    rdfs:label "resistance measurement of Circuit-12" ;
+                                                    <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#has_output> <http://example.org/measurements/MICE_00007> ;
+                                                    <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#inheres_in> <http://example.org/measurements/Circuit12> ;
+                                                    <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#is_measure_of> <http://example.org/measurements/SDC_resistance> .
+
+
+###  http://example.org/measurements/SDC_resistance
+<http://example.org/measurements/SDC_resistance> rdf:type owl:NamedIndividual ,
+                                                          <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Specifically_Dependent_Continuant> ;
+                                                 rdfs:label "resistance" .
+
+
+###  http://example.org/measurements/SDC_temp
+<http://example.org/measurements/SDC_temp> rdf:type owl:NamedIndividual ,
+                                                    <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Specifically_Dependent_Continuant> ;
+                                           rdfs:label "temp" .
+
+
+###  http://example.org/measurements/SDC_voltage
+<http://example.org/measurements/SDC_voltage> rdf:type owl:NamedIndividual ,
+                                                       <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Specifically_Dependent_Continuant> ;
+                                              rdfs:label "voltage" .
+
+
+###  http://example.org/measurements/TemporalInstant_00001
+<http://example.org/measurements/TemporalInstant_00001> rdf:type owl:NamedIndividual ,
+                                                                 <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Temporal_Instant> ;
+                                                        <http://www.w3.org/2006/time#inXSDDateTime> "2024-03-17T23:03:00+00:00"^^xsd:dateTime .
+
+
+###  http://example.org/measurements/TemporalInstant_00002
+<http://example.org/measurements/TemporalInstant_00002> rdf:type owl:NamedIndividual ,
+                                                                 <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Temporal_Instant> ;
+                                                        <http://www.w3.org/2006/time#inXSDDateTime> "2024-03-17T23:04:00+00:00"^^xsd:dateTime .
+
+
+###  http://example.org/measurements/TemporalInstant_00003
+<http://example.org/measurements/TemporalInstant_00003> rdf:type owl:NamedIndividual ,
+                                                                 <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Temporal_Instant> ;
+                                                        <http://www.w3.org/2006/time#inXSDDateTime> "2024-03-18T12:01:00+00:00"^^xsd:dateTime .
+
+
+###  http://example.org/measurements/TemporalInstant_00004
+<http://example.org/measurements/TemporalInstant_00004> rdf:type owl:NamedIndividual ,
+                                                                 <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Temporal_Instant> ;
+                                                        <http://www.w3.org/2006/time#inXSDDateTime> "2024-03-18T12:01:00+00:00"^^xsd:dateTime .
+
+
+###  http://example.org/measurements/TemporalInstant_00005
+<http://example.org/measurements/TemporalInstant_00005> rdf:type owl:NamedIndividual ,
+                                                                 <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Temporal_Instant> ;
+                                                        <http://www.w3.org/2006/time#inXSDDateTime> "2024-03-18T12:06:00+00:00"^^xsd:dateTime .
+
+
+###  http://example.org/measurements/TemporalInstant_00006
+<http://example.org/measurements/TemporalInstant_00006> rdf:type owl:NamedIndividual ,
+                                                                 <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Temporal_Instant> ;
+                                                        <http://www.w3.org/2006/time#inXSDDateTime> "2024-03-18T12:01:01+00:00"^^xsd:dateTime .
+
+
+###  http://example.org/measurements/TemporalInstant_00007
+<http://example.org/measurements/TemporalInstant_00007> rdf:type owl:NamedIndividual ,
+                                                                 <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Temporal_Instant> ;
+                                                        <http://www.w3.org/2006/time#inXSDDateTime> "2024-03-18T12:06:00+00:00"^^xsd:dateTime .
+
+
+###  http://www.co-ode.org/ontologies/ont.owl#pressure
+<http://www.co-ode.org/ontologies/ont.owl#pressure> rdf:type owl:NamedIndividual ,
+                                                             <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Specifically_Dependent_Continuant> .
+
+
+###  Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi

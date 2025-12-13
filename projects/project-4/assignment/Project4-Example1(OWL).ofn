@@ -1,0 +1,331 @@
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(
+Declaration(Class(<http://www.co-ode.org/ontologies/ont.owl#Continuant>))
+Declaration(Class(<http://www.co-ode.org/ontologies/ont.owl#Independent_Continuant>))
+Declaration(Class(<http://www.co-ode.org/ontologies/ont.owl#Information_Content_Entity>))
+Declaration(Class(<http://www.co-ode.org/ontologies/ont.owl#Material_Entity>))
+Declaration(Class(<http://www.co-ode.org/ontologies/ont.owl#Occurent>))
+Declaration(Class(<http://www.co-ode.org/ontologies/ont.owl#Process>))
+Declaration(Class(<http://www.co-ode.org/ontologies/ont.owl#Temporal_Region>))
+Declaration(Class(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Material_Artifact>))
+Declaration(Class(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement>))
+Declaration(Class(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Information_Content_Entity>))
+Declaration(Class(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Unit>))
+Declaration(Class(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Specifically_Dependent_Continuant>))
+Declaration(Class(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Temporal_Instant>))
+Declaration(NamedIndividual(<http://example.org/measurements/Boiler07>))
+Declaration(NamedIndividual(<http://example.org/measurements/Chiller3>))
+Declaration(NamedIndividual(<http://example.org/measurements/Chiller4>))
+Declaration(NamedIndividual(<http://example.org/measurements/Circuit12>))
+Declaration(NamedIndividual(<http://example.org/measurements/MICE_00001>))
+Declaration(NamedIndividual(<http://example.org/measurements/MICE_00002>))
+Declaration(NamedIndividual(<http://example.org/measurements/MICE_00003>))
+Declaration(NamedIndividual(<http://example.org/measurements/MICE_00004>))
+Declaration(NamedIndividual(<http://example.org/measurements/MICE_00005>))
+Declaration(NamedIndividual(<http://example.org/measurements/MICE_00006>))
+Declaration(NamedIndividual(<http://example.org/measurements/MICE_00007>))
+Declaration(NamedIndividual(<http://example.org/measurements/MU_C>))
+Declaration(NamedIndividual(<http://example.org/measurements/MU_F>))
+Declaration(NamedIndividual(<http://example.org/measurements/MU_V>))
+Declaration(NamedIndividual(<http://example.org/measurements/MU_kPa>))
+Declaration(NamedIndividual(<http://example.org/measurements/MU_unknown>))
+Declaration(NamedIndividual(<http://example.org/measurements/Measurement_00001>))
+Declaration(NamedIndividual(<http://example.org/measurements/Measurement_00002>))
+Declaration(NamedIndividual(<http://example.org/measurements/Measurement_00003>))
+Declaration(NamedIndividual(<http://example.org/measurements/Measurement_00004>))
+Declaration(NamedIndividual(<http://example.org/measurements/Measurement_00005>))
+Declaration(NamedIndividual(<http://example.org/measurements/Measurement_00006>))
+Declaration(NamedIndividual(<http://example.org/measurements/Measurement_00007>))
+Declaration(NamedIndividual(<http://example.org/measurements/SDC_resistance>))
+Declaration(NamedIndividual(<http://example.org/measurements/SDC_temp>))
+Declaration(NamedIndividual(<http://example.org/measurements/SDC_voltage>))
+Declaration(NamedIndividual(<http://example.org/measurements/TemporalInstant_00001>))
+Declaration(NamedIndividual(<http://example.org/measurements/TemporalInstant_00002>))
+Declaration(NamedIndividual(<http://example.org/measurements/TemporalInstant_00003>))
+Declaration(NamedIndividual(<http://example.org/measurements/TemporalInstant_00004>))
+Declaration(NamedIndividual(<http://example.org/measurements/TemporalInstant_00005>))
+Declaration(NamedIndividual(<http://example.org/measurements/TemporalInstant_00006>))
+Declaration(NamedIndividual(<http://example.org/measurements/TemporalInstant_00007>))
+Declaration(NamedIndividual(<http://www.co-ode.org/ontologies/ont.owl#pressure>))
+Declaration(AnnotationProperty(<http://purl.obolibrary.org/obo/BFO_0000066>))
+Declaration(AnnotationProperty(<http://www.w3.org/2006/time#inXSDDateTime>))
+Declaration(AnnotationProperty(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#bearer_of>))
+Declaration(AnnotationProperty(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#has_measurement_value>))
+Declaration(AnnotationProperty(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#has_output>))
+Declaration(AnnotationProperty(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#inheres_in>))
+Declaration(AnnotationProperty(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#is_measure_of>))
+Declaration(AnnotationProperty(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#uses_measurement_unit>))
+
+
+############################
+#   Classes
+############################
+
+# Class: <http://www.co-ode.org/ontologies/ont.owl#Independent_Continuant> (<http://www.co-ode.org/ontologies/ont.owl#Independent_Continuant>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/ont.owl#Independent_Continuant> <http://www.co-ode.org/ontologies/ont.owl#Continuant>)
+
+# Class: <http://www.co-ode.org/ontologies/ont.owl#Information_Content_Entity> (<http://www.co-ode.org/ontologies/ont.owl#Information_Content_Entity>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/ont.owl#Information_Content_Entity> <http://www.co-ode.org/ontologies/ont.owl#Continuant>)
+
+# Class: <http://www.co-ode.org/ontologies/ont.owl#Material_Entity> (<http://www.co-ode.org/ontologies/ont.owl#Material_Entity>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/ont.owl#Material_Entity> <http://www.co-ode.org/ontologies/ont.owl#Independent_Continuant>)
+
+# Class: <http://www.co-ode.org/ontologies/ont.owl#Process> (<http://www.co-ode.org/ontologies/ont.owl#Process>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/ont.owl#Process> <http://www.co-ode.org/ontologies/ont.owl#Occurent>)
+
+# Class: <http://www.co-ode.org/ontologies/ont.owl#Temporal_Region> (<http://www.co-ode.org/ontologies/ont.owl#Temporal_Region>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/ont.owl#Temporal_Region> <http://www.co-ode.org/ontologies/ont.owl#Occurent>)
+
+# Class: <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Material_Artifact> (<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Material_Artifact>)
+
+SubClassOf(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Material_Artifact> <http://www.co-ode.org/ontologies/ont.owl#Material_Entity>)
+
+# Class: <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Information_Content_Entity> (<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Information_Content_Entity>)
+
+SubClassOf(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Information_Content_Entity> <http://www.co-ode.org/ontologies/ont.owl#Information_Content_Entity>)
+
+# Class: <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Unit> (<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Unit>)
+
+SubClassOf(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Unit> <http://www.co-ode.org/ontologies/ont.owl#Information_Content_Entity>)
+
+# Class: <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Specifically_Dependent_Continuant> (<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Specifically_Dependent_Continuant>)
+
+SubClassOf(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Specifically_Dependent_Continuant> <http://www.co-ode.org/ontologies/ont.owl#Continuant>)
+
+# Class: <https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Temporal_Instant> (<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Temporal_Instant>)
+
+SubClassOf(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Temporal_Instant> <http://www.co-ode.org/ontologies/ont.owl#Temporal_Region>)
+
+
+############################
+#   Named Individuals
+############################
+
+# Individual: <http://example.org/measurements/Boiler07> (Boiler-07)
+
+AnnotationAssertion(rdfs:label <http://example.org/measurements/Boiler07> "Boiler-07")
+AnnotationAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#bearer_of> <http://example.org/measurements/Boiler07> <http://example.org/measurements/SDC_temp>)
+ClassAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Material_Artifact> <http://example.org/measurements/Boiler07>)
+
+# Individual: <http://example.org/measurements/Chiller3> (Chiller-3)
+
+AnnotationAssertion(rdfs:label <http://example.org/measurements/Chiller3> "Chiller-3")
+AnnotationAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#bearer_of> <http://example.org/measurements/Chiller3> <http://example.org/measurements/SDC_temp>)
+ClassAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Material_Artifact> <http://example.org/measurements/Chiller3>)
+
+# Individual: <http://example.org/measurements/Chiller4> (Chiller-4)
+
+AnnotationAssertion(rdfs:label <http://example.org/measurements/Chiller4> "Chiller-4")
+AnnotationAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#bearer_of> <http://example.org/measurements/Chiller4> <http://example.org/measurements/SDC_temp>)
+ClassAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Material_Artifact> <http://example.org/measurements/Chiller4>)
+
+# Individual: <http://example.org/measurements/Circuit12> (Circuit-12)
+
+AnnotationAssertion(rdfs:label <http://example.org/measurements/Circuit12> "Circuit-12")
+AnnotationAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#bearer_of> <http://example.org/measurements/Circuit12> <http://example.org/measurements/SDC_resistance>)
+AnnotationAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#bearer_of> <http://example.org/measurements/Circuit12> <http://example.org/measurements/SDC_voltage>)
+ClassAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Material_Artifact> <http://example.org/measurements/Circuit12>)
+
+# Individual: <http://example.org/measurements/MICE_00001> (measurement value 100.0)
+
+AnnotationAssertion(rdfs:label <http://example.org/measurements/MICE_00001> "measurement value 100.0")
+AnnotationAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#has_measurement_value> <http://example.org/measurements/MICE_00001> "100.0"^^xsd:float)
+AnnotationAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#uses_measurement_unit> <http://example.org/measurements/MICE_00001> <http://example.org/measurements/MU_C>)
+ClassAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Information_Content_Entity> <http://example.org/measurements/MICE_00001>)
+
+# Individual: <http://example.org/measurements/MICE_00002> (measurement value 101.325)
+
+AnnotationAssertion(rdfs:label <http://example.org/measurements/MICE_00002> "measurement value 101.325")
+AnnotationAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#has_measurement_value> <http://example.org/measurements/MICE_00002> "101.325"^^xsd:float)
+AnnotationAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#uses_measurement_unit> <http://example.org/measurements/MICE_00002> <http://example.org/measurements/MU_kPa>)
+ClassAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Information_Content_Entity> <http://example.org/measurements/MICE_00002>)
+
+# Individual: <http://example.org/measurements/MICE_00003> (measurement value 19.5)
+
+AnnotationAssertion(rdfs:label <http://example.org/measurements/MICE_00003> "measurement value 19.5")
+AnnotationAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#has_measurement_value> <http://example.org/measurements/MICE_00003> "19.5"^^xsd:float)
+AnnotationAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#uses_measurement_unit> <http://example.org/measurements/MICE_00003> <http://example.org/measurements/MU_C>)
+ClassAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Information_Content_Entity> <http://example.org/measurements/MICE_00003>)
+
+# Individual: <http://example.org/measurements/MICE_00004> (measurement value 6.5)
+
+AnnotationAssertion(rdfs:label <http://example.org/measurements/MICE_00004> "measurement value 6.5")
+AnnotationAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#has_measurement_value> <http://example.org/measurements/MICE_00004> "6.5"^^xsd:float)
+AnnotationAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#uses_measurement_unit> <http://example.org/measurements/MICE_00004> <http://example.org/measurements/MU_F>)
+ClassAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Information_Content_Entity> <http://example.org/measurements/MICE_00004>)
+
+# Individual: <http://example.org/measurements/MICE_00005> (measurement value 19.5)
+
+AnnotationAssertion(rdfs:label <http://example.org/measurements/MICE_00005> "measurement value 19.5")
+AnnotationAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#has_measurement_value> <http://example.org/measurements/MICE_00005> "19.5"^^xsd:float)
+AnnotationAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#uses_measurement_unit> <http://example.org/measurements/MICE_00005> <http://example.org/measurements/MU_F>)
+ClassAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Information_Content_Entity> <http://example.org/measurements/MICE_00005>)
+
+# Individual: <http://example.org/measurements/MICE_00006> (measurement value 2.0)
+
+AnnotationAssertion(rdfs:label <http://example.org/measurements/MICE_00006> "measurement value 2.0")
+AnnotationAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#has_measurement_value> <http://example.org/measurements/MICE_00006> "2.0"^^xsd:float)
+AnnotationAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#uses_measurement_unit> <http://example.org/measurements/MICE_00006> <http://example.org/measurements/MU_V>)
+ClassAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Information_Content_Entity> <http://example.org/measurements/MICE_00006>)
+
+# Individual: <http://example.org/measurements/MICE_00007> (measurement value 1.3)
+
+AnnotationAssertion(rdfs:label <http://example.org/measurements/MICE_00007> "measurement value 1.3")
+AnnotationAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#has_measurement_value> <http://example.org/measurements/MICE_00007> "1.3"^^xsd:float)
+AnnotationAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#uses_measurement_unit> <http://example.org/measurements/MICE_00007> <http://example.org/measurements/MU_unknown>)
+ClassAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Information_Content_Entity> <http://example.org/measurements/MICE_00007>)
+
+# Individual: <http://example.org/measurements/MU_C> (C)
+
+AnnotationAssertion(rdfs:label <http://example.org/measurements/MU_C> "C")
+ClassAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Unit> <http://example.org/measurements/MU_C>)
+
+# Individual: <http://example.org/measurements/MU_F> (F)
+
+AnnotationAssertion(rdfs:label <http://example.org/measurements/MU_F> "F")
+ClassAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Unit> <http://example.org/measurements/MU_F>)
+
+# Individual: <http://example.org/measurements/MU_V> (V)
+
+AnnotationAssertion(rdfs:label <http://example.org/measurements/MU_V> "V")
+ClassAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Unit> <http://example.org/measurements/MU_V>)
+
+# Individual: <http://example.org/measurements/MU_kPa> (kPa)
+
+AnnotationAssertion(rdfs:label <http://example.org/measurements/MU_kPa> "kPa")
+ClassAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Unit> <http://example.org/measurements/MU_kPa>)
+
+# Individual: <http://example.org/measurements/MU_unknown> (Ω)
+
+AnnotationAssertion(rdfs:label <http://example.org/measurements/MU_unknown> "Ω")
+ClassAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement_Unit> <http://example.org/measurements/MU_unknown>)
+
+# Individual: <http://example.org/measurements/Measurement_00001> (temp measurement of Boiler-07)
+
+AnnotationAssertion(<http://purl.obolibrary.org/obo/BFO_0000066> <http://example.org/measurements/Measurement_00001> <http://example.org/measurements/TemporalInstant_00001>)
+AnnotationAssertion(rdfs:label <http://example.org/measurements/Measurement_00001> "temp measurement of Boiler-07")
+AnnotationAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#has_output> <http://example.org/measurements/Measurement_00001> <http://example.org/measurements/MICE_00001>)
+AnnotationAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#inheres_in> <http://example.org/measurements/Measurement_00001> <http://example.org/measurements/Boiler07>)
+AnnotationAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#is_measure_of> <http://example.org/measurements/Measurement_00001> <http://example.org/measurements/SDC_temp>)
+ClassAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement> <http://example.org/measurements/Measurement_00001>)
+
+# Individual: <http://example.org/measurements/Measurement_00002> (pressure measurement of Boiler-07)
+
+AnnotationAssertion(<http://purl.obolibrary.org/obo/BFO_0000066> <http://example.org/measurements/Measurement_00002> <http://example.org/measurements/TemporalInstant_00002>)
+AnnotationAssertion(rdfs:label <http://example.org/measurements/Measurement_00002> "pressure measurement of Boiler-07")
+AnnotationAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#has_output> <http://example.org/measurements/Measurement_00002> <http://example.org/measurements/MICE_00002>)
+AnnotationAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#inheres_in> <http://example.org/measurements/Measurement_00002> <http://example.org/measurements/Boiler07>)
+ClassAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement> <http://example.org/measurements/Measurement_00002>)
+
+# Individual: <http://example.org/measurements/Measurement_00003> (temp measurement of Chiller-3)
+
+AnnotationAssertion(<http://purl.obolibrary.org/obo/BFO_0000066> <http://example.org/measurements/Measurement_00003> <http://example.org/measurements/TemporalInstant_00003>)
+AnnotationAssertion(rdfs:label <http://example.org/measurements/Measurement_00003> "temp measurement of Chiller-3")
+AnnotationAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#has_output> <http://example.org/measurements/Measurement_00003> <http://example.org/measurements/MICE_00003>)
+AnnotationAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#inheres_in> <http://example.org/measurements/Measurement_00003> <http://example.org/measurements/Chiller3>)
+AnnotationAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#is_measure_of> <http://example.org/measurements/Measurement_00003> <http://example.org/measurements/SDC_temp>)
+ClassAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement> <http://example.org/measurements/Measurement_00003>)
+
+# Individual: <http://example.org/measurements/Measurement_00004> (temp measurement of Chiller-4)
+
+AnnotationAssertion(<http://purl.obolibrary.org/obo/BFO_0000066> <http://example.org/measurements/Measurement_00004> <http://example.org/measurements/TemporalInstant_00004>)
+AnnotationAssertion(rdfs:label <http://example.org/measurements/Measurement_00004> "temp measurement of Chiller-4")
+AnnotationAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#has_output> <http://example.org/measurements/Measurement_00004> <http://example.org/measurements/MICE_00004>)
+AnnotationAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#inheres_in> <http://example.org/measurements/Measurement_00004> <http://example.org/measurements/Chiller4>)
+AnnotationAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#is_measure_of> <http://example.org/measurements/Measurement_00004> <http://example.org/measurements/SDC_temp>)
+ClassAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement> <http://example.org/measurements/Measurement_00004>)
+
+# Individual: <http://example.org/measurements/Measurement_00005> (temp measurement of Chiller-4)
+
+AnnotationAssertion(<http://purl.obolibrary.org/obo/BFO_0000066> <http://example.org/measurements/Measurement_00005> <http://example.org/measurements/TemporalInstant_00005>)
+AnnotationAssertion(rdfs:label <http://example.org/measurements/Measurement_00005> "temp measurement of Chiller-4")
+AnnotationAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#has_output> <http://example.org/measurements/Measurement_00005> <http://example.org/measurements/MICE_00005>)
+AnnotationAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#inheres_in> <http://example.org/measurements/Measurement_00005> <http://example.org/measurements/Chiller4>)
+AnnotationAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#is_measure_of> <http://example.org/measurements/Measurement_00005> <http://example.org/measurements/SDC_temp>)
+ClassAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement> <http://example.org/measurements/Measurement_00005>)
+
+# Individual: <http://example.org/measurements/Measurement_00006> (voltage measurement of Circuit-12)
+
+AnnotationAssertion(<http://purl.obolibrary.org/obo/BFO_0000066> <http://example.org/measurements/Measurement_00006> <http://example.org/measurements/TemporalInstant_00006>)
+AnnotationAssertion(rdfs:label <http://example.org/measurements/Measurement_00006> "voltage measurement of Circuit-12")
+AnnotationAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#has_output> <http://example.org/measurements/Measurement_00006> <http://example.org/measurements/MICE_00006>)
+AnnotationAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#inheres_in> <http://example.org/measurements/Measurement_00006> <http://example.org/measurements/Circuit12>)
+AnnotationAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#is_measure_of> <http://example.org/measurements/Measurement_00006> <http://example.org/measurements/SDC_voltage>)
+ClassAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement> <http://example.org/measurements/Measurement_00006>)
+
+# Individual: <http://example.org/measurements/Measurement_00007> (resistance measurement of Circuit-12)
+
+AnnotationAssertion(<http://purl.obolibrary.org/obo/BFO_0000066> <http://example.org/measurements/Measurement_00007> <http://example.org/measurements/TemporalInstant_00007>)
+AnnotationAssertion(rdfs:label <http://example.org/measurements/Measurement_00007> "resistance measurement of Circuit-12")
+AnnotationAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#has_output> <http://example.org/measurements/Measurement_00007> <http://example.org/measurements/MICE_00007>)
+AnnotationAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#inheres_in> <http://example.org/measurements/Measurement_00007> <http://example.org/measurements/Circuit12>)
+AnnotationAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#is_measure_of> <http://example.org/measurements/Measurement_00007> <http://example.org/measurements/SDC_resistance>)
+ClassAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Measurement> <http://example.org/measurements/Measurement_00007>)
+
+# Individual: <http://example.org/measurements/SDC_resistance> (resistance)
+
+AnnotationAssertion(rdfs:label <http://example.org/measurements/SDC_resistance> "resistance")
+ClassAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Specifically_Dependent_Continuant> <http://example.org/measurements/SDC_resistance>)
+
+# Individual: <http://example.org/measurements/SDC_temp> (temp)
+
+AnnotationAssertion(rdfs:label <http://example.org/measurements/SDC_temp> "temp")
+ClassAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Specifically_Dependent_Continuant> <http://example.org/measurements/SDC_temp>)
+
+# Individual: <http://example.org/measurements/SDC_voltage> (voltage)
+
+AnnotationAssertion(rdfs:label <http://example.org/measurements/SDC_voltage> "voltage")
+ClassAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Specifically_Dependent_Continuant> <http://example.org/measurements/SDC_voltage>)
+
+# Individual: <http://example.org/measurements/TemporalInstant_00001> (<http://example.org/measurements/TemporalInstant_00001>)
+
+AnnotationAssertion(<http://www.w3.org/2006/time#inXSDDateTime> <http://example.org/measurements/TemporalInstant_00001> "2024-03-17T23:03:00+00:00"^^xsd:dateTime)
+ClassAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Temporal_Instant> <http://example.org/measurements/TemporalInstant_00001>)
+
+# Individual: <http://example.org/measurements/TemporalInstant_00002> (<http://example.org/measurements/TemporalInstant_00002>)
+
+AnnotationAssertion(<http://www.w3.org/2006/time#inXSDDateTime> <http://example.org/measurements/TemporalInstant_00002> "2024-03-17T23:04:00+00:00"^^xsd:dateTime)
+ClassAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Temporal_Instant> <http://example.org/measurements/TemporalInstant_00002>)
+
+# Individual: <http://example.org/measurements/TemporalInstant_00003> (<http://example.org/measurements/TemporalInstant_00003>)
+
+AnnotationAssertion(<http://www.w3.org/2006/time#inXSDDateTime> <http://example.org/measurements/TemporalInstant_00003> "2024-03-18T12:01:00+00:00"^^xsd:dateTime)
+ClassAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Temporal_Instant> <http://example.org/measurements/TemporalInstant_00003>)
+
+# Individual: <http://example.org/measurements/TemporalInstant_00004> (<http://example.org/measurements/TemporalInstant_00004>)
+
+AnnotationAssertion(<http://www.w3.org/2006/time#inXSDDateTime> <http://example.org/measurements/TemporalInstant_00004> "2024-03-18T12:01:00+00:00"^^xsd:dateTime)
+ClassAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Temporal_Instant> <http://example.org/measurements/TemporalInstant_00004>)
+
+# Individual: <http://example.org/measurements/TemporalInstant_00005> (<http://example.org/measurements/TemporalInstant_00005>)
+
+AnnotationAssertion(<http://www.w3.org/2006/time#inXSDDateTime> <http://example.org/measurements/TemporalInstant_00005> "2024-03-18T12:06:00+00:00"^^xsd:dateTime)
+ClassAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Temporal_Instant> <http://example.org/measurements/TemporalInstant_00005>)
+
+# Individual: <http://example.org/measurements/TemporalInstant_00006> (<http://example.org/measurements/TemporalInstant_00006>)
+
+AnnotationAssertion(<http://www.w3.org/2006/time#inXSDDateTime> <http://example.org/measurements/TemporalInstant_00006> "2024-03-18T12:01:01+00:00"^^xsd:dateTime)
+ClassAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Temporal_Instant> <http://example.org/measurements/TemporalInstant_00006>)
+
+# Individual: <http://example.org/measurements/TemporalInstant_00007> (<http://example.org/measurements/TemporalInstant_00007>)
+
+AnnotationAssertion(<http://www.w3.org/2006/time#inXSDDateTime> <http://example.org/measurements/TemporalInstant_00007> "2024-03-18T12:06:00+00:00"^^xsd:dateTime)
+ClassAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Temporal_Instant> <http://example.org/measurements/TemporalInstant_00007>)
+
+# Individual: <http://www.co-ode.org/ontologies/ont.owl#pressure> (<http://www.co-ode.org/ontologies/ont.owl#pressure>)
+
+ClassAssertion(<https://www.commoncoreontologies.org/2024-11-06/CommonCoreOntologiesMerged#Specifically_Dependent_Continuant> <http://www.co-ode.org/ontologies/ont.owl#pressure>)
+
+
+)

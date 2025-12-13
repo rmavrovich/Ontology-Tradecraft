@@ -1,7 +1,28 @@
-# Title: 
-#    Definition Required
-# Constraint Description: 
-#    Any class or object property must have a non-empty definition with an English language tag.  
-# Severity:
-#     Warning
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX iao: <http://purl.obolibrary.org/obo/IAO_>
 
+SELECT ?entity ?type
+WHERE {
+  {
+    ?entity a owl:Class .
+    BIND("Class" AS ?type)
+  }
+  UNION
+  {
+    ?entity a owl:ObjectProperty .
+    BIND("ObjectProperty" AS ?type)
+  }
+
+  # Attempt to find an English definition
+  OPTIONAL {
+    ?entity iao:0000115 ?def .
+    FILTER(
+      lang(?def) = "en" &&
+      STRLEN(STR(TRIM(STR(?def)))) > 0
+    )
+  }
+
+  # Violation if no valid English definition is found
+  FILTER( !BOUND(?def) )
+}

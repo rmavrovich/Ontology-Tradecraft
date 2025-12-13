@@ -1,6 +1,18 @@
-# Title: 
-#    No Extra Annotation Whitespace
-# Constraint Description: 
-#    No annotation value may have leading or trailing whitespace.    
-# Severity:
-#    Error 
+PREFIX owl:  <http://www.w3.org/2002/07/owl#>
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+SELECT ?subject ?annotationProperty ?value
+WHERE {
+  ?subject ?annotationProperty ?value .
+
+  # Only annotation properties
+  ?annotationProperty a owl:AnnotationProperty .
+
+  # Only literal values
+  FILTER( isLiteral(?value) )
+
+  # Detect leading or trailing whitespace
+  FILTER(
+    STRLEN(STR(?value)) != STRLEN(STR(TRIM(STR(?value))))
+  )
+}

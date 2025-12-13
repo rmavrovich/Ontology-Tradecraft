@@ -6,18 +6,18 @@ import datetime
 import sys
 import io
 
-# --- CRITICAL FIX: INPUT/OUTPUT PATHS (Relative to the 'src/scripts' directory) ---
-# '../data/' navigates up one level (to 'src/') and then into the 'data/' folder.
-IN_A = Path("../data/sensor_A.csv") 
-IN_B = Path("../data/sensor_B.json")
-IN_C = Path("../data/sensor_C.csv")
-OUT  = Path("../data/readings_normalized.csv")
-# ----------------------------------------------------------------------------------
+# --- CRITICAL FIX: INPUT/OUTPUT PATHS (Relative to the REPOSITORY ROOT) ---
+# Assuming the script is executed from the project-4 root directory or the workflow 
+# environment can resolve paths relative to the repository base.
+IN_A = Path("assignment/src/data/sensor_A.csv") 
+IN_B = Path("assignment/src/data/sensor_B.json")
+IN_C = Path("assignment/src/data/sensor_C.csv")
+OUT  = Path("assignment/src/data/readings_normalized.csv")
+# -------------------------------------------------------------------------
 
 def load_sensor_a(file_path):
     """
     Loads data from a CSV, renames columns to canonical names, and selects them.
-    (Fixes column names to match 'Device Name', 'Reading Value', etc., found in your CSVs)
     """
     df_a = pd.read_csv(file_path, dtype=str, keep_default_na=False, na_values=["", "NA", "NaN"])
     
@@ -28,12 +28,9 @@ def load_sensor_a(file_path):
         "Units": "unit_label",
         "Reading Value": "value",
         "Time (Local)": "timestamp",
-        # Kept original names as fallback for robustness, although your data uses the ones above
-        "asset_id": "artifact_id",
-        "measure_type": "sdc_kind",
-        "unit": "unit_label",
-        "reading": "value",
-        "time": "timestamp",
+        # Fallback names
+        "asset_id": "artifact_id", "measure_type": "sdc_kind", "unit": "unit_label", 
+        "reading": "value", "time": "timestamp",
     })
     
     # Keep only canonical columns
@@ -44,7 +41,6 @@ def load_sensor_a(file_path):
 def load_sensor_b(file_path):
     """
     Loads data from a JSON/NDJSON file and maps keys to canonical names.
-    (Fixes nested structure parsing for 'sensor_B copia.json')
     """
     with open(file_path, 'r', encoding='utf-8') as f:
         raw_txt = f.read().strip()
@@ -53,12 +49,11 @@ def load_sensor_b(file_path):
     try:
         obj = json.loads(raw_txt)
         
-        # FIX: Handle the nested structure from your uploaded JSON file
+        # Handle the nested structure from your uploaded JSON file
         if isinstance(obj, dict) and "readings" in obj and isinstance(obj["readings"], list):
              for reading_group in obj["readings"]:
                  entity_id = reading_group.get("entity_id")
                  for data_record in reading_group.get("data", []):
-                     # Flatten the nested structure
                      records.append({
                          "artifact_id": entity_id, 
                          "sdc_kind": data_record.get("kind"),
@@ -66,7 +61,6 @@ def load_sensor_b(file_path):
                          "value": data_record.get("value"),
                          "timestamp": data_record.get("time")
                      })
-             # Return immediately if successfully parsed the nested structure
              return pd.DataFrame([r for r in records if r.get('artifact_id') is not None])
 
         # Fallback to original logic for standard/flat JSON structure
@@ -95,7 +89,6 @@ def to_iso8601(x):
     try:
         dt = dateparser.parse(str(x))
         if dt.tzinfo is None:
-            # Policy: treat naive as UTC
             dt = dt.replace(tzinfo=datetime.timezone.utc)
         return dt.astimezone(datetime.timezone.utc).isoformat().replace("+00:00","Z")
     except Exception:
@@ -152,7 +145,8 @@ def main():
     # Check if input files exist at the new relative path
     if not IN_A.exists() or not IN_B.exists() or not IN_C.exists():
         print("ERROR: One or more input files were not found at the expected path.")
-        print(f"Please check that files exist at: {IN_A.resolve().parent}")
+        # Printing the full path of the directory we're looking in
+        print(f"Please check that files exist at: {IN_A.parent.resolve()}")
         df_a, df_b, df_c = pd.DataFrame(), pd.DataFrame(), pd.DataFrame()
     else:
         # Load data from the files
@@ -183,5 +177,4 @@ def main():
     return cleaned
 
 if __name__ == '__main__':
-    # Removed the redundant file existence check from the __name__ block
     main()

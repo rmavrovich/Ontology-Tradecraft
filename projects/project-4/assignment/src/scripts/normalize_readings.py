@@ -6,18 +6,18 @@ import datetime
 import sys
 import io
 
-# --- INPUT/OUTPUT PATHS (Use relative paths for GitHub Workflow) ---
-# NOTE: These paths MUST exist relative to where your workflow executes the script
-IN_A = Path("src/data/sensor_A.csv") 
-IN_B = Path("src/data/sensor_B.json")
-IN_C = Path("src/data/sensor_C.csv")
-OUT  = Path("src/data/readings_normalized.csv")
-# ------------------------------------------------------------------
+# --- CRITICAL FIX: INPUT/OUTPUT PATHS (Relative to the 'src/scripts' directory) ---
+# '../data/' navigates up one level (to 'src/') and then into the 'data/' folder.
+IN_A = Path("../data/sensor_A.csv") 
+IN_B = Path("../data/sensor_B.json")
+IN_C = Path("../data/sensor_C.csv")
+OUT  = Path("../data/readings_normalized.csv")
+# ----------------------------------------------------------------------------------
 
 def load_sensor_a(file_path):
     """
-    Loads data from a CSV, renames columns based on common headers, and selects canonical ones.
-    (Assumes column names like 'Device Name', 'Reading Value', etc., from your uploaded files)
+    Loads data from a CSV, renames columns to canonical names, and selects them.
+    (Fixes column names to match 'Device Name', 'Reading Value', etc., found in your CSVs)
     """
     df_a = pd.read_csv(file_path, dtype=str, keep_default_na=False, na_values=["", "NA", "NaN"])
     
@@ -28,7 +28,7 @@ def load_sensor_a(file_path):
         "Units": "unit_label",
         "Reading Value": "value",
         "Time (Local)": "timestamp",
-        # Original script's column names (kept as fallback, though unlikely for your data)
+        # Kept original names as fallback for robustness, although your data uses the ones above
         "asset_id": "artifact_id",
         "measure_type": "sdc_kind",
         "unit": "unit_label",
@@ -43,8 +43,8 @@ def load_sensor_a(file_path):
 
 def load_sensor_b(file_path):
     """
-    Loads data from a JSON/NDJSON file (sensor B) and maps keys to canonical names.
-    (Includes nested structure parsing based on your 'sensor_B copia.json' file)
+    Loads data from a JSON/NDJSON file and maps keys to canonical names.
+    (Fixes nested structure parsing for 'sensor_B copia.json')
     """
     with open(file_path, 'r', encoding='utf-8') as f:
         raw_txt = f.read().strip()
@@ -53,7 +53,7 @@ def load_sensor_b(file_path):
     try:
         obj = json.loads(raw_txt)
         
-        # FIX: Handle the nested structure of the uploaded 'sensor_B copia.json'
+        # FIX: Handle the nested structure from your uploaded JSON file
         if isinstance(obj, dict) and "readings" in obj and isinstance(obj["readings"], list):
              for reading_group in obj["readings"]:
                  entity_id = reading_group.get("entity_id")
@@ -66,19 +66,18 @@ def load_sensor_b(file_path):
                          "value": data_record.get("value"),
                          "timestamp": data_record.get("time")
                      })
+             # Return immediately if successfully parsed the nested structure
              return pd.DataFrame([r for r in records if r.get('artifact_id') is not None])
 
-        # Fallback to original logic if nested parsing failed
+        # Fallback to original logic for standard/flat JSON structure
         records = obj.get("records", obj) if isinstance(obj, dict) else (obj if isinstance(obj, list) else [obj])
     except json.JSONDecodeError:
         # NDJSON fallback
         records = [json.loads(line) for line in raw_txt.splitlines() if line.strip()]
 
-    # Ensure records is a list for iteration
     if isinstance(records, dict): records = [records]
     elif not isinstance(records, list): records = [records]
         
-    # Original key mapping logic (used only if nested parsing above didn't return)
     df_b = pd.DataFrame([{
         "artifact_id": r.get("artifact") or r.get("asset") or r.get("artifact_id"),
         "sdc_kind":    r.get("sdc") or r.get("measure_type") or r.get("sdc_kind"),
@@ -122,24 +121,19 @@ def normalize_and_clean(df):
         "meter": "m", "M": "m", "m": "m", "fahrenheit": "F", "f": "F", "°f":"F", 
         "kilopascal": "kPa", "KPA": "kPa", "kpa":"kPa", "kPa": "kPa",
         "voltage": "V", "v": "V", "V": "V", "ohm": "Ω", "omega":"Ω", "Ω":"Ω",
-        "volt": "V", "psi": "psi" # Added units from sample data
+        "volt": "V", "psi": "psi"
     }
     df["unit_label"] = df["unit_label"].astype(str).str.lower().map(UNIT_MAP).fillna(df["unit_label"])
     
     
     # ==========================================================
-    # <<< START: DIAGNOSTIC STATEMENTS (FOR DEBUGGING) >>>
+    # <<< DIAGNOSTIC STATEMENTS >>>
     # ==========================================================
     
-    # 1. Print the total number of rows before dropping
     print(f"\n[DIAGNOSTICS] Total rows before dropping: {len(df)}")
-    
-    # 2. Print the count of missing (NaN) values for *every* column
     print("[DIAGNOSTICS] Null/Missing values per column:")
     print(df.isnull().sum())
     
-    # ==========================================================
-    # <<< END: DIAGNOSTIC STATEMENTS >>>
     # ==========================================================
     
     # Drop rows with missing critical data
@@ -155,11 +149,10 @@ def main():
     print(f"[paths] B: {IN_B}")
     print(f"[paths] C: {IN_C}")
     
-    # Check if input files exist (critical for workflow debugging)
+    # Check if input files exist at the new relative path
     if not IN_A.exists() or not IN_B.exists() or not IN_C.exists():
         print("ERROR: One or more input files were not found at the expected path.")
-        print("Please ensure your GitHub workflow checked out the data and the paths in the script match the paths in the workflow.")
-        # Create empty DataFrames to prevent further errors if files are missing
+        print(f"Please check that files exist at: {IN_A.resolve().parent}")
         df_a, df_b, df_c = pd.DataFrame(), pd.DataFrame(), pd.DataFrame()
     else:
         # Load data from the files
@@ -190,11 +183,5 @@ def main():
     return cleaned
 
 if __name__ == '__main__':
-    # Added a check to help diagnose missing file paths in a workflow
-    if not IN_A.exists() or not IN_B.exists() or not IN_C.exists():
-        print("NOTE: Script running locally or in an environment where file paths might be dynamic.")
-        # When running in an environment like this, the explicit file loading needs
-        # to be handled outside of this script's Path logic if files aren't physically present.
-        # However, for a GitHub workflow, the Path logic is correct if files are checked out.
-    
-    main()  
+    # Removed the redundant file existence check from the __name__ block
+    main()

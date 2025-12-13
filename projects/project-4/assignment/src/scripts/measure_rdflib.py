@@ -2,13 +2,12 @@
 
 from rdflib import Graph, Literal, RDF, RDFS, OWL, XSD, Namespace, URIRef, BNode
 from pathlib import Path
-import os
 import pandas as pd
 import hashlib
 
 # =========================================================================
-# 1. CRITICAL FIX: EXACT IRIS FOR VALIDATION
-# These URIRefs MUST match the validation script exactly.
+# 1. CRITICAL FIX: EXACT IRIS FOR VALIDATION (MUST MATCH)
+# This solves the "Artifact=0, SDC=0, MICE=0, MU=0" error.
 # =========================================================================
 
 # Classes (The entities that must be typed correctly)
@@ -21,7 +20,7 @@ IRI_MU    = URIRef("https://www.commoncoreontologies.org/ont00000120")    # Meas
 IRI_BEARER_OF = URIRef("http://purl.obolibrary.org/obo/BFO_0000196")     # bearer_of (Artifact -> SDC)
 IRI_IS_MEASURE_OF = URIRef("https://www.commoncoreontologies.org/ont00001966") # is_measure_of (MICE -> SDC)
 IRI_USES_MU = URIRef("https://www.commoncoreontologies.org/ont00001863")     # uses_measurement_unit (MICE -> MU)
-IRI_HAS_VALUE = URIRef("https://www.commoncoreontologies.org/ont00001865")   # has_value (MICE -> Literal)
+IRI_HAS_VALUE = URIRef("https://www.commoncoreontologies.org/ont00001865")   # has_value
 IRI_HAS_TIMESTAMP = URIRef("https://www.commoncoreontologies.org/ont00000116") # has_timestamp
 
 # Namespace base for instances (arbitrary, for creating stable URIs)
@@ -51,6 +50,7 @@ graph.bind("xsd", XSD)
 
 # =========================================================================
 # Ontology Structure Definition (Schema)
+# Ensures the URIs are defined as classes/properties in the TTL file.
 # =========================================================================
 
 # Declare object/datatype properties using exact IRIs
@@ -60,7 +60,7 @@ graph.add((IRI_USES_MU, RDF.type, OWL.ObjectProperty))
 graph.add((IRI_HAS_VALUE, RDF.type, OWL.DatatypeProperty)) 
 graph.add((IRI_HAS_TIMESTAMP, RDF.type, OWL.DatatypeProperty)) 
 
-# Declare the classes (This ensures the required types exist in the TTL file)
+# Declare the classes 
 graph.add((IRI_SDC, RDF.type, OWL.Class))
 graph.add((IRI_ART, RDF.type, OWL.Class))
 graph.add((IRI_MICE, RDF.type, OWL.Class))
@@ -75,21 +75,17 @@ def generate_uris(row):
     """
     Generates deterministic URIs based on CSV row data.
     """
-    # Create safe names for URIs (ensure no leading/trailing spaces from CSV cleanup)
+    # Create safe names for URIs (clean up spaces and dashes)
     artifact_id_safe = row['artifact_id'].replace(" ", "_").replace("-", "").strip()
     sdc_kind_safe = row['sdc_kind'].replace(" ", "_").replace("-", "").strip()
     unit_label_safe = row['unit_label'].replace(" ", "_").replace("-", "").strip()
     
-    # Artifact URI
+    # Instance URIs
     artifact_uri = EX[f"Artifact_{artifact_id_safe}"]
-    
-    # SDC URI
     sdc_uri = EX[f"SDC_{artifact_id_safe}_{sdc_kind_safe}"]
-    
-    # MU URI
     mu_uri = EX[f"MU_{unit_label_safe}"]
     
-    # MICE URI (Unique per reading, based on a hash of the entire row for stability)
+    # MICE URI (Unique per reading)
     mice_hash = hashlib.sha1(str(row).encode('utf-8')).hexdigest()[:10]
     mice_uri = EX[f"MICE_{mice_hash}"]
     
@@ -100,59 +96,10 @@ def generate_triples(df, graph):
     Generates RDF triples for all rows in the DataFrame.
     """
     for _, row in df.iterrows():
-        # 1. Generate URIs for the current reading
+        # 1. Generate URIs 
         artifact_uri, sdc_uri, mu_uri, mice_uri = generate_uris(row)
 
-        # 2. Assert Types (Artifact, SDC, MICE, MU) - CRITICAL FIX
+        # 2. Assert Types (CRITICAL: Using the exact IRI_ variables for the type object)
         graph.add((artifact_uri, RDF.type, IRI_ART))   
         graph.add((sdc_uri, RDF.type, IRI_SDC))       
-        graph.add((mu_uri, RDF.type, IRI_MU))         
-        graph.add((mice_uri, RDF.type, IRI_MICE))      
-
-        # 3. Assert Links (The Measurement Pattern)
-        # Artifact is bearer_of SDC
-        graph.add((artifact_uri, IRI_BEARER_OF, sdc_uri))
-        
-        # MICE is_measure_of SDC
-        graph.add((mice_uri, IRI_IS_MEASURE_OF, sdc_uri))
-        
-        # MICE uses_measurement_unit MU
-        graph.add((mice_uri, IRI_USES_MU, mu_uri))
-        
-        # MICE has_value Literal
-        # Value must be stored as a Literal with a numeric datatype (xsd:decimal is safe)
-        graph.add((mice_uri, IRI_HAS_VALUE, Literal(row['value'], datatype=XSD.decimal)))
-        
-        # Add timestamp
-        graph.add((mice_uri, IRI_HAS_TIMESTAMP, Literal(row['timestamp'], datatype=XSD.dateTime)))
-
-    return graph
-
-
-def main():
-    if not CSV_FILE.exists():
-        print(f"Error: CSV file not found at {CSV_FILE.resolve()}")
-        with open(OUT_FILE, 'w') as f:
-            f.write("@prefix ex: <http://example.org/measurement/> .")
-        return
-
-    # Load the cleaned data
-    print(f"Loading data from {CSV_FILE}")
-    df = pd.read_csv(CSV_FILE, dtype=str, keep_default_na=False) 
-    
-    df['value'] = pd.to_numeric(df['value'], errors='coerce')
-    df = df.dropna(subset=['value'])
-
-    # Generate the triples from the DataFrame
-    print(f"Generating {len(df)} instance triples...")
-    generate_triples(df, graph)
-    
-    # Serialize the graph to the output file
-    print(f"Serializing graph with {len(graph)} total triples to {OUT_FILE}")
-    graph.serialize(destination=OUT_FILE, format='turtle')
-
-    print("✅ TTL generation complete.")
-
-
-if __name__ == '__main__':
-    main()
+        graph.add((mu_uri, RDF

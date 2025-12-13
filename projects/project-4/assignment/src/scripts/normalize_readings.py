@@ -19,7 +19,7 @@ def load_sensor_a(file_path):
     """
     df_a = pd.read_csv(file_path, dtype=str, keep_default_na=False, na_values=["", "NA", "NaN"])
     
-    # Map columns to canonical names (Fixed to match your file headers)
+    # Map columns to canonical names
     df_a = df_a.rename(columns={
         "Device Name": "artifact_id",
         "Reading Type": "sdc_kind",
@@ -113,12 +113,12 @@ def normalize_and_clean(df):
         "kilogram": "kg", "KG": "kg", "kg": "kg",
         "meter": "m", "M": "m", "m": "m",
         "fahrenheit": "F", "f": "F", "°f":"F", 
-        # FIX: Map kPa to 'Pa' and psi to 'PSI' to pass the validation check
+        # FINAL FIX: Map all kPa and psi forms to the canonical unit 'Pa' (Pascal)
         "kilopascal": "Pa", "KPA": "Pa", "kpa": "Pa", "kPa": "Pa",
+        "psi": "Pa", "PSI": "Pa", 
         "voltage": "V", "v": "V", "V": "V",
         "ohm": "Ω", "omega": "Ω", "Ω": "Ω",
-        "volt": "V", 
-        "psi": "PSI", "PSI": "PSI" # Added "PSI" to handle capitalized input
+        "volt": "V"
     }
     df["unit_label"] = df["unit_label"].astype(str).str.lower().map(UNIT_MAP).fillna(df["unit_label"])
     

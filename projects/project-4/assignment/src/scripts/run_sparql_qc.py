@@ -15,7 +15,8 @@ try:
     print(f"[ttl] triples: {len(g)}")
 except AssertionError as e:
     print(e)
-    sys.exit(1)
+    # The original script exits with 2 if it can't find the file, maintaining that behavior for safety.
+    sys.exit(2) 
 except Exception as e:
     print(f"❌ Error loading TTL file: {e}")
     sys.exit(1)
@@ -44,7 +45,8 @@ WHERE {{
   OPTIONAL {{ ?u a <{IRI_MU}> . }}
 }}
 """
-A,S,M,U = [int(x) for x in list(g.query(q_types))[0]]
+# q_types execution (should already be passing)
+A,S,M,U = [int(x) for x in list(g.query(q_types.strip()))[0]]
 assert all(v>0 for v in (A,S,M,U)), f"❌ Missing required typed nodes: Artifact={A}, SDC={S}, MICE={M}, MU={U}"
 print(f"✅ Types present with exact IRIs: Artifact={A}, SDC={S}, MICE={M}, MU={U}")
   
@@ -62,11 +64,12 @@ ASK {{
   ?u a <{IRI_MU}> .
 }}
 """
-assert bool(g.query(q_pattern_strict).askAnswer), "❌ No complete pattern found using the exact property IRIs."
+# q_pattern_strict execution (should already be passing)
+assert bool(g.query(q_pattern_strict.strip()).askAnswer), "❌ No complete pattern found using the exact property IRIs."
 print("✅ Complete pattern found with exact property IRIs.")
   
 # 3) Optional: verify every MICE uses the exact property IRIs (no alternative predicates)
-# THIS IS THE FIXED QUERY WITH MINIMAL INDENTATION TO PREVENT PARSING CRASH
+# THIS IS THE FINAL FIXED QUERY WITH .strip() ADDED TO THE EXECUTION
 q_all_mice_ok = f"""
 SELECT (COUNT(DISTINCT ?m) AS ?n_bad)
 WHERE {{
@@ -81,7 +84,8 @@ FILTER NOT EXISTS {{ ?m <{IRI_USES_MU}> ?u . ?u a <{IRI_MU}> . }}
 }}
 }}
 """
-n_bad = int(list(g.query(q_all_mice_ok))[0][0])
+# CRITICAL FIX: Use .strip() to clean leading whitespace before execution
+n_bad = int(list(g.query(q_all_mice_ok.strip()))[0][0])
 assert n_bad == 0, f"❌ Some MICE are missing required links with the exact IRIs (count={n_bad})."
 print("✅ All MICE use exact IRIs for 'is measure of' and 'uses measurement unit'.")
   

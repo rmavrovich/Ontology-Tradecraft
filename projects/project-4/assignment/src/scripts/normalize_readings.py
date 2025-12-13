@@ -6,14 +6,13 @@ import datetime
 import sys
 import io
 
-# --- CRITICAL FIX: INPUT/OUTPUT PATHS (Relative to the REPOSITORY ROOT) ---
-# Assuming the script is executed from the project-4 root directory or the workflow 
-# environment can resolve paths relative to the repository base.
-IN_A = Path("assignment/src/data/sensor_A.csv") 
-IN_B = Path("assignment/src/data/sensor_B.json")
-IN_C = Path("assignment/src/data/sensor_C.csv")
-OUT  = Path("assignment/src/data/readings_normalized.csv")
-# -------------------------------------------------------------------------
+# --- CRITICAL FIX: INPUT/OUTPUT PATHS (Relative to the 'assignment' folder root) ---
+# This path works if the Python script is executed from the directory containing 'src/'
+IN_A = Path("src/data/sensor_A.csv") 
+IN_B = Path("src/data/sensor_B.json")
+IN_C = Path("src/data/sensor_C.csv")
+OUT  = Path("src/data/readings_normalized.csv")
+# ----------------------------------------------------------------------------------
 
 def load_sensor_a(file_path):
     """

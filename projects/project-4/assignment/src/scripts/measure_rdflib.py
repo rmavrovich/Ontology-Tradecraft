@@ -102,4 +102,55 @@ def generate_triples(df, graph):
         # 2. Assert Types (CRITICAL: Using the exact IRI_ variables for the type object)
         graph.add((artifact_uri, RDF.type, IRI_ART))   
         graph.add((sdc_uri, RDF.type, IRI_SDC))       
-        graph.add((mu_uri, RDF
+        graph.add((mu_uri, RDF.type, IRI_MU))         
+        graph.add((mice_uri, RDF.type, IRI_MICE))      
+
+        # 3. Assert Links (Using the exact IRI_ variables for the predicate)
+        
+        # Artifact is bearer_of SDC
+        graph.add((artifact_uri, IRI_BEARER_OF, sdc_uri))
+        
+        # MICE is_measure_of SDC
+        graph.add((mice_uri, IRI_IS_MEASURE_OF, sdc_uri))
+        
+        # MICE uses_measurement_unit MU
+        graph.add((mice_uri, IRI_USES_MU, mu_uri))
+        
+        # MICE has_value Literal
+        graph.add((mice_uri, IRI_HAS_VALUE, Literal(row['value'], datatype=XSD.decimal)))
+        
+        # Add timestamp
+        graph.add((mice_uri, IRI_HAS_TIMESTAMP, Literal(row['timestamp'], datatype=XSD.dateTime)))
+
+    return graph
+
+
+def main():
+    if not CSV_FILE.exists():
+        print(f"Error: CSV file not found at {CSV_FILE.resolve()}")
+        # Write an empty file to prevent parse errors in the next step
+        with open(OUT_FILE, 'w') as f:
+            f.write("@prefix ex: <http://example.org/measurement/> .")
+        return
+
+    # Load the cleaned data
+    print(f"Loading data from {CSV_FILE}")
+    df = pd.read_csv(CSV_FILE, dtype=str, keep_default_na=False) 
+    
+    # Coerce 'value' to numeric for correct XSD typing later
+    df['value'] = pd.to_numeric(df['value'], errors='coerce')
+    df = df.dropna(subset=['value'])
+
+    # Generate the triples from the DataFrame
+    print(f"Generating {len(df)} instance triples...")
+    generate_triples(df, graph)
+    
+    # Serialize the graph to the output file
+    print(f"Serializing graph with {len(graph)} total triples to {OUT_FILE}")
+    graph.serialize(destination=OUT_FILE, format='turtle')
+
+    print("✅ TTL generation complete. Ready for validation.")
+
+
+if __name__ == '__main__':
+    main()

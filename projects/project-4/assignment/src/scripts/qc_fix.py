@@ -1,11 +1,10 @@
-# src/scripts/qc_fix.py
+# projects/project-4/assignment/src/scripts/qc_fix.py
 
 from rdflib import Graph
 from pathlib import Path
 import sys
 from rdflib import URIRef
 
-# Determine the path to the TTL file based on the workflow's working directory setting
 # NOTE: The working directory is projects/project-4/assignment
 TTL = Path("src/measure_cco.ttl")
   
@@ -73,7 +72,6 @@ SELECT DISTINCT ?m WHERE {{
   
 # Execute queries and combine results in Python
 bad_mice = set()
-# Convert results to strings/URIRefs for consistent comparison in the set
 bad_mice.update([r[0] for r in g.query(q_missing_measure_of.strip())])
 bad_mice.update([r[0] for r in g.query(q_missing_unit.strip())])
   

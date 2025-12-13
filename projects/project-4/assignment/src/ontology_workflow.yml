@@ -82,7 +82,7 @@ jobs:
         if: steps.detect.outputs.added_count == '1'
         run: python src/scripts/measure_rdflib.py
 
-      - name: SPARQL QC (Fixed Validation)
+      - name: SPARQL QC (Final Fix - No UNION)
         if: steps.detect.outputs.added_count == '1'
         run: |
           python - << 'PY'
@@ -140,9 +140,27 @@ ASK {{
 assert bool(g.query(q_pattern_strict.strip()).askAnswer), "❌ No complete pattern found with exact property IRIs."
 print("✅ Complete pattern found with exact property IRIs.")
   
-# 3) All MICE Check (Fixed to a single line for ultimate robustness)
-q_all_mice_ok = f"SELECT (COUNT(DISTINCT ?m) AS ?n_bad) WHERE {{ {{ ?m a <{IRI_MICE}> . FILTER NOT EXISTS {{ ?m <{IRI_IS_MEASURE_OF}> ?sdc . ?sdc a <{IRI_SDC}> . }} }} UNION {{ ?m a <{IRI_MICE}> . FILTER NOT EXISTS {{ ?m <{IRI_USES_MU}> ?u . ?u a <{IRI_MU}> . }} }} }}"
-n_bad = int(list(g.query(q_all_mice_ok.strip()))[0][0])
+# 3) All MICE Check (Final fix: two separate queries to avoid UNION bug)
+q_missing_measure_of = f"""
+SELECT DISTINCT ?m WHERE {{
+  ?m a <{IRI_MICE}> .
+  FILTER NOT EXISTS {{ ?m <{IRI_IS_MEASURE_OF}> ?sdc . ?sdc a <{IRI_SDC}> . }}
+}}
+"""
+  
+q_missing_unit = f"""
+SELECT DISTINCT ?m WHERE {{
+  ?m a <{IRI_MICE}> .
+  FILTER NOT EXISTS {{ ?m <{IRI_USES_MU}> ?u . ?u a <{IRI_MU}> . }}
+}}
+"""
+  
+# Execute queries and combine results in Python
+bad_mice = set()
+bad_mice.update(list(g.query(q_missing_measure_of.strip())))
+bad_mice.update(list(g.query(q_missing_unit.strip())))
+  
+n_bad = len(bad_mice)
 assert n_bad == 0, f"❌ Some MICE are missing required links with the exact IRIs (count={n_bad})."
 print("✅ All MICE use exact IRIs for 'is measure of' and 'uses measurement unit'.")
   

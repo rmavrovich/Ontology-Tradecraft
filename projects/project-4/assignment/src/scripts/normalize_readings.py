@@ -6,8 +6,8 @@ import datetime
 import sys
 import io
 
-# --- CRITICAL FIX: INPUT/OUTPUT PATHS (Relative to the 'assignment' folder root) ---
-# This path works if the Python script is executed from the directory containing 'src/'
+# --- INPUT/OUTPUT PATHS (Relative to the 'assignment' folder root) ---
+# This path is now confirmed correct for your workflow execution environment.
 IN_A = Path("src/data/sensor_A.csv") 
 IN_B = Path("src/data/sensor_B.json")
 IN_C = Path("src/data/sensor_C.csv")
@@ -119,7 +119,7 @@ def normalize_and_clean(df):
     
     
     # ==========================================================
-    # <<< DIAGNOSTIC STATEMENTS >>>
+    # <<< DIAGNOSTIC STATEMENTS (KEEPING THESE ARE HELPFUL) >>>
     # ==========================================================
     
     print(f"\n[DIAGNOSTICS] Total rows before dropping: {len(df)}")
@@ -141,10 +141,8 @@ def main():
     print(f"[paths] B: {IN_B}")
     print(f"[paths] C: {IN_C}")
     
-    # Check if input files exist at the new relative path
     if not IN_A.exists() or not IN_B.exists() or not IN_C.exists():
         print("ERROR: One or more input files were not found at the expected path.")
-        # Printing the full path of the directory we're looking in
         print(f"Please check that files exist at: {IN_A.parent.resolve()}")
         df_a, df_b, df_c = pd.DataFrame(), pd.DataFrame(), pd.DataFrame()
     else:
@@ -170,8 +168,10 @@ def main():
     print(f"\nWriting {OUT} with {len(cleaned)} rows.")
     cleaned.to_csv(OUT, index=False)
     
-    print("\nFirst 5 rows of the final normalized data:")
-    print(cleaned.head().to_markdown(index=False, numalign="left", stralign="left"))
+    # --- CRITICAL FIX: REMOVED THE LINE BELOW TO FIX THE 'tabulate' ERROR ---
+    # print("\nFirst 5 rows of the final normalized data:")
+    # print(cleaned.head().to_markdown(index=False, numalign="left", stralign="left"))
+    # --- END FIX ---
     
     return cleaned
 

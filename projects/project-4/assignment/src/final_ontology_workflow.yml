@@ -82,8 +82,16 @@ jobs:
         if: steps.detect.outputs.added_count == '1'
         run: python src/scripts/measure_rdflib.py
 
-      # This is the single, correct step calling the fixed external script
-      - name: SPARQL QC (Final Union Fix - V3)
+     - name: Run ETL
+        if: steps.detect.outputs.added_count == '1'
+        run: python src/scripts/normalize_readings.py
+
+      - name: Build RDF (CCO design pattern)
+        if: steps.detect.outputs.added_count == '1'
+        run: python src/scripts/measure_rdflib.py
+
+      # DELETE any other QC step, leaving only this one:
+      - name: SPARQL QC (Final Union Fix - V4)
         if: steps.detect.outputs.added_count == '1'
         run: python src/scripts/qc_fix.py
 

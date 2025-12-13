@@ -81,7 +81,7 @@ jobs:
       - name: Build RDF (CCO design pattern)
         if: steps.detect.outputs.added_count == '1'
         run: python src/scripts/measure_rdflib.py
-        
+
       - name: DEBUG: Check Script Path
         if: steps.detect.outputs.added_count == '1'
         run: python src/scripts/debug_check.py

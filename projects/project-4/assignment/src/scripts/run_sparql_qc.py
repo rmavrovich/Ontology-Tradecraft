@@ -3,6 +3,7 @@ from pathlib import Path
 import sys
   
 TTL = Path("src/measure_cco.ttl")
+
 # Adjust path relative to the PROJECT_ROOT environment variable, assuming default setup
 # This handles the assignment's nested directory structure
 if not TTL.exists() and Path(__file__).resolve().parents[2].name == 'assignment':
@@ -15,7 +16,6 @@ try:
     print(f"[ttl] triples: {len(g)}")
 except AssertionError as e:
     print(e)
-    # The original script exits with 2 if it can't find the file, maintaining that behavior for safety.
     sys.exit(2) 
 except Exception as e:
     print(f"❌ Error loading TTL file: {e}")
@@ -45,7 +45,6 @@ WHERE {{
   OPTIONAL {{ ?u a <{IRI_MU}> . }}
 }}
 """
-# q_types execution (should already be passing)
 A,S,M,U = [int(x) for x in list(g.query(q_types.strip()))[0]]
 assert all(v>0 for v in (A,S,M,U)), f"❌ Missing required typed nodes: Artifact={A}, SDC={S}, MICE={M}, MU={U}"
 print(f"✅ Types present with exact IRIs: Artifact={A}, SDC={S}, MICE={M}, MU={U}")
@@ -64,26 +63,13 @@ ASK {{
   ?u a <{IRI_MU}> .
 }}
 """
-# q_pattern_strict execution (should already be passing)
 assert bool(g.query(q_pattern_strict.strip()).askAnswer), "❌ No complete pattern found using the exact property IRIs."
 print("✅ Complete pattern found with exact property IRIs.")
   
 # 3) Optional: verify every MICE uses the exact property IRIs (no alternative predicates)
-# THIS IS THE FINAL FIXED QUERY WITH .strip() ADDED TO THE EXECUTION
-q_all_mice_ok = f"""
-SELECT (COUNT(DISTINCT ?m) AS ?n_bad)
-WHERE {{
-{{
-?m a <{IRI_MICE}> .
-FILTER NOT EXISTS {{ ?m <{IRI_IS_MEASURE_OF}> ?sdc . ?sdc a <{IRI_SDC}> . }}
-}}
-UNION
-{{
-?m a <{IRI_MICE}> .
-FILTER NOT EXISTS {{ ?m <{IRI_USES_MU}> ?u . ?u a <{IRI_MU}> . }}
-}}
-}}
-"""
+# THIS IS THE FINAL FIXED QUERY, FORCED INTO A SINGLE LINE
+q_all_mice_ok = f"SELECT (COUNT(DISTINCT ?m) AS ?n_bad) WHERE {{ {{ ?m a <{IRI_MICE}> . FILTER NOT EXISTS {{ ?m <{IRI_IS_MEASURE_OF}> ?sdc . ?sdc a <{IRI_SDC}> . }} }} UNION {{ ?m a <{IRI_MICE}> . FILTER NOT EXISTS {{ ?m <{IRI_USES_MU}> ?u . ?u a <{IRI_MU}> . }} }} }}"
+
 # CRITICAL FIX: Use .strip() to clean leading whitespace before execution
 n_bad = int(list(g.query(q_all_mice_ok.strip()))[0][0])
 assert n_bad == 0, f"❌ Some MICE are missing required links with the exact IRIs (count={n_bad})."

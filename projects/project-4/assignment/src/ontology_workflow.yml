@@ -140,7 +140,7 @@ ASK {{
 assert bool(g.query(q_pattern_strict.strip()).askAnswer), "❌ No complete pattern found with exact property IRIs."
 print("✅ Complete pattern found with exact property IRIs.")
   
-# 3) All MICE Check (The problematic one, fixed to a single line for ultimate robustness)
+# 3) All MICE Check (Fixed to a single line for ultimate robustness)
 q_all_mice_ok = f"SELECT (COUNT(DISTINCT ?m) AS ?n_bad) WHERE {{ {{ ?m a <{IRI_MICE}> . FILTER NOT EXISTS {{ ?m <{IRI_IS_MEASURE_OF}> ?sdc . ?sdc a <{IRI_SDC}> . }} }} UNION {{ ?m a <{IRI_MICE}> . FILTER NOT EXISTS {{ ?m <{IRI_USES_MU}> ?u . ?u a <{IRI_MU}> . }} }} }}"
 n_bad = int(list(g.query(q_all_mice_ok.strip()))[0][0])
 assert n_bad == 0, f"❌ Some MICE are missing required links with the exact IRIs (count={n_bad})."

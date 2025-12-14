@@ -27,7 +27,7 @@ IRI_HAS_TIMESTAMP = URIRef("https://www.commoncoreontologies.org/ont00001767") #
 # =========================================================================
 
 # The CSV file output by normalize_readings.py
-CSV_FILE = Path("data/readings_normalized.csv") 
+CSV_FILE = Path("src/data/readings_normalized.csv") 
 # The TTL file read by the QC script
 OUT_FILE = Path("src/measure_cco.ttl")
 

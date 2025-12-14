@@ -144,7 +144,7 @@ def generate_triples(df, graph):
 
         # 3. MICE has_measurement_value MV (NEW TRIPLE)
         # MICE is now linked to the MV node, rather than directly to a literal value.
-        graph.add((mice_uri, IRI_HAS_MV, mv_uri))
+        graph.add((mice_uri, IRI_HAS_VALUE, mv_uri))
         
         # *OLD TRIPLE REMOVED*: graph.add((mice_uri, IRI_HAS_VALUE, Literal(row['value'], datatype=XSD.decimal)))
         # The literal value is now attached to the MV_URI node.

@@ -148,10 +148,10 @@ def generate_triples(df, graph):
 
         # 3. MICE has_measurement_value MV (NEW TRIPLE)
         # MICE is now linked to the MV node, rather than directly to a literal value.
-        #graph.add((mice_uri, IRI_HAS_VALUE, mv_uri))
+        graph.add((mice_uri, IRI_HAS_VALUE, mv_uri))
         
         # MICE has_timestamp Literal (Time)
-        #graph.add((mice_uri, IRI_HAS_TIMESTAMP, Literal(row['timestamp'], datatype=XSD.dateTime)))
+        graph.add((mice_uri, IRI_HAS_TIMESTAMP, Literal(row['timestamp'], datatype=XSD.dateTime)))
 
     return graph
 

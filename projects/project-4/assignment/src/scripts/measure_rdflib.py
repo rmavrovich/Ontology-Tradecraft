@@ -96,7 +96,6 @@ def generate_uris(row):
     # FIX: Return all five URIs
     return artifact_uri, sdc_uri, mu_uri, mv_uri, mice_uri # <-- ADDED mv_uri
 
----
 
 ## Required Fix in `generate_triples`
 

@@ -60,6 +60,7 @@ def generate_uris(row):
     sdc_kind_str = str(row['sdc_kind'])
     unit_label_str = str(row['unit_label'])
     timestamp_str = str(row['timestamp'])
+    value_str = str(row['value'])
     
     # 1. Artifact URI (based on its unique ID)
     artifact_uri = NS_EX[f"Artifact_{hashlib.sha256(artifact_id_str.encode()).hexdigest()[:8]}"]
@@ -71,11 +72,15 @@ def generate_uris(row):
     # 3. MU URI (based on the unit label)
     mu_uri = NS_EX[f"MU_{hashlib.sha256(unit_label_str.encode()).hexdigest()[:8]}"]
 
-    # 4. MICE URI (based on SDC, timestamp, and value for unique measurement)
-    mice_identifier = f"{sdc_identifier}_{timestamp_str}_{row['value']}"
+    # 4. Measurement Value URI (MV_URI) - NEW
+    # Based on the decimal value itself
+    mv_uri = NS_EX[f"MV_{hashlib.sha256(value_str.encode()).hexdigest()[:8]}"]
+    
+    # 5. MICE URI (based on SDC, timestamp, and value for unique measurement)
+    mice_identifier = f"{sdc_identifier}_{timestamp_str}_{value_str}"
     mice_uri = NS_EX[f"MICE_{hashlib.sha256(mice_identifier.encode()).hexdigest()[:8]}"]
 
-    return artifact_uri, sdc_uri, mu_uri, mice_uri
+    return artifact_uri, sdc_uri, mu_uri, mv_uri, mice_uri
 
 # =========================================================================
 # 4. TRIPLE GENERATION LOGIC (FIXED)
@@ -83,28 +88,28 @@ def generate_uris(row):
 
 def generate_triples(df, graph):
     """
-    Generates RDF triples for all rows in the DataFrame.
-    
-    FIX: Added explicit RDF.type assertions to satisfy the QC script's checks.
+    Generates RDF triples for all rows in the DataFrame, incorporating the new 
+    Measurement Value (MV) entity.
     """
-    # Use a set to track generated Artifact, SDC, and MU nodes to prevent duplicate triples for static entities
+    # Use a set to track generated Artifact, SDC, MU, and MV nodes
     seen_static_entities = set()
     
     for _, row in df.iterrows():
-        artifact_uri, sdc_uri, mu_uri, mice_uri = generate_uris(row)
+        # 1. Update the call to generate_uris to include mv_uri
+        artifact_uri, sdc_uri, mu_uri, mv_uri, mice_uri = generate_uris(row)
         
-        # --- Static Entities (Artifact, SDC, MU) ---
-        # We only generate these once per unique ID/kind/unit combination
+        # --- Static Entities (Artifact, SDC, MU, MV) ---
+        # We only generate these once per unique ID/kind/unit/value combination (for MV)
         
         # Artifact and SDC (Artifact -> SDC)
         artifact_key = str(artifact_uri)
         sdc_key = str(sdc_uri)
         if artifact_key not in seen_static_entities:
-            # Artifact is defined and has a type (Fixes 2nd Red X)
+            # Artifact is defined and has a type
             graph.add((artifact_uri, RDF.type, IRI_ART)) 
-            # Artifact bearer_of SDC (Fixes 3rd Red X part 1)
+            # Artifact bearer_of SDC
             graph.add((artifact_uri, IRI_BEARER_OF, sdc_uri))
-            # SDC is defined and has a type (Fixes 2nd Red X)
+            # SDC is defined and has a type
             graph.add((sdc_uri, RDF.type, IRI_SDC))
             seen_static_entities.add(artifact_key)
             seen_static_entities.add(sdc_key)
@@ -112,30 +117,42 @@ def generate_triples(df, graph):
         # Measurement Unit (MU)
         mu_key = str(mu_uri)
         if mu_key not in seen_static_entities:
-            # MU is defined and has a type (Fixes 2nd Red X)
+            # MU is defined and has a type
             graph.add((mu_uri, RDF.type, IRI_MU))
             seen_static_entities.add(mu_key)
+
+        # 2. Measurement Value (MV) - NEW STATIC ENTITY
+        mv_key = str(mv_uri)
+        if mv_key not in seen_static_entities:
+            # MV is defined and has a type
+            graph.add((mv_uri, RDF.type, IRI_MV))
+            # MV has_value Literal (Value) - The MV node carries the literal value
+            graph.add((mv_uri, IRI_HAS_VALUE, Literal(row['value'], datatype=XSD.decimal)))
+            seen_static_entities.add(mv_key)
 
         # --- Dynamic Entity (MICE) ---
         # MICE is generated for every reading
 
-        # MICE is defined and has a type (Fixes 2nd Red X)
+        # MICE is defined and has a type
         graph.add((mice_uri, RDF.type, IRI_MICE))
         
-        # MICE is_measure_of SDC (Fixes 3rd & 4th Red X)
+        # MICE is_measure_of SDC 
         graph.add((mice_uri, IRI_IS_MEASURE_OF, sdc_uri))
         
-        # MICE uses_measurement_unit MU (Fixes 3rd & 4th Red X)
+        # MICE uses_measurement_unit MU 
         graph.add((mice_uri, IRI_USES_MU, mu_uri))
+
+        # 3. MICE has_measurement_value MV (NEW TRIPLE)
+        # MICE is now linked to the MV node, rather than directly to a literal value.
+        graph.add((mice_uri, IRI_HAS_MV, mv_uri))
         
-        # MICE has_value Literal (Value)
-        graph.add((mice_uri, IRI_HAS_VALUE, Literal(row['value'], datatype=XSD.decimal)))
+        # *OLD TRIPLE REMOVED*: graph.add((mice_uri, IRI_HAS_VALUE, Literal(row['value'], datatype=XSD.decimal)))
+        # The literal value is now attached to the MV_URI node.
         
         # MICE has_timestamp Literal (Time)
         graph.add((mice_uri, IRI_HAS_TIMESTAMP, Literal(row['timestamp'], datatype=XSD.dateTime)))
 
     return graph
-
 
 # =========================================================================
 # 5. MAIN EXECUTION LOGIC (FIXED)

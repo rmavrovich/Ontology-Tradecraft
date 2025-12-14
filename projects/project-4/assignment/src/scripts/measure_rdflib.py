@@ -5,7 +5,19 @@ from pathlib import Path
 import pandas as pd
 import hashlib
 
-# =========================================================================
+#prefixes and relevant links
+@prefix : <https://www.commoncoreontologies.org/CommonCoreOntologiesMerged/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix obo: <http://purl.obolibrary.org/obo/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix cco: <https://www.commoncoreontologies.org/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@base <https://www.commoncoreontologies.org/CommonCoreOntologiesMerged> .
+
 # 1. CRITICAL FIX: EXACT IRIS FOR VALIDATION (MUST MATCH)
 # =========================================================================
 
@@ -19,8 +31,8 @@ IRI_MU    = URIRef("https://www.commoncoreontologies.org/ont00000120")    # Meas
 IRI_BEARER_OF = URIRef("http://purl.obolibrary.org/obo/BFO_0000196")     # bearer_of (Artifact -> SDC)
 IRI_IS_MEASURE_OF = URIRef("https://www.commoncoreontologies.org/ont00001966") # is_measurement_of (MICE -> SDC)
 IRI_USES_MU       = URIRef("https://www.commoncoreontologies.org/ont00001863") # uses_measurement_unit (MICE -> MU)
-#IRI_HAS_VALUE     = URIRef("https://www.commoncoreontologies.org/ont00001769") # has_value (MICE -> Literal Value)
-#IRI_HAS_TIMESTAMP = URIRef("https://www.commoncoreontologies.org/ont00001767") # has_timestamp (MICE -> Literal Time)
+IRI_HAS_VALUE     = URIRef("https://www.commoncoreontologies.org/ont00001769") # has_value (MICE -> Literal Value)
+IRI_HAS_TIMESTAMP = URIRef("https://www.commoncoreontologies.org/ont00001767") # has_timestamp (MICE -> Literal Time)
 
 
 # =========================================================================
@@ -33,7 +45,7 @@ CSV_FILE = Path("src/data/readings_normalized.csv")
 OUT_FILE = Path("src/measure_cco.ttl")
 
 # Define namespaces
-NS_EX   = Namespace("http://example.org/measurement/")
+NS_rdf   = Namespace("http://example.org/measurement/")
 NS_CCO  = Namespace("https://www.commoncoreontologies.org/CommonCoreOntologiesMerged")
 NS_BFO  = Namespace("http://purl.obolibrary.org/obo/bfo.owl")
 NS_MU   = Namespace("http://purl.obolibrary.org/obo/pato.owl")
@@ -41,7 +53,7 @@ NS_MU   = Namespace("http://purl.obolibrary.org/obo/pato.owl")
 def setup_graph():
     """Initializes graph with namespaces."""
     g = Graph()
-    g.bind("ex", NS_EX)
+    g.bind("rdf", NS_rdf)
     g.bind("cco", NS_CCO)
     g.bind("bfo", NS_BFO)
     g.bind("xsd", XSD)

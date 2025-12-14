@@ -5,19 +5,6 @@ from pathlib import Path
 import pandas as pd
 import hashlib
 
-#prefixes and relevant links
-@prefix : <https://www.commoncoreontologies.org/CommonCoreOntologiesMerged/> .
-@prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix obo: <http://purl.obolibrary.org/obo/> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix xml: <http://www.w3.org/XML/1998/namespace> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix cco: <https://www.commoncoreontologies.org/> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
-@prefix dcterms: <http://purl.org/dc/terms/> .
-@base <https://www.commoncoreontologies.org/CommonCoreOntologiesMerged> .
-
 # 1. CRITICAL FIX: EXACT IRIS FOR VALIDATION (MUST MATCH)
 # =========================================================================
 
@@ -44,24 +31,35 @@ CSV_FILE = Path("src/data/readings_normalized.csv")
 # The TTL file read by the QC script
 OUT_FILE = Path("src/measure_cco.ttl")
 
-# Define namespaces
-NS_rdf   = Namespace("http://example.org/measurement/")
-NS_CCO  = Namespace("https://www.commoncoreontologies.org/CommonCoreOntologiesMerged")
-NS_BFO  = Namespace("http://purl.obolibrary.org/obo/bfo.owl")
-NS_MU   = Namespace("http://purl.obolibrary.org/obo/pato.owl")
+# Define namespaces (You can rename NS_rdf to NS_EX to match your generate_uris function)
+# NOTE: The prefixes used here must match the URIs used later in the generate_uris function
+NS_EX   = Namespace("http://example.org/measurement/") # Used for instance URIs like Artifact_...
+NS_CCO  = Namespace("https://www.commoncoreontologies.org/CommonCoreOntologiesMerged/") # Note the trailing slash
+NS_OWL  = Namespace("http://www.w3.org/2002/07/owl#")
+NS_OBO  = Namespace("http://purl.obolibrary.org/obo/")
+# ... and so on for others if needed later
 
 def setup_graph():
     """Initializes graph with namespaces."""
     g = Graph()
-    g.bind("rdf", NS_rdf)
-    g.bind("cco", NS_CCO)
-    g.bind("bfo", NS_BFO)
-    g.bind("xsd", XSD)
+    # Bind the instance namespace (used in generate_uris)
+    g.bind("ex", NS_EX)
+    # Bind the main ontology namespace
+    g.bind("cco", NS_CCO) 
+    # Bind standard namespaces (many of these are automatically handled by rdflib, 
+    # but explicitly binding them ensures correct serialization prefix)
+    g.bind("owl", NS_OWL)
+    g.bind("obo", NS_OBO) 
+    g.bind("rdf", RDF) # RDF is already defined by rdflib
+    g.bind("rdfs", RDFS) # RDFS is already defined by rdflib
+    g.bind("xsd", XSD)   # XSD is already defined by rdflib
+    
     return g
+# Fix the global namespace variable used in generate_uris (was NS_EX in the original code, but defined as NS_rdf)
+NS_EX = Namespace("http://example.org/measurement/") 
 
 # Global graph instance
 graph = setup_graph()
-
 # =========================================================================
 # 3. URI GENERATION LOGIC (UNCHANGED)
 # =========================================================================

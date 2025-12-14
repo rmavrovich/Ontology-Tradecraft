@@ -58,7 +58,7 @@ def generate_uris(row):
     artifact_uri = str(row['artifact_id'])
     sdc_uri = str(row['sdc_kind'])
     mu_uri = str(row['unit_label'])
-    mice_uri = str(row['mice_id'])
+    mice_uri = str(row['value'])
    
 
     return artifact_uri, sdc_uri, mu_uri, mice_uri

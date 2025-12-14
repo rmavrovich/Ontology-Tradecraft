@@ -138,9 +138,11 @@ def generate_triples(df, graph):
         graph.add((mice_uri, RDF.type, IRI_MICE))
         
         # MICE is_measure_of SDC 
+        graph.add((mice_uri, IRI_IS_MEASURE_OF, sdc_uri))
         graph.add((mice_uri, IRI_IS_MEASURE_OF, IRI_SDC))
         
         # MICE uses_measurement_unit MU 
+        graph.add((mice_uri, IRI_USES_MU, mu_uri))
         graph.add((mice_uri, IRI_USES_MU, IRI_MU))
 
         # 3. MICE has_measurement_value MV (NEW TRIPLE)

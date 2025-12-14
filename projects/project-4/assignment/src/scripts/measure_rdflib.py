@@ -125,7 +125,7 @@ def generate_triples(df, graph):
         mv_key = str(mv_uri)
         if mv_key not in seen_static_entities:
             # MV is defined and has a type
-            graph.add((mv_uri, RDF.type, IRI_MV))
+            graph.add((mv_uri, RDF.type, IRI_HAS_VALUE))
             # MV has_value Literal (Value) - The MV node carries the literal value
             graph.add((mv_uri, IRI_HAS_VALUE, Literal(row['value'], datatype=XSD.decimal)))
             seen_static_entities.add(mv_key)

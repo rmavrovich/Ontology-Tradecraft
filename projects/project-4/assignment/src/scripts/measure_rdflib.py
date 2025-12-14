@@ -55,11 +55,31 @@ graph = setup_graph()
 # =========================================================================
 
 def generate_uris(row):
-    artifact_uri = str(row['artifact_id'])
-    sdc_uri = str(row['sdc_kind'])
-    mu_uri = str(row['unit_label'])
-    mice_uri = str(row['value'])
-   
+    """Generates deterministic URIs based on content hashes."""
+    # Ensure all identifiers are strings for hashing
+    artifact_id_str = str(row['artifact_id'])
+    sdc_kind_str = str(row['sdc_kind'])
+    unit_label_str = str(row['unit_label'])
+    #value_str = str(row['value'])
+    #timestamp_str = str(row['timestamp'])
+    
+    # 1. Artifact URI (based on its unique ID)
+    artifact_uri = NS_EX[f"Artifact_{hashlib.sha256(artifact_id_str.encode()).hexdigest()[:8]}"]
+
+    # 2. SDC URI (based on Artifact and the SDC kind)
+    sdc_identifier = f"{artifact_id_str}_{sdc_kind_str}"
+    sdc_uri = NS_EX[f"SDC_{hashlib.sha256(sdc_identifier.encode()).hexdigest()[:8]}"]
+    
+    # 3. MU URI (based on the unit label)
+    mu_uri = NS_EX[f"MU_{hashlib.sha256(unit_label_str.encode()).hexdigest()[:8]}"]
+
+    # 4. Measurement Value URI (MV_URI) - NEW
+    # Based on the decimal value itself
+    #mv_uri = NS_EX[f"MV_{hashlib.sha256(value_str.encode()).hexdigest()[:8]}"]
+    
+    # 5. MICE URI (based on SDC, timestamp, and value for unique measurement)
+    mice_identifier = f"{sdc_identifier}"#_{timestamp_str}_{value_str}"
+    mice_uri = NS_EX[f"MICE_{hashlib.sha256(mice_identifier.encode()).hexdigest()[:8]}"]
 
     return artifact_uri, sdc_uri, mu_uri, mice_uri
 
@@ -118,10 +138,10 @@ def generate_triples(df, graph):
         graph.add((mice_uri, RDF.type, IRI_MICE))
         
         # MICE is_measure_of SDC 
-        graph.add((mice_uri, IRI_IS_MEASURE_OF, sdc_uri))
+        graph.add((mice_uri, IRI_IS_MEASURE_OF, IRI_SDC))
         
         # MICE uses_measurement_unit MU 
-        graph.add((mice_uri, IRI_USES_MU, mu_uri))
+        graph.add((mice_uri, IRI_USES_MU, IRI_MU))
 
         # 3. MICE has_measurement_value MV (NEW TRIPLE)
         # MICE is now linked to the MV node, rather than directly to a literal value.

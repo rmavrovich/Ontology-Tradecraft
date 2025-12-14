@@ -66,12 +66,13 @@ graph = setup_graph()
 
 def generate_uris(row):
     """Generates deterministic URIs based on content hashes."""
-    # Ensure all identifiers are strings for hashing
+    
+    # 1. FIX: Ensure all identifiers are strings for hashing, INCLUDING value and timestamp
     artifact_id_str = str(row['artifact_id'])
     sdc_kind_str = str(row['sdc_kind'])
     unit_label_str = str(row['unit_label'])
-    #value_str = str(row['value'])
-    #timestamp_str = str(row['timestamp'])
+    value_str = str(row['value'])        # <-- UNCOMMENTED
+    timestamp_str = str(row['timestamp'])  # <-- UNCOMMENTED
     
     # 1. Artifact URI (based on its unique ID)
     artifact_uri = NS_EX[f"Artifact_{hashlib.sha256(artifact_id_str.encode()).hexdigest()[:8]}"]
@@ -85,13 +86,26 @@ def generate_uris(row):
 
     # 4. Measurement Value URI (MV_URI) - NEW
     # Based on the decimal value itself
-    #mv_uri = NS_EX[f"MV_{hashlib.sha256(value_str.encode()).hexdigest()[:8]}"]
+    mv_uri = NS_EX[f"MV_{hashlib.sha256(value_str.encode()).hexdigest()[:8]}"] # <-- UNCOMMENTED
     
     # 5. MICE URI (based on SDC, timestamp, and value for unique measurement)
-    mice_identifier = f"{sdc_identifier}"#_{timestamp_str}_{value_str}"
+    # FIX: Include value and timestamp in the identifier to make MICE unique
+    mice_identifier = f"{sdc_identifier}_{timestamp_str}_{value_str}" # <-- FIXED STRING
     mice_uri = NS_EX[f"MICE_{hashlib.sha256(mice_identifier.encode()).hexdigest()[:8]}"]
 
-    return artifact_uri, sdc_uri, mu_uri, mice_uri
+    # FIX: Return all five URIs
+    return artifact_uri, sdc_uri, mu_uri, mv_uri, mice_uri # <-- ADDED mv_uri
+
+---
+
+## Required Fix in `generate_triples`
+
+Once you apply the fix above, you must also update the assignment line in `generate_triples` to expect 5 values:
+
+```python
+# In generate_triples:
+# FIX: The assignment must now match the five expected URIs
+artifact_uri, sdc_uri, mu_uri, mv_uri, mice_uri = generate_uris(row)
 
 # =========================================================================
 # 4. TRIPLE GENERATION LOGIC (FIXED)
@@ -106,11 +120,12 @@ def generate_triples(df, graph):
     seen_static_entities = set()
     
     for _, row in df.iterrows():
-        # 1. Update the call to generate_uris to include mv_uri
-        artifact_uri, sdc_uri, mu_uri, mice_uri = generate_uris(row)
+        
+        # 1. FIX: Update the call to generate_uris to include mv_uri
+        # This now expects 5 URIs: (artifact, sdc, mu, mv, mice)
+        artifact_uri, sdc_uri, mu_uri, mv_uri, mice_uri = generate_uris(row)
         
         # --- Static Entities (Artifact, SDC, MU, MV) ---
-        # We only generate these once per unique ID/kind/unit/value combination (for MV)
         
         # Artifact and SDC (Artifact -> SDC)
         artifact_key = str(artifact_uri)
@@ -132,14 +147,17 @@ def generate_triples(df, graph):
             graph.add((mu_uri, RDF.type, IRI_MU))
             seen_static_entities.add(mu_key)
 
-        # 2. Measurement Value (MV) - NEW STATIC ENTITY
-        #mv_key = str(mv_uri)
-        #if mv_key not in seen_static_entities:
+        # 2. FIX: Measurement Value (MV) - NEW STATIC ENTITY
+        mv_key = str(mv_uri)
+        if mv_key not in seen_static_entities:
             # MV is defined and has a type
-            #graph.add((mv_uri, RDF.type, IRI_HAS_VALUE))
+            # Using IRI_VALUE, which is assumed to be defined as the CCO class for Value
+            graph.add((mv_uri, RDF.type, IRI_VALUE)) 
+            
             # MV has_value Literal (Value) - The MV node carries the literal value
-            #graph.add((mv_uri, IRI_HAS_VALUE, Literal(row['value'], datatype=XSD.decimal)))
-            #seen_static_entities.add(mv_key)
+            # This is the actual measurement result attached as a Literal
+            graph.add((mv_uri, IRI_HAS_VALUE, Literal(row['value'], datatype=XSD.decimal)))
+            seen_static_entities.add(mv_key)
 
         # --- Dynamic Entity (MICE) ---
         # MICE is generated for every reading
@@ -153,12 +171,12 @@ def generate_triples(df, graph):
         # MICE uses_measurement_unit MU 
         graph.add((mice_uri, IRI_USES_MU, mu_uri))
 
-        # 3. MICE has_measurement_value MV (NEW TRIPLE)
-        # MICE is now linked to the MV node, rather than directly to a literal value.
-        #graph.add((mice_uri, IRI_HAS_VALUE, mv_uri))
+        # 3. FIX: MICE has_measurement_value MV (NEW TRIPLE)
+        # MICE links to the reusable MV node, which in turn holds the literal value.
+        graph.add((mice_uri, IRI_HAS_VALUE, mv_uri))
         
-        # MICE has_timestamp Literal (Time)
-        #graph.add((mice_uri, IRI_HAS_TIMESTAMP, Literal(row['timestamp'], datatype=XSD.dateTime)))
+        # 4. FIX: MICE has_timestamp Literal (Time)
+        graph.add((mice_uri, IRI_HAS_TIMESTAMP, Literal(row['timestamp'], datatype=XSD.dateTime)))
 
     return graph
 

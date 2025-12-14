@@ -104,7 +104,7 @@ def generate_uris(row):
 #```python
 # In generate_triples:
 # FIX: The assignment must now match the five expected URIs
-artifact_uri, sdc_uri, mu_uri, mv_uri, mice_uri = generate_uris(row)
+    artifact_uri, sdc_uri, mu_uri, mv_uri, mice_uri = generate_uris(row)
 
 # =========================================================================
 # 4. TRIPLE GENERATION LOGIC (FIXED)

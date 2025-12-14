@@ -151,7 +151,7 @@ def generate_triples(df, graph):
         if mv_key not in seen_static_entities:
             # MV is defined and has a type
             # Using IRI_VALUE, which is assumed to be defined as the CCO class for Value
-            graph.add((mv_uri, RDF.type, IRI_VALUE)) 
+            graph.add((mv_uri, RDF.type, IRI_HAS_VALUE)) 
             
             # MV has_value Literal (Value) - The MV node carries the literal value
             # This is the actual measurement result attached as a Literal

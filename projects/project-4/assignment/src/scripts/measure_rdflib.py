@@ -149,8 +149,11 @@ def main():
     print(f"Serializing graph with {len(graph)} total triples to {OUT_FILE}")
     graph.serialize(destination=OUT_FILE, format='turtle')
 
-    print("✅ TTL generation complete. Ready for validation.")
-
-
+    if OUT_FILE.exists():
+        print(f"✅ TTL file saved successfully to {OUT_FILE.resolve()}")
+    else:
+        print("❌ TTL file was not saved!")
+        
 if __name__ == '__main__':
+    graph = setup_graph()
     main()

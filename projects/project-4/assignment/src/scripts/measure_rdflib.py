@@ -22,6 +22,10 @@ IRI_USES_MU       = URIRef("https://www.commoncoreontologies.org/ont00001863") #
 IRI_HAS_VALUE     = URIRef("https://www.commoncoreontologies.org/ont00001769") # has_value (MICE -> Literal Value)
 IRI_HAS_TIMESTAMP = URIRef("https://www.commoncoreontologies.org/ont00001767") # has_timestamp (MICE -> Literal Time)
 
+IRI_BEARER_OF   = "http://purl.obolibrary.org/obo/BFO_0000196"
+IRI_IS_MEASURE_OF = "https://www.commoncoreontologies.org/ont00001966"
+IRI_USES_MU       = "https://www.commoncoreontologies.org/ont00001863"
+
 # =========================================================================
 # 2. FILE AND NAMESPACE SETUP
 # =========================================================================
@@ -137,10 +141,10 @@ def generate_triples(df, graph):
         graph.add((mice_uri, RDF.type, IRI_MICE))
         
         # MICE is_measure_of SDC 
-        graph.add((mice_uri, IRI_IS_MEASURE_OF, sdc_uri))
+        #graph.add((mice_uri, IRI_IS_MEASURE_OF, sdc_uri))
         
         # MICE uses_measurement_unit MU 
-        graph.add((mice_uri, IRI_USES_MU, mu_uri))
+        #graph.add((mice_uri, IRI_USES_MU, mu_uri))
 
         # 3. MICE has_measurement_value MV (NEW TRIPLE)
         # MICE is now linked to the MV node, rather than directly to a literal value.

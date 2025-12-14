@@ -99,7 +99,7 @@ def generate_uris(row):
 
 ## Required Fix in `generate_triples`
 
-Once you apply the fix above, you must also update the assignment line in `generate_triples` to expect 5 values:
+#Once you apply the fix above, you must also update the assignment line in `generate_triples` to expect 5 values:
 
 ```python
 # In generate_triples:

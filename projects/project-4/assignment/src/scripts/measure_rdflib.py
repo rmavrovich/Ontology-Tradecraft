@@ -19,23 +19,23 @@ IRI_MU    = URIRef("https://www.commoncoreontologies.org/ont00000120")    # Meas
 IRI_BEARER_OF = URIRef("http://purl.obolibrary.org/obo/BFO_0000196")     # bearer_of (Artifact -> SDC)
 IRI_IS_MEASURE_OF = URIRef("https://www.commoncoreontologies.org/ont00001966") # is_measurement_of (MICE -> SDC)
 IRI_USES_MU       = URIRef("https://www.commoncoreontologies.org/ont00001863") # uses_measurement_unit (MICE -> MU)
-IRI_HAS_VALUE     = URIRef("https://www.commoncoreontologies.org/ont00000111") # has_value (MICE -> Literal Value)
-IRI_HAS_TIMESTAMP = URIRef("https://www.commoncoreontologies.org/ont00000412") # has_timestamp (MICE -> Literal Time)
+IRI_HAS_VALUE     = URIRef("https://www.commoncoreontologies.org/ont00001769") # has_value (MICE -> Literal Value)
+IRI_HAS_TIMESTAMP = URIRef("https://www.commoncoreontologies.org/ont00001767") # has_timestamp (MICE -> Literal Time)
 
 # =========================================================================
 # 2. FILE AND NAMESPACE SETUP
 # =========================================================================
 
 # The CSV file output by normalize_readings.py
-CSV_FILE = Path("readings_normalized.csv") 
+CSV_FILE = Path("data/readings_normalized.csv") 
 # The TTL file read by the QC script
 OUT_FILE = Path("src/measure_cco.ttl")
 
 # Define namespaces
 NS_EX   = Namespace("http://example.org/measurement/")
-NS_CCO  = Namespace("https://www.commoncoreontologies.org/ont")
-NS_BFO  = Namespace("http://purl.obolibrary.org/obo/BFO_")
-NS_MU   = Namespace("http://purl.obolibrary.org/obo/PATO_")
+NS_CCO  = Namespace("https://www.commoncoreontologies.org/CommonCoreOntologiesMerged")
+NS_BFO  = Namespace("http://purl.obolibrary.org/obo/bfo.owl")
+NS_MU   = Namespace("http://purl.obolibrary.org/obo/pato.owl")
 
 def setup_graph():
     """Initializes graph with namespaces."""

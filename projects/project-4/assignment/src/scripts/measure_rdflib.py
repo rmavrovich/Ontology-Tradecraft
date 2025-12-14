@@ -101,7 +101,7 @@ def generate_uris(row):
 
 #Once you apply the fix above, you must also update the assignment line in `generate_triples` to expect 5 values:
 
-```python
+#```python
 # In generate_triples:
 # FIX: The assignment must now match the five expected URIs
 artifact_uri, sdc_uri, mu_uri, mv_uri, mice_uri = generate_uris(row)

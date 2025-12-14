@@ -141,20 +141,17 @@ def generate_triples(df, graph):
         graph.add((mice_uri, RDF.type, IRI_MICE))
         
         # MICE is_measure_of SDC 
-        #graph.add((mice_uri, IRI_IS_MEASURE_OF, sdc_uri))
+        graph.add((mice_uri, IRI_IS_MEASURE_OF, sdc_uri))
         
         # MICE uses_measurement_unit MU 
-        #graph.add((mice_uri, IRI_USES_MU, mu_uri))
+        graph.add((mice_uri, IRI_USES_MU, mu_uri))
 
         # 3. MICE has_measurement_value MV (NEW TRIPLE)
         # MICE is now linked to the MV node, rather than directly to a literal value.
-        graph.add((mice_uri, IRI_HAS_VALUE, mv_uri))
-        
-        # *OLD TRIPLE REMOVED*: graph.add((mice_uri, IRI_HAS_VALUE, Literal(row['value'], datatype=XSD.decimal)))
-        # The literal value is now attached to the MV_URI node.
+        #graph.add((mice_uri, IRI_HAS_VALUE, mv_uri))
         
         # MICE has_timestamp Literal (Time)
-        graph.add((mice_uri, IRI_HAS_TIMESTAMP, Literal(row['timestamp'], datatype=XSD.dateTime)))
+        #graph.add((mice_uri, IRI_HAS_TIMESTAMP, Literal(row['timestamp'], datatype=XSD.dateTime)))
 
     return graph
 

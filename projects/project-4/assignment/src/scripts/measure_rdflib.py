@@ -24,10 +24,8 @@ IRI_HAS_TIMESTAMP = URIRef("https://www.commoncoreontologies.org/ont00001767") #
 # 2. FILE AND NAMESPACE SETUP
 # =========================================================================
 
-# The CSV file output by normalize_readings.py
-CSV_FILE = Path("src/data/readings_normalized.csv") 
-# The TTL file read by the QC script
-OUT_FILE = Path("src/measure_cco.ttl")
+CSV_PATH = r"C:/Users/rachelmavrovich/Ontology-Tradecraft-1/projects/project-4/assignment/src/data/readings_normalized.csv"
+TTL_OUT = r"C:/Users/rachelmavrovich/Ontology-Tradecraft-1/projects/project-4/assignment/src/measure_cco.ttl"
 
 # Define namespaces (You can rename NS_rdf to NS_EX to match your generate_uris function)
 # NOTE: The prefixes used here must match the URIs used later in the generate_uris function
@@ -84,7 +82,7 @@ def generate_uris(row):
 
     # 4. Measurement Value URI (MV_URI) - NEW
     # Based on the decimal value itself
-    mv_uri = NS_EX[f"MV_{hashlib.sha256(value_str.encode()).hexdigest()[:8]}"] # <-- UNCOMMENTED
+    mv_uri = NS_EX[f"MV_{hashlib.sha256(value_str.encode()).hexdigest()[:8]}"] 
     
     # 5. MICE URI (based on SDC, timestamp, and value for unique measurement)
     # FIX: Include value and timestamp in the identifier to make MICE unique

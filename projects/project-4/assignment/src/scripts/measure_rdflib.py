@@ -2,6 +2,9 @@ from rdflib import Graph, Literal, RDF, RDFS, OWL, XSD, Namespace, URIRef, BNode
 from pathlib import Path
 import pandas as pd
 import hashlib
+from rdflib.namespace import XSD, RDFS, OWL
+import re
+from collections import defaultdict
 
 
 # Classes
@@ -25,23 +28,69 @@ CSV_FILE = root_dir / 'data' / 'readings_normalized.csv'
 OUT_FILE = root_dir / 'measure_cco.ttl'
 
 # Define namespaces 
-NS_EX   = Namespace("http://example.org/measurement/") # Used for instance URIs like Artifact_...
+NS_EX   = Namespace("http://example.org/measurement/")
 NS_CCO  = Namespace("https://www.commoncoreontologies.org/CommonCoreOntologiesMerged/") 
 NS_OWL  = Namespace("http://www.w3.org/2002/07/owl#")
 NS_OBO  = Namespace("http://purl.obolibrary.org/obo/")
+NS_RDF = Namespace("http://www.w3.org/1999/02/22-rdf-syntax-ns#")
+NS_XSD = Namespace("http://www.w3.org/2001/XMLSchema#")
+NS_EXPROP = Namespace("http://example.org/props#")
+NS_EXC = Namespace("http://example.org/classes#")
 
 """Initializes graph with namespaces."""
 graph = Graph()
-# Bind the instance namespace
 graph.bind("ex", NS_EX)
-# Bind the main ontology namespace
 graph.bind("cco", NS_CCO) 
-# Bind standard namespaces
 graph.bind("owl", NS_OWL)
 graph.bind("obo", NS_OBO) 
-graph.bind("rdf", RDF) # RDF is already defined by rdflib
+graph.bind("rdf", NS_RDF) 
 graph.bind("rdfs", RDFS) # RDFS is already defined by rdflib
-graph.bind("xsd", XSD)   # XSD is already defined by rdflib
+graph.bind("xsd", NS_XSD) 
+
+graph.bind("exc", NS_EXC)
+graph.bind("exprop", NS_EXPROP)
+
+onto_uri = URIRef("http://example.org/ontology")
+graph.add((onto_uri, NS_RDF.type, NS_OWL.Ontology))
+graph.add((onto_uri, RDFS.label, Literal("cco conformant measurements", lang="en")))
+
+
+graph.add((cco.ont00000995, RDFS.label, Literal("Artifact", lang="en")))
+graph.add((obo.BFO_0000197, RDFS.label, Literal("inheres in", lang="en")))
+graph.add((cco.ont00001863, RDFS.label, Literal("uses measurement unit", lang="en")))
+graph.add((cco.ont00001606, RDFS.label, Literal("Degree Celsius Measurement Unit", lang="en")))
+graph.add((cco.ont00001724, RDFS.label, Literal("Degree Fahrenheit Measurement Unit", lang="en")))
+graph.add((cco.ont00000120, RDFS.label, Literal("Measurement Unit", lang="en")))
+graph.add((cco.ont00001904, RDFS.label, Literal("is measured by", lang="en")))
+graph.add((cco.ont00001163, RDFS.label, Literal("Measurement Information Content Entity", lang="en")))
+graph.add((cco.ont00001769, RDFS.label, Literal("has decimal value", lang="en")))
+graph.add((obo.BFO_0000196, RDFS.label, Literal("bearer of", lang="en"))) 
+graph.add((cco.ont00001961, RDFS.label, Literal("is measurement unit of", lang="en"))) 
+graph.add((cco.ont00001966, RDFS.label, Literal("is a measurement of", lang="en")))
+graph.add((cco.ont00001450, RDFS.label, Literal("Volt Measurement Unit", lang="en")))
+graph.add((cco.ont00001559, RDFS.label, Literal("Pascal Measurement Unit", lang="en")))
+graph.add((cco.ont00001694, RDFS.label, Literal("Pounds Per Square Inch Measurement Unit", lang="en")))
+
+OBJECT_PROPERTY_DEFS = {
+    obo.BFO_0000196: "b bearer of c =Def c inheres in b", 
+    cco.ont00001904: "y is_measured_by x iff x is an instance of Information Content Entity and y is an instance of Entity, such that x describes some attribute of y relative to some scale or classification scheme.",
+    cco.ont00001966: "x is_a_measurement_of y iff x is an instance of Measurement Information Content Entity and y is an instance of Specifically Dependent Continuant (a reading), such that x specifies a value describing some attribute of y relative to some scale or classification scheme.",
+    cco.ont00001961: "x is_measurement_unit_of y iff x is an instance of Measurement Unit and y is an instance of Measurement Information Content Entity or Specifically Dependent Continuant, such that x describes or qualifies the magnitude of the measured physical quantity referenced in y.",
+}
+CLASS_DEFS = {
+    obo.BFO_0000020: "A specifically dependent continuant is a continuant & there is some independent continuant c which is not a spatial region and which is such that b s-depends_on c at every time t during the course of b’s existence.",
+    obo.BFO_0000031: "A generically dependent continuant is a continuant that g-depends_on one or more other entities.",
+    obo.BFO_0000040: "A material entity is an independent continuant that has some portion of matter as proper or improper continuant part.",
+}
+DIFFERENTIA = {
+    cco.ont00000995: "is intentionally produced to realize some function or purpose",  
+    cco.ont00001163: "specifies a numeric measurement value together with its associated unit",  
+    cco.ont00000120: "serves to standardize quantities for measurement information content entities and specifically dependent continuants",  
+    obo.BFO_0000197: "relates a specifically dependent continuant to the independent continuant it inheres in",  
+    cco.ont00001966: "links a measurement information content entity to the reading (specifically dependent continuant) that it specifies",
+    cco.ont00001863: "links a measurement information content entity or a specifically dependent continuant to the unit that qualifies its value",
+    cco.ont00001769: "associates a measurement information content entity with a numeric value literal",  
+}
 
 
 def generate_uris(row):

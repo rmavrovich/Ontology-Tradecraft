@@ -24,8 +24,8 @@ IRI_HAS_TIMESTAMP = URIRef("https://www.commoncoreontologies.org/ont00001767") #
 # 2. FILE AND NAMESPACE SETUP
 # =========================================================================
 
-CSV_FILE = r"C:/Users/rachelmavrovich/Ontology-Tradecraft-1/projects/project-4/assignment/src/data/readings_normalized.csv"
-OUT_FILE = r"C:/Users/rachelmavrovich/Ontology-Tradecraft-1/projects/project-4/assignment/src/measure_cco.ttl"
+CSV_FILE = Path("C:/Users/rachelmavrovich/Ontology-Tradecraft-1/projects/project-4/assignment/src/data/readings_normalized.csv")
+OUT_FILE = Path("C:/Users/rachelmavrovich/Ontology-Tradecraft-1/projects/project-4/assignment/src/measure_cco.ttl")
 
 # Define namespaces (You can rename NS_rdf to NS_EX to match your generate_uris function)
 # NOTE: The prefixes used here must match the URIs used later in the generate_uris function

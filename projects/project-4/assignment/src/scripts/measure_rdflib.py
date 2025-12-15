@@ -4,7 +4,6 @@ from rdflib import Graph, Literal, RDF, RDFS, OWL, XSD, Namespace, URIRef, BNode
 from pathlib import Path
 import pandas as pd
 import hashlib
-
 # 1. CRITICAL FIX: EXACT IRIS FOR VALIDATION (MUST MATCH)
 # =========================================================================
 

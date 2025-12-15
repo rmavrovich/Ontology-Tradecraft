@@ -1,28 +1,22 @@
-# src/scripts/measure_rdflib.py
-
 from rdflib import Graph, Literal, RDF, RDFS, OWL, XSD, Namespace, URIRef, BNode
 from pathlib import Path
 import pandas as pd
 import hashlib
 
-# 1. CRITICAL FIX: EXACT IRIS FOR VALIDATION (MUST MATCH)
 
-# Classes (The entities that must be typed correctly)
+# Classes
 IRI_SDC   = URIRef("http://purl.obolibrary.org/obo/BFO_0000020")       # State of Disorder/Condition (SDC)
 IRI_ART   = URIRef("https://www.commoncoreontologies.org/ont00000995") # Artifact
 IRI_MICE  = URIRef("https://www.commoncoreontologies.org/ont00001163") # Measurement Information Content Entity (MICE)
 IRI_MU    = URIRef("https://www.commoncoreontologies.org/ont00000120")    # Measurement Unit (MU)
 
-# Properties (The predicates that must link the entities correctly)
+# Properties
 IRI_BEARER_OF = URIRef("http://purl.obolibrary.org/obo/BFO_0000196")     # bearer_of (Artifact -> SDC)
 IRI_IS_MEASURE_OF = URIRef("https://www.commoncoreontologies.org/ont00001966") # is_measurement_of (MICE -> SDC)
 IRI_USES_MU       = URIRef("https://www.commoncoreontologies.org/ont00001863") # uses_measurement_unit (MICE -> MU)
 IRI_HAS_VALUE     = URIRef("https://www.commoncoreontologies.org/ont00001769") # has_value (MICE -> Literal Value)
 IRI_HAS_TIMESTAMP = URIRef("https://www.commoncoreontologies.org/ont00001767") # has_timestamp (MICE -> Literal Time)
 
-# =========================================================================
-# 2. FILE AND NAMESPACE SETUP
-# =========================================================================
 
 script_dir = Path(__file__).parent
 root_dir = script_dir.parent
@@ -30,38 +24,25 @@ root_dir = script_dir.parent
 CSV_FILE = root_dir / 'data' / 'readings_normalized.csv'
 OUT_FILE = root_dir / 'measure_cco.ttl'
 
-# Define namespaces (You can rename NS_rdf to NS_EX to match your generate_uris function)
-# NOTE: The prefixes used here must match the URIs used later in the generate_uris function
+# Define namespaces 
 NS_EX   = Namespace("http://example.org/measurement/") # Used for instance URIs like Artifact_...
-NS_CCO  = Namespace("https://www.commoncoreontologies.org/CommonCoreOntologiesMerged/") # Note the trailing slash
+NS_CCO  = Namespace("https://www.commoncoreontologies.org/CommonCoreOntologiesMerged/") 
 NS_OWL  = Namespace("http://www.w3.org/2002/07/owl#")
 NS_OBO  = Namespace("http://purl.obolibrary.org/obo/")
-# ... and so on for others if needed later
 
-def setup_graph():
-    """Initializes graph with namespaces."""
-    g = Graph()
-    # Bind the instance namespace (used in generate_uris)
-    g.bind("ex", NS_EX)
-    # Bind the main ontology namespace
-    g.bind("cco", NS_CCO) 
-    # Bind standard namespaces (many of these are automatically handled by rdflib, 
-    # but explicitly binding them ensures correct serialization prefix)
-    g.bind("owl", NS_OWL)
-    g.bind("obo", NS_OBO) 
-    g.bind("rdf", RDF) # RDF is already defined by rdflib
-    g.bind("rdfs", RDFS) # RDFS is already defined by rdflib
-    g.bind("xsd", XSD)   # XSD is already defined by rdflib
-    
-    return g
-# Fix the global namespace variable used in generate_uris (was NS_EX in the original code, but defined as NS_rdf)
-NS_EX = Namespace("http://example.org/measurement/") 
+"""Initializes graph with namespaces."""
+g = Graph()
+# Bind the instance namespace
+g.bind("ex", NS_EX)
+# Bind the main ontology namespace
+g.bind("cco", NS_CCO) 
+# Bind standard namespaces
+g.bind("owl", NS_OWL)
+g.bind("obo", NS_OBO) 
+g.bind("rdf", RDF) # RDF is already defined by rdflib
+g.bind("rdfs", RDFS) # RDFS is already defined by rdflib
+g.bind("xsd", XSD)   # XSD is already defined by rdflib
 
-# Global graph instance
-graph = setup_graph()
-# =========================================================================
-# 3. URI GENERATION LOGIC (UNCHANGED)
-# =========================================================================
 
 def generate_uris(row):
     """Generates deterministic URIs based on content hashes."""
@@ -70,8 +51,8 @@ def generate_uris(row):
     artifact_id_str = str(row['artifact_id'])
     sdc_kind_str = str(row['sdc_kind'])
     unit_label_str = str(row['unit_label'])
-    value_str = str(row['value'])        # <-- UNCOMMENTED
-    timestamp_str = str(row['timestamp'])  # <-- UNCOMMENTED
+    value_str = str(row['value'])        
+    timestamp_str = str(row['timestamp'])  
     
     # 1. Artifact URI (based on its unique ID)
     artifact_uri = NS_EX[f"Artifact_{hashlib.sha256(artifact_id_str.encode()).hexdigest()[:8]}"]
@@ -96,31 +77,16 @@ def generate_uris(row):
     return artifact_uri, sdc_uri, mu_uri, mv_uri, mice_uri # <-- ADDED mv_uri
 
 
-## Required Fix in `generate_triples`
-
-#Once you apply the fix above, you must also update the assignment line in `generate_triples` to expect 5 values:
-
-#```python
 # In generate_triples:
-# FIX: The assignment must now match the five expected URIs
     artifact_uri, sdc_uri, mu_uri, mv_uri, mice_uri = generate_uris(row)
 
-# =========================================================================
-# 4. TRIPLE GENERATION LOGIC (FIXED)
-# =========================================================================
-
 def generate_triples(df, graph):
-    """
-    Generates RDF triples for all rows in the DataFrame, incorporating the new 
-    Measurement Value (MV) entity.
-    """
+    
     # Use a set to track generated Artifact, SDC, MU, and MV nodes
     seen_static_entities = set()
     
     for _, row in df.iterrows():
         
-        # 1. FIX: Update the call to generate_uris to include mv_uri
-        # This now expects 5 URIs: (artifact, sdc, mu, mv, mice)
         artifact_uri, sdc_uri, mu_uri, mv_uri, mice_uri = generate_uris(row)
         
         # --- Static Entities (Artifact, SDC, MU, MV) ---
@@ -145,42 +111,23 @@ def generate_triples(df, graph):
             graph.add((mu_uri, RDF.type, IRI_MU))
             seen_static_entities.add(mu_key)
 
-        # 2. FIX: Measurement Value (MV) - NEW STATIC ENTITY
         mv_key = str(mv_uri)
         if mv_key not in seen_static_entities:
             # MV is defined and has a type
             # Using IRI_VALUE, which is assumed to be defined as the CCO class for Value
             graph.add((mv_uri, RDF.type, IRI_HAS_VALUE)) 
             
-            # MV has_value Literal (Value) - The MV node carries the literal value
-            # This is the actual measurement result attached as a Literal
             graph.add((mv_uri, IRI_HAS_VALUE, Literal(row['value'], datatype=XSD.decimal)))
             seen_static_entities.add(mv_key)
 
-        # --- Dynamic Entity (MICE) ---
-        # MICE is generated for every reading
-
-        # MICE is defined and has a type
         graph.add((mice_uri, RDF.type, IRI_MICE))
-        
-        # MICE is_measure_of SDC 
         graph.add((mice_uri, IRI_IS_MEASURE_OF, sdc_uri))
-        
-        # MICE uses_measurement_unit MU 
         graph.add((mice_uri, IRI_USES_MU, mu_uri))
-
-        # 3. FIX: MICE has_measurement_value MV (NEW TRIPLE)
-        # MICE links to the reusable MV node, which in turn holds the literal value.
         graph.add((mice_uri, IRI_HAS_VALUE, mv_uri))
-        
-        # 4. FIX: MICE has_timestamp Literal (Time)
         graph.add((mice_uri, IRI_HAS_TIMESTAMP, Literal(row['timestamp'], datatype=XSD.dateTime)))
 
     return graph
 
-# =========================================================================
-# 5. MAIN EXECUTION LOGIC (FIXED)
-# =========================================================================
 
 def main():
     if not CSV_FILE.exists():
@@ -213,5 +160,4 @@ def main():
         print("❌ TTL file was not saved!")
         
 if __name__ == '__main__':
-    # setup_graph is now called before main
     main()

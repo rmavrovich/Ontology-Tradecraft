@@ -80,7 +80,7 @@ def generate_uris(row):
 # In generate_triples:
     artifact_uri, sdc_uri, mu_uri, mv_uri, mice_uri = generate_uris(row)
 
-def generate_triples(df, graph):
+def generate_triples(df, g):
     
     # Use a set to track generated Artifact, SDC, MU, and MV nodes
     seen_static_entities = set()

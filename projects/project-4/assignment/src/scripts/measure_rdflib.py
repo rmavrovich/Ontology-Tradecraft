@@ -5,7 +5,6 @@ from pathlib import Path
 import pandas as pd
 import hashlib
 # 1. CRITICAL FIX: EXACT IRIS FOR VALIDATION (MUST MATCH)
-# =========================================================================
 
 # Classes (The entities that must be typed correctly)
 IRI_SDC   = URIRef("http://purl.obolibrary.org/obo/BFO_0000020")       # State of Disorder/Condition (SDC)

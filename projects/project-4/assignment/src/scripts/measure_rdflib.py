@@ -55,41 +55,41 @@ graph.add((onto_uri, NS_RDF.type, NS_OWL.Ontology))
 graph.add((onto_uri, RDFS.label, Literal("cco conformant measurements", lang="en")))
 
 
-graph.add((cco.ont00000995, RDFS.label, Literal("Artifact", lang="en")))
-graph.add((obo.BFO_0000197, RDFS.label, Literal("inheres in", lang="en")))
-graph.add((cco.ont00001863, RDFS.label, Literal("uses measurement unit", lang="en")))
-graph.add((cco.ont00001606, RDFS.label, Literal("Degree Celsius Measurement Unit", lang="en")))
-graph.add((cco.ont00001724, RDFS.label, Literal("Degree Fahrenheit Measurement Unit", lang="en")))
-graph.add((cco.ont00000120, RDFS.label, Literal("Measurement Unit", lang="en")))
-graph.add((cco.ont00001904, RDFS.label, Literal("is measured by", lang="en")))
-graph.add((cco.ont00001163, RDFS.label, Literal("Measurement Information Content Entity", lang="en")))
-graph.add((cco.ont00001769, RDFS.label, Literal("has decimal value", lang="en")))
-graph.add((obo.BFO_0000196, RDFS.label, Literal("bearer of", lang="en"))) 
-graph.add((cco.ont00001961, RDFS.label, Literal("is measurement unit of", lang="en"))) 
-graph.add((cco.ont00001966, RDFS.label, Literal("is a measurement of", lang="en")))
-graph.add((cco.ont00001450, RDFS.label, Literal("Volt Measurement Unit", lang="en")))
-graph.add((cco.ont00001559, RDFS.label, Literal("Pascal Measurement Unit", lang="en")))
-graph.add((cco.ont00001694, RDFS.label, Literal("Pounds Per Square Inch Measurement Unit", lang="en")))
+graph.add((NS_CCO.ont00000995, RDFS.label, Literal("Artifact", lang="en")))
+graph.add((NS_OBO.BFO_0000197, RDFS.label, Literal("inheres in", lang="en")))
+graph.add((NS_CCO.ont00001863, RDFS.label, Literal("uses measurement unit", lang="en")))
+graph.add((NS_CCO.ont00001606, RDFS.label, Literal("Degree Celsius Measurement Unit", lang="en")))
+graph.add((NS_CCO.ont00001724, RDFS.label, Literal("Degree Fahrenheit Measurement Unit", lang="en")))
+graph.add((NS_CCO.ont00000120, RDFS.label, Literal("Measurement Unit", lang="en")))
+graph.add((NS_CCO.ont00001904, RDFS.label, Literal("is measured by", lang="en")))
+graph.add((NS_CCO.ont00001163, RDFS.label, Literal("Measurement Information Content Entity", lang="en")))
+graph.add((NS_CCO.ont00001769, RDFS.label, Literal("has decimal value", lang="en")))
+graph.add((NS_CCO.BFO_0000196, RDFS.label, Literal("bearer of", lang="en"))) 
+graph.add((NS_CCO.ont00001961, RDFS.label, Literal("is measurement unit of", lang="en"))) 
+graph.add((NS_CCO.ont00001966, RDFS.label, Literal("is a measurement of", lang="en")))
+graph.add((NS_CCO.ont00001450, RDFS.label, Literal("Volt Measurement Unit", lang="en")))
+graph.add((NS_CCO.ont00001559, RDFS.label, Literal("Pascal Measurement Unit", lang="en")))
+graph.add((NS_CCO.ont00001694, RDFS.label, Literal("Pounds Per Square Inch Measurement Unit", lang="en")))
 
 OBJECT_PROPERTY_DEFS = {
-    obo.BFO_0000196: "b bearer of c =Def c inheres in b", 
-    cco.ont00001904: "y is_measured_by x iff x is an instance of Information Content Entity and y is an instance of Entity, such that x describes some attribute of y relative to some scale or classification scheme.",
-    cco.ont00001966: "x is_a_measurement_of y iff x is an instance of Measurement Information Content Entity and y is an instance of Specifically Dependent Continuant (a reading), such that x specifies a value describing some attribute of y relative to some scale or classification scheme.",
-    cco.ont00001961: "x is_measurement_unit_of y iff x is an instance of Measurement Unit and y is an instance of Measurement Information Content Entity or Specifically Dependent Continuant, such that x describes or qualifies the magnitude of the measured physical quantity referenced in y.",
+    NS_OBO.BFO_0000196: "b bearer of c =Def c inheres in b", 
+    NS_CCO.ont00001904: "y is_measured_by x iff x is an instance of Information Content Entity and y is an instance of Entity, such that x describes some attribute of y relative to some scale or classification scheme.",
+    NS_CCO.ont00001966: "x is_a_measurement_of y iff x is an instance of Measurement Information Content Entity and y is an instance of Specifically Dependent Continuant (a reading), such that x specifies a value describing some attribute of y relative to some scale or classification scheme.",
+    NS_CCO.ont00001961: "x is_measurement_unit_of y iff x is an instance of Measurement Unit and y is an instance of Measurement Information Content Entity or Specifically Dependent Continuant, such that x describes or qualifies the magnitude of the measured physical quantity referenced in y.",
 }
 CLASS_DEFS = {
-    obo.BFO_0000020: "A specifically dependent continuant is a continuant & there is some independent continuant c which is not a spatial region and which is such that b s-depends_on c at every time t during the course of b’s existence.",
-    obo.BFO_0000031: "A generically dependent continuant is a continuant that g-depends_on one or more other entities.",
-    obo.BFO_0000040: "A material entity is an independent continuant that has some portion of matter as proper or improper continuant part.",
+    NS_OBO.BFO_0000020: "A specifically dependent continuant is a continuant & there is some independent continuant c which is not a spatial region and which is such that b s-depends_on c at every time t during the course of b’s existence.",
+    NS_OBO.BFO_0000031: "A generically dependent continuant is a continuant that g-depends_on one or more other entities.",
+    NS_OBO.BFO_0000040: "A material entity is an independent continuant that has some portion of matter as proper or improper continuant part.",
 }
 DIFFERENTIA = {
-    cco.ont00000995: "is intentionally produced to realize some function or purpose",  
-    cco.ont00001163: "specifies a numeric measurement value together with its associated unit",  
-    cco.ont00000120: "serves to standardize quantities for measurement information content entities and specifically dependent continuants",  
-    obo.BFO_0000197: "relates a specifically dependent continuant to the independent continuant it inheres in",  
-    cco.ont00001966: "links a measurement information content entity to the reading (specifically dependent continuant) that it specifies",
-    cco.ont00001863: "links a measurement information content entity or a specifically dependent continuant to the unit that qualifies its value",
-    cco.ont00001769: "associates a measurement information content entity with a numeric value literal",  
+    NS_CCO.ont00000995: "is intentionally produced to realize some function or purpose",  
+    NS_CCO.ont00001163: "specifies a numeric measurement value together with its associated unit",  
+    NS_CCO.ont00000120: "serves to standardize quantities for measurement information content entities and specifically dependent continuants",  
+    NS_OBO.BFO_0000197: "relates a specifically dependent continuant to the independent continuant it inheres in",  
+    NS_CCO.ont00001966: "links a measurement information content entity to the reading (specifically dependent continuant) that it specifies",
+    NS_CCO.ont00001863: "links a measurement information content entity or a specifically dependent continuant to the unit that qualifies its value",
+    NS_CCO.ont00001769: "associates a measurement information content entity with a numeric value literal",  
 }
 
 

@@ -31,17 +31,17 @@ NS_OWL  = Namespace("http://www.w3.org/2002/07/owl#")
 NS_OBO  = Namespace("http://purl.obolibrary.org/obo/")
 
 """Initializes graph with namespaces."""
-g = Graph()
+graph = Graph()
 # Bind the instance namespace
-g.bind("ex", NS_EX)
+graph.bind("ex", NS_EX)
 # Bind the main ontology namespace
-g.bind("cco", NS_CCO) 
+graph.bind("cco", NS_CCO) 
 # Bind standard namespaces
-g.bind("owl", NS_OWL)
-g.bind("obo", NS_OBO) 
-g.bind("rdf", RDF) # RDF is already defined by rdflib
-g.bind("rdfs", RDFS) # RDFS is already defined by rdflib
-g.bind("xsd", XSD)   # XSD is already defined by rdflib
+graph.bind("owl", NS_OWL)
+graph.bind("obo", NS_OBO) 
+graph.bind("rdf", RDF) # RDF is already defined by rdflib
+graph.bind("rdfs", RDFS) # RDFS is already defined by rdflib
+graph.bind("xsd", XSD)   # XSD is already defined by rdflib
 
 
 def generate_uris(row):
@@ -80,7 +80,7 @@ def generate_uris(row):
 # In generate_triples:
     artifact_uri, sdc_uri, mu_uri, mv_uri, mice_uri = generate_uris(row)
 
-def generate_triples(df, g):
+def generate_triples(df, graph):
     
     # Use a set to track generated Artifact, SDC, MU, and MV nodes
     seen_static_entities = set()

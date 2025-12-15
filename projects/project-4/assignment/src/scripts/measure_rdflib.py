@@ -147,7 +147,7 @@ def make_non_self_referential(def_text: str, class_iri: URIRef) -> str:
     head = def_text[:split_idx + len(needle_used)]
     body = def_text[split_idx + len(needle_used):]
 
- def _whole_word_replace(text: str, token: str, replacement: str) -> str:
+def _whole_word_replace(text: str, token: str, replacement: str) -> str:
         if not token:
             return text
         pattern = r'(?i)(^|[^A-Za-z0-9_])(' + re.escape(token) + r')([^A-Za-z0-9_]|$)'

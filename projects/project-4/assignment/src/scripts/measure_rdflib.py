@@ -4,6 +4,7 @@ from rdflib import Graph, Literal, RDF, RDFS, OWL, XSD, Namespace, URIRef, BNode
 from pathlib import Path
 import pandas as pd
 import hashlib
+
 # 1. CRITICAL FIX: EXACT IRIS FOR VALIDATION (MUST MATCH)
 
 # Classes (The entities that must be typed correctly)
@@ -23,8 +24,11 @@ IRI_HAS_TIMESTAMP = URIRef("https://www.commoncoreontologies.org/ont00001767") #
 # 2. FILE AND NAMESPACE SETUP
 # =========================================================================
 
-CSV_FILE = Path("/Users/rachelmavrovich/Ontology-Tradecraft-1/projects/project-4/assignment/src/data/readings_normalized.csv")
-OUT_FILE = Path("/Users/rachelmavrovich/Ontology-Tradecraft-1/projects/project-4/assignment/src/measure_cco.ttl")
+script_dir = Path(__file__).parent
+root_dir = script_dir.parent
+
+CSV_FILE = root_dir / 'data' / 'readings_normalized.csv'
+OUT_FILE = root_dir / 'measure_cco.ttl'
 
 # Define namespaces (You can rename NS_rdf to NS_EX to match your generate_uris function)
 # NOTE: The prefixes used here must match the URIs used later in the generate_uris function

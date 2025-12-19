@@ -372,7 +372,7 @@ for c in seen_classes:
             (lambda term: (
                 f"{article_for(label_or_localname(term))} {label_or_localname(term)} is a "
                 f"{label_or_localname(parent_of(term)) if parent_of(term) else 'parent class (unspecified)'} that "
-                f"{DIFFERENTIA.get(term, f'has not yet had its differentiating factor specified relative to {label_or_localname(parent_of(term)) if parent_of(term) else 'parent class (unspecified)'}')}.")
+                f"{DIFFERENTIA.get(term, f'has not yet had its differentiating factor specified relative to {label_or_localname(parent_of(term)) if parent_of(term) else 'parent class (unspecified)'}')}."}
             )(c)
         ))
 

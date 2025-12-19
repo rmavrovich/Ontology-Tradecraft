@@ -98,7 +98,7 @@ def article_for(s: str) -> str:
     return "An" if s[:1].lower() in ("a", "e", "i", "o", "u") else "A"
 
 def label_or_localname(iri: URIRef) -> str:
-    for _, _, lab in g.triples((iri, RDFS.label, None)):
+    for _, _, lab in graph.triples((iri, RDFS.label, None)):
         if isinstance(lab, Literal) and (lab.language or "").lower().startswith("en") and str(lab).strip():
             return str(lab).strip()
     s = str(iri)
@@ -106,7 +106,7 @@ def label_or_localname(iri: URIRef) -> str:
     return local.replace("_", " ").replace("-", " ").strip()
 
 def parent_of(term: URIRef):
-    for _, _, parent in g.triples((term, RDFS.subClassOf, None)):
+    for _, _, parent in graph.triples((term, RDFS.subClassOf, None)):
         if isinstance(parent, URIRef):
             return parent
     return None
@@ -115,11 +115,11 @@ def ensure_definition(term_iri: URIRef, definition_text: str):
     if not definition_text or not str(definition_text).strip():
         definition_text = "Definition not provided."
     if term_iri not in _defined_terms and not has_english_definition(term_iri):
-        g.add((term_iri, RDFS.comment, Literal(definition_text.strip(), lang="en")))
+        graph.add((term_iri, RDFS.comment, Literal(definition_text.strip(), lang="en")))
         _defined_terms.add(term_iri)
 
 def has_english_definition(term_iri: URIRef) -> bool:
-    for _, _, c in g.triples((term_iri, RDFS.comment, None)):
+    for _, _, c in graph.triples((term_iri, RDFS.comment, None)):
         if isinstance(c, Literal) and c.language and c.language.lower().startswith("en") and str(c).strip():
             return True
     return False
@@ -250,17 +250,16 @@ EXPLICIT_DATATYPE_PROPS = [
     exprop.hasTimestamp,
 ]
 for k in EXPLICIT_CLASSES:
-    graph.add((k, RDF.type, OWL.Class))
+    graph.add((k, NS_RDF.type, NS_OWL.Class))
 for p in EXPLICIT_OBJECT_PROPS:
-    graph.add((p, RDF.type, OWL.ObjectProperty))
+    graph.add((p, NS_RDF.type, NS_OWL.ObjectProperty))
 for p in EXPLICIT_DATATYPE_PROPS:
-    graph.add((p, RDF.type, OWL.DatatypeProperty))
+    graph.add((p, NS_RDF.type, NS_OWL.DatatypeProperty))
 
-# Provide human-friendly label for timestamp property
 graph.add((exprop.hasTimestamp, RDFS.label, Literal("has timestamp", lang="en")))
 
 for klass, desc in CLASS_DEFS.items():
-    graph.add((klass, RDF.type, NS_OWL.Class))
+    graph.add((klass, NS_RDF.type, NS_OWL.Class))
     ensure_definition(klass, desc)
 for prop, desc in OBJECT_PROPERTY_DEFS.items():
     graph.add((prop, NS_RDF.type, NS_OWL.ObjectProperty))
@@ -271,11 +270,11 @@ for prop, desc in DATATYPE_PROPERTY_DEFS.items():
 
 
 graph.add((NS_obo.BFO_0000196, NS_OWL.inverseOf, NS_obo.BFO_0000197))
-graph.add((obo.BFO_0000197, NS_OWL.inverseOf, NS_obo.BFO_0000196))
-graph.add((cco.ont00001904, NS_OWL.inverseOf, NS_cco.ont00001966))
-graph.add((cco.ont00001966, NS_OWL.inverseOf, NS_cco.ont00001904))
-graph.add((cco.ont00001961, NS_OWL.inverseOf, NS_cco.ont00001863))
-graph.add((cco.ont00001863, NS_OWL.inverseOf, NS_cco.ont00001961))
+graph.add((NS_obo.BFO_0000197, NS_OWL.inverseOf, NS_obo.BFO_0000196))
+graph.add((NS_cco.ont00001904, NS_OWL.inverseOf, NS_cco.ont00001966))
+graph.add((NS_cco.ont00001966, NS_OWL.inverseOf, NS_cco.ont00001904))
+graph.add((NS_cco.ont00001961, NS_OWL.inverseOf, NS_cco.ont00001863))
+graph.add((NS_cco.ont00001863, NS_OWL.inverseOf, NS_cco.ont00001961))
 
 reading_cache = {}
 quality_class_cache = {}
@@ -334,7 +333,7 @@ for _, row in df.iterrows():
         reading_uri = URIRef(ex + reading_id)
         reading_cache[reading_key] = reading_uri
 
-    graph.add((reading_uri, RDF.type, obo.BFO_0000020))
+    graph.add((reading_uri, NS_RDF.type, NS_obo.BFO_0000020))
     if qual_class_uri is not None:
         graph.add((reading_uri, NS_RDF.type, qual_class_uri))
     graph.add((reading_uri, RDFS.label, Literal(f"{artifact_label}_{canon_kind_label} @ {timestamp_raw}", lang="en")))

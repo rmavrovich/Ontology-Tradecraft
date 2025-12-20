@@ -358,9 +358,7 @@ for _, row in df.iterrows():
     graph.add((mice_uri, NS_CCO.ont00001966, reading_uri))
     graph.add((reading_uri, NS_CCO.ont00001904, mice_uri))
     graph.add((mice_uri, NS_EXPROP.hasTimestamp, Literal(timestamp_raw, datatype=XSD.dateTime)))
-ensure_clean_definition(c,
-NS_CCO.ont00000441,
-)
+ensure_clean_definition(c,definition)
 graph.add((NS_CCO.ont00000441, RDFS.subClassOf, NS_OBO.BFO_0000020))
 graph.add((NS_CCO.ont00000995, RDFS.subClassOf, NS_OBO.BFO_0000040))
 graph.add((NS_CCO.ont00001163, RDFS.subClassOf, NS_OBO.BFO_0000031))

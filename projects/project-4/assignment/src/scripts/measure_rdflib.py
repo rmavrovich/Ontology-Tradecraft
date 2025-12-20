@@ -24,7 +24,7 @@ IRI_HAS_TIMESTAMP = URIRef("https://www.commoncoreontologies.org/ont00001767") #
 script_dir = Path('Users/rachelmavrovich/Desktop/measure_rdflib-10.py')
 root_dir = script_dir.parent
 
-CSV_FILE = root_dir 'Users/rachelmavrovich/Desktop/readings_normalized.csv'
+CSV_FILE = root_dir / 'Users/rachelmavrovich/Desktop/readings_normalized.csv'
 OUT_FILE = root_dir / 'Users/rachelmavrovich/Desktop/measure_cco.ttl'
 
 

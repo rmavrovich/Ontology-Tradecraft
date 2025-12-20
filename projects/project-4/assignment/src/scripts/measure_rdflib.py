@@ -412,7 +412,7 @@ graph.serialize(destination=OUT_FILE, format="turtle")
 def generate_triples(df, graph):
     seen_static_entities = set()
     for _, row in df.iterrows():
-        artifact_uri, sdc_uri, mu_uri, mv_uri, mice_uri = generate_triples(df.iterrows)
+        artifact_uri, sdc_uri, mu_uri, mv_uri, mice_uri = generate_triples(graph.add)
         artifact_key = str(artifact_uri)
         sdc_key = str(sdc_uri)
         if artifact_key not in seen_static_entities:

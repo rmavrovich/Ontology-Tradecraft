@@ -89,7 +89,8 @@ DIFFERENTIA = {
     NS_OBO.BFO_0000197: "relates a specifically dependent continuant to the independent continuant it inheres in",  
     NS_CCO.ont00001966: "links a measurement information content entity to the reading (specifically dependent continuant) that it specifies",
     NS_CCO.ont00001863: "links a measurement information content entity or a specifically dependent continuant to the unit that qualifies its value",
-    NS_CCO.ont00001769: "associates a measurement information content entity with a numeric value literal", 
+    NS_CCO.ont00001769: "associates a measurement information content entity with a numeric value literal",
+    NS_CCO.ont00000441: "A Quality that inheres in a bearer in virtue of its thermal energy."
 }
 DATATYPE_PROPERTY_DEFS = {
     NS_CCO.ont00001769: "has not yet had its differentiating factor specified",

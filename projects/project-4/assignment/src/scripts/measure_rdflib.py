@@ -230,24 +230,24 @@ def resolve_unit_and_value(unit_raw: str, value_in: float):
     return URIRef(ex + _slug(unit_raw)), value_in, False
 
 EXPLICIT_CLASSES = [
-    NS_cco.ont00000441,
-    NS_cco.ont00000995,
-    NS_obo.BFO_0000020,
-    NS_cco.ont00001163,
-    NS_cco.ont00000120,
-    NS_obo.BFO_0000040,
-    NS_obo.BFO_0000031,
+    NS_CCO.ont00000441,
+    NS_CCO.ont00000995,
+    NS_OBO.BFO_0000020,
+    NS_CCO.ont00001163,
+    NS_CCO.ont00000120,
+    NS_OBO.BFO_0000040,
+    NS_OBO.BFO_0000031,
 ]
 EXPLICIT_OBJECT_PROPS = [
-    NS_obo.BFO_0000197, 
-    NS_obo.BFO_0000196,
-    NS_cco.ont00001966,
-    NS_cco.ont00001904,
-    NS_cco.ont00001863,
-    NS_cco.ont00001961,
+    NS_OBO.BFO_0000197, 
+    NS_OBO.BFO_0000196,
+    NS_CCO.ont00001966,
+    NS_CCO.ont00001904,
+    NS_CCO.ont00001863,
+    NS_CCO.ont00001961,
 ]
 EXPLICIT_DATATYPE_PROPS = [
-    NS_cco.ont00001769,
+    NS_CCO.ont00001769,
     exprop.hasTimestamp,
 ]
 for k in EXPLICIT_CLASSES:

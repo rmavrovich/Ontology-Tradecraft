@@ -369,13 +369,13 @@ for _, _, class_iri in graph.triples((None, NS_RDF.type, None)):
         seen_classes.add(class_iri)
 for c in seen_classes:
     if not has_english_definition(c):
-        ensure_clean_definition(c), (
-            (lambda term: (
-                f"{article_for(label_or_localname(term))} {label_or_localname(term)} is a "
-             +  f"{label_or_localname(parent_of(term)) if parent_of(term) else 'parent class (unspecified)'} that "
-             +   (DIFFERENTIA.get(term, f'has not yet had its differentiating factor specified relative to {label_or_localname(parent_of(term)) if parent_of(term) else "parent class (unspecified)"}'))
-            )(c)
-        ))
+      definition = (
+    f"{article_for(label_or_localname(c))} {label_or_localname(c)} is a "
+    f"{label_or_localname(parent_of(c)) if parent_of(c) else 'parent class (unspecified)'} that "
+    f"{DIFFERENTIA.get(c, f'has not yet had its differentiating factor specified relative to {label_or_localname(parent_of(c)) if parent_of(c) else 'parent class (unspecified)' }')}"
+)
+
+ensure_clean_definition(c, definition)
 
 seen_object_properties = set()
 for p in graph.subjects(NS_RDF.type, NS_OWL.ObjectProperty):

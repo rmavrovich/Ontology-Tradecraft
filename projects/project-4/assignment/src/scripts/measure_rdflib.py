@@ -156,7 +156,7 @@ def _whole_word_replace(text: str, token: str, replacement: str) -> str:
         new_body = _whole_word_replace(body, class_label, "this quality")
 if local_token and local_token.lower() != class_label.lower():
         new_body = _whole_word_replace(new_body, local_token, "this class")
-return head + new_body
+    return head + new_body
 
 def ensure_clean_definition(term_iri: URIRef, definition_text: str):
     

@@ -273,8 +273,8 @@ for prop, desc in DATATYPE_PROPERTY_DEFS.items():
     ensure_definition(prop, desc)
 
 
-graph.add((NS_obo.BFO_0000196, NS_OWL.inverseOf, NS_obo.BFO_0000197))
-graph.add((NS_obo.BFO_0000197, NS_OWL.inverseOf, NS_obo.BFO_0000196))
+graph.add((NS_OBO.BFO_0000196, NS_OWL.inverseOf, NS_OBO.BFO_0000197))
+graph.add((NS_OBO.BFO_0000197, NS_OWL.inverseOf, NS_OBO.BFO_0000196))
 graph.add((NS_cco.ont00001904, NS_OWL.inverseOf, NS_cco.ont00001966))
 graph.add((NS_cco.ont00001966, NS_OWL.inverseOf, NS_cco.ont00001904))
 graph.add((NS_cco.ont00001961, NS_OWL.inverseOf, NS_cco.ont00001863))
@@ -317,7 +317,7 @@ for _, row in df.iterrows():
                 qual_class_uri = URIRef(exc + canon_kind_slug)
                 quality_class_cache[canon_kind_slug] = qual_class_uri
                 graph.add((qual_class_uri, NS_RDF.type, NS_OWL.Class))
-                graph.add((qual_class_uri, RDFS.subClassOf, NS_obo.BFO_0000020))
+                graph.add((qual_class_uri, RDFS.subClassOf, NS_OBO.BFO_0000020))
                 graph.add((qual_class_uri, RDFS.label, Literal(canon_kind_label, lang="en")))
                 _qdef = (
                     f"{article_for(canon_kind_label)} {canon_kind_label} is a Specifically Dependent Continuant quality "
@@ -337,11 +337,11 @@ for _, row in df.iterrows():
         reading_uri = URIRef(ex + reading_id)
         reading_cache[reading_key] = reading_uri
 
-    graph.add((reading_uri, NS_RDF.type, NS_obo.BFO_0000020))
+    graph.add((reading_uri, NS_RDF.type, NS_OBO.BFO_0000020))
     if qual_class_uri is not None:
         graph.add((reading_uri, NS_RDF.type, qual_class_uri))
     graph.add((reading_uri, RDFS.label, Literal(f"{artifact_label}_{canon_kind_label} @ {timestamp_raw}", lang="en")))
-    graph.add((reading_uri, NS_obo.BFO_0000197, artifact_uri))
+    graph.add((reading_uri, NS_OBO.BFO_0000197, artifact_uri))
     unit_uri, value, is_external_unit = resolve_unit_and_value(unit_raw, value)
     graph.add((unit_uri, NS_RDF.type, NS_cco.ont00000120))
     if not is_external_unit:
@@ -359,10 +359,10 @@ for _, row in df.iterrows():
 ensure_clean_definition(
     NS_cco.ont00000441,
 )
-graph.add((NS_cco.ont00000441, RDFS.subClassOf, NS_obo.BFO_0000020))
-graph.add((NS_cco.ont00000995, RDFS.subClassOf, NS_obo.BFO_0000040))
-graph.add((NS_cco.ont00001163, RDFS.subClassOf, NS_obo.BFO_0000031))
-graph.add((NS_cco.ont00000120, RDFS.subClassOf, NS_obo.BFO_0000031))
+graph.add((NS_cco.ont00000441, RDFS.subClassOf, NS_OBO.BFO_0000020))
+graph.add((NS_cco.ont00000995, RDFS.subClassOf, NS_OBO.BFO_0000040))
+graph.add((NS_cco.ont00001163, RDFS.subClassOf, NS_OBO.BFO_0000031))
+graph.add((NS_cco.ont00000120, RDFS.subClassOf, NS_OBO.BFO_0000031))
 seen_classes = set()
 for c in graph.subjects(NS_RDF.type, NS_OWL.Class):
     if isinstance(c, URIRef):

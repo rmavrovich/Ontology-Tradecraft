@@ -21,11 +21,11 @@ IRI_HAS_VALUE     = URIRef("https://www.commoncoreontologies.org/ont00001769") #
 IRI_HAS_TIMESTAMP = URIRef("https://www.commoncoreontologies.org/ont00001767") # has_timestamp (MICE -> Literal Time)
 """
 
-script_dir = Path('home' / 'runner' / 'work' / 'Ontology-Tradecraft' / 'Ontology-Tradecraft' / 'projects' / 'project-4' / 'assignment' / 'src' / 'scripts' / 'measure_rdflib.py')
+script_dir = Path('Users/rachelmavrovich/Desktop/measure_rdflib-10.py')
 root_dir = script_dir.parent
 
-CSV_FILE = root_dir / 'src' / 'data' / 'readings_normalized.csv'
-OUT_FILE = root_dir / 'measure_cco.ttl'
+CSV_FILE = root_dir 'Users/rachelmavrovich/Desktop/readings_normalized.csv'
+OUT_FILE = root_dir / 'Users/rachelmavrovich/Desktop/measure_cco.ttl'
 
 
 NS_EX   = Namespace("http://example.org/measurement/")

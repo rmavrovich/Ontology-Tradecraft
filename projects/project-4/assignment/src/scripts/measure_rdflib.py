@@ -217,17 +217,17 @@ def resolve_unit_and_value(unit_raw: str, value_in: float):
     canon = _normalize_unit_token(unit_raw)
 
     if canon == "c":
-        return NS_cco.ont00001606, value_in, True
+        return NS_CCO.ont00001606, value_in, True
     if canon == "f":
-        return NS_cco.ont00001724, value_in, True
+        return NS_CCO.ont00001724, value_in, True
     if canon == "kpa":
-        return NS_cco.ont00001559, value_in * 1000.0, True
+        return NS_CCO.ont00001559, value_in * 1000.0, True
     if canon == "pa":
-        return NS_cco.ont00001559, value_in, True
+        return NS_CCO.ont00001559, value_in, True
     if canon == "psi":
-        return NS_cco.ont00001694, value_in, True
+        return NS_CCO.ont00001694, value_in, True
     if canon == "volt":
-        return NS_cco.ont00001450, value_in, True
+        return NS_CCO.ont00001450, value_in, True
     if canon == "ohm":
         return URIRef(ex + "ohm"), value_in, False
     return URIRef(ex + _slug(unit_raw)), value_in, False
@@ -275,10 +275,10 @@ for prop, desc in DATATYPE_PROPERTY_DEFS.items():
 
 graph.add((NS_OBO.BFO_0000196, NS_OWL.inverseOf, NS_OBO.BFO_0000197))
 graph.add((NS_OBO.BFO_0000197, NS_OWL.inverseOf, NS_OBO.BFO_0000196))
-graph.add((NS_cco.ont00001904, NS_OWL.inverseOf, NS_cco.ont00001966))
-graph.add((NS_cco.ont00001966, NS_OWL.inverseOf, NS_cco.ont00001904))
-graph.add((NS_cco.ont00001961, NS_OWL.inverseOf, NS_cco.ont00001863))
-graph.add((NS_cco.ont00001863, NS_OWL.inverseOf, NS_cco.ont00001961))
+graph.add((NS_CCO.ont00001904, NS_OWL.inverseOf, NS_CCO.ont00001966))
+graph.add((NS_CCO.ont00001966, NS_OWL.inverseOf, NS_CCO.ont00001904))
+graph.add((NS_CCO.ont00001961, NS_OWL.inverseOf, NS_CCO.ont00001863))
+graph.add((NS_CCO.ont00001863, NS_OWL.inverseOf, NS_CCO.ont00001961))
 
 reading_cache = {}
 quality_class_cache = {}
@@ -303,13 +303,13 @@ for _, row in df.iterrows():
     ts_slug = _slug(timestamp_raw)
         
     artifact_uri = URIRef(ex + artifact_slug)
-    graph.add((artifact_uri, NS_RDF.type, NS_cco.ont00000995))
+    graph.add((artifact_uri, NS_RDF.type, NS_CCO.ont00000995))
     graph.add((artifact_uri, RDFS.label, Literal(artifact_label, lang="en")))
 
     if canon_kind_label in QUALITIES_FOR_CLASSING:
         if canon_kind_slug not in quality_class_cache:
             if canon_kind_label == "Temperature":
-                qual_class_uri = NS_cco.ont00000441
+                qual_class_uri = NS_CCO.ont00000441
                 quality_class_cache[canon_kind_slug] = qual_class_uri
                 graph.add((qual_class_uri, NS_RDF.type, NS_OWL.Class))
                 graph.add((qual_class_uri, RDFS.label, Literal("Temperature", lang="en")))
@@ -343,26 +343,26 @@ for _, row in df.iterrows():
     graph.add((reading_uri, RDFS.label, Literal(f"{artifact_label}_{canon_kind_label} @ {timestamp_raw}", lang="en")))
     graph.add((reading_uri, NS_OBO.BFO_0000197, artifact_uri))
     unit_uri, value, is_external_unit = resolve_unit_and_value(unit_raw, value)
-    graph.add((unit_uri, NS_RDF.type, NS_cco.ont00000120))
+    graph.add((unit_uri, NS_RDF.type, NS_CCO.ont00000120))
     if not is_external_unit:
         graph.add((unit_uri, RDFS.label, Literal(unit_raw, lang="en")))
     mice_id = f"MICE_{artifact_slug}_{canon_kind_slug}_{ts_slug}"
     mice_uri = URIRef(ex + mice_id)
-    graph.add((mice_uri, NS_RDF.type, NS_cco.ont00001163))
+    graph.add((mice_uri, NS_RDF.type, NS_CCO.ont00001163))
     graph.add((mice_uri, RDFS.label, Literal(f"MICE for {artifact_label}_{canon_kind_label} @ {timestamp_raw}", lang="en")))
-    graph.add((mice_uri, NS_cco.ont00001769, Literal(value, datatype=XSD.decimal)))
-    graph.add((mice_uri, NS_cco.ont00001863, unit_uri))
-    graph.add((reading_uri, NS_cco.ont00001863, unit_uri))
-    graph.add((mice_uri, NS_cco.ont00001966, reading_uri))
-    graph.add((reading_uri, NS_cco.ont00001904, mice_uri))
+    graph.add((mice_uri, NS_CCO.ont00001769, Literal(value, datatype=XSD.decimal)))
+    graph.add((mice_uri, NS_CCO.ont00001863, unit_uri))
+    graph.add((reading_uri, NS_CCO.ont00001863, unit_uri))
+    graph.add((mice_uri, NS_CCO.ont00001966, reading_uri))
+    graph.add((reading_uri, NS_CCO.ont00001904, mice_uri))
     graph.add((mice_uri, NS_EXPROP.hasTimestamp, Literal(timestamp_raw, datatype=XSD.dateTime)))
 ensure_clean_definition(
-    NS_cco.ont00000441,
+    NS_CCO.ont00000441,
 )
-graph.add((NS_cco.ont00000441, RDFS.subClassOf, NS_OBO.BFO_0000020))
-graph.add((NS_cco.ont00000995, RDFS.subClassOf, NS_OBO.BFO_0000040))
-graph.add((NS_cco.ont00001163, RDFS.subClassOf, NS_OBO.BFO_0000031))
-graph.add((NS_cco.ont00000120, RDFS.subClassOf, NS_OBO.BFO_0000031))
+graph.add((NS_CCO.ont00000441, RDFS.subClassOf, NS_OBO.BFO_0000020))
+graph.add((NS_CCO.ont00000995, RDFS.subClassOf, NS_OBO.BFO_0000040))
+graph.add((NS_CCO.ont00001163, RDFS.subClassOf, NS_OBO.BFO_0000031))
+graph.add((NS_CCO.ont00000120, RDFS.subClassOf, NS_OBO.BFO_0000031))
 seen_classes = set()
 for c in graph.subjects(NS_RDF.type, NS_OWL.Class):
     if isinstance(c, URIRef):

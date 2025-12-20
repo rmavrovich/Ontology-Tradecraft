@@ -248,7 +248,7 @@ EXPLICIT_OBJECT_PROPS = [
 ]
 EXPLICIT_DATATYPE_PROPS = [
     NS_CCO.ont00001769,
-    exprop.hasTimestamp,
+    NS_EXPROP.hasTimestamp,
 ]
 for k in EXPLICIT_CLASSES:
     graph.add((k, NS_RDF.type, NS_OWL.Class))
@@ -257,7 +257,7 @@ for p in EXPLICIT_OBJECT_PROPS:
 for p in EXPLICIT_DATATYPE_PROPS:
     graph.add((p, NS_RDF.type, NS_OWL.DatatypeProperty))
 
-graph.add((exprop.hasTimestamp, RDFS.label, Literal("has timestamp", lang="en")))
+graph.add((NS_EXPROP.hasTimestamp, RDFS.label, Literal("has timestamp", lang="en")))
 
 for klass, desc in CLASS_DEFS.items():
     graph.add((klass, NS_RDF.type, NS_OWL.Class))
@@ -352,7 +352,7 @@ for _, row in df.iterrows():
     graph.add((reading_uri, NS_cco.ont00001863, unit_uri))
     graph.add((mice_uri, NS_cco.ont00001966, reading_uri))
     graph.add((reading_uri, NS_cco.ont00001904, mice_uri))
-    graph.add((mice_uri, exprop.hasTimestamp, Literal(timestamp_raw, datatype=XSD.dateTime)))
+    graph.add((mice_uri, NS_EXPROP.hasTimestamp, Literal(timestamp_raw, datatype=XSD.dateTime)))
 ensure_clean_definition(
     NS_cco.ont00000441,
 )

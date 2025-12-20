@@ -27,7 +27,7 @@ root_dir = script_dir.parent
 CSV_FILE = root_dir / 'data' / 'readings_normalized.csv'
 OUT_FILE = root_dir / 'measure_cco.ttl'
 
-DATATYPE_PROPRTY_DEFS {
+
 NS_EX   = Namespace("http://example.org/measurement/")
 NS_CCO  = Namespace("https://www.commoncoreontologies.org/CommonCoreOntologiesMerged/")
 NS_OWL  = Namespace("http://www.w3.org/2002/07/owl#")

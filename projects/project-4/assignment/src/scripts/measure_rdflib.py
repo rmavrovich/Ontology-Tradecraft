@@ -69,7 +69,8 @@ graph.add((NS_CCO.ont00001966, RDFS.label, Literal("is a measurement of", lang="
 graph.add((NS_CCO.ont00001450, RDFS.label, Literal("Volt Measurement Unit", lang="en")))
 graph.add((NS_CCO.ont00001559, RDFS.label, Literal("Pascal Measurement Unit", lang="en")))
 graph.add((NS_CCO.ont00001694, RDFS.label, Literal("Pounds Per Square Inch Measurement Unit", lang="en")))
-
+graph.add((NS_CCO.ont00000441, RDFS.label, Literal("Temperature", lang="en")))
+                                                
 OBJECT_PROPERTY_DEFS = {
     NS_OBO.BFO_0000196: "b bearer of c =Def c inheres in b", 
     NS_CCO.ont00001904: "y is_measured_by x iff x is an instance of Information Content Entity and y is an instance of Entity, such that x describes some attribute of y relative to some scale or classification scheme.",
@@ -88,7 +89,7 @@ DIFFERENTIA = {
     NS_OBO.BFO_0000197: "relates a specifically dependent continuant to the independent continuant it inheres in",  
     NS_CCO.ont00001966: "links a measurement information content entity to the reading (specifically dependent continuant) that it specifies",
     NS_CCO.ont00001863: "links a measurement information content entity or a specifically dependent continuant to the unit that qualifies its value",
-    NS_CCO.ont00001769: "associates a measurement information content entity with a numeric value literal",  
+    NS_CCO.ont00001769: "associates a measurement information content entity with a numeric value literal", 
 }
 DATATYPE_PROPERTY_DEFS = {
     NS_CCO.ont00001769: "has not yet had its differentiating factor specified",
@@ -356,7 +357,7 @@ for _, row in df.iterrows():
     graph.add((mice_uri, NS_CCO.ont00001966, reading_uri))
     graph.add((reading_uri, NS_CCO.ont00001904, mice_uri))
     graph.add((mice_uri, NS_EXPROP.hasTimestamp, Literal(timestamp_raw, datatype=XSD.dateTime)))
-ensure_clean_definition(c, definition)
+ensure_clean_definition(c,
 NS_CCO.ont00000441,
 )
 graph.add((NS_CCO.ont00000441, RDFS.subClassOf, NS_OBO.BFO_0000020))

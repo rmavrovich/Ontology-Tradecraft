@@ -27,9 +27,9 @@ root_dir = script_dir.parent
 CSV_FILE = root_dir / 'data' / 'readings_normalized.csv'
 OUT_FILE = root_dir / 'measure_cco.ttl'
 
-# Define namespaces 
+DATATYPE_PROPRTY_DEFS {
 NS_EX   = Namespace("http://example.org/measurement/")
-NS_CCO  = Namespace("https://www.commoncoreontologies.org/CommonCoreOntologiesMerged/") 
+NS_CCO  = Namespace("https://www.commoncoreontologies.org/CommonCoreOntologiesMerged/")
 NS_OWL  = Namespace("http://www.w3.org/2002/07/owl#")
 NS_OBO  = Namespace("http://purl.obolibrary.org/obo/")
 NS_RDF = Namespace("http://www.w3.org/1999/02/22-rdf-syntax-ns#")
@@ -37,14 +37,13 @@ NS_XSD = Namespace("http://www.w3.org/2001/XMLSchema#")
 NS_EXPROP = Namespace("http://example.org/props#")
 NS_EXC = Namespace("http://example.org/classes#")
 
-"""Initializes graph with namespaces."""
 graph = Graph()
 graph.bind("ex", NS_EX)
 graph.bind("cco", NS_CCO) 
 graph.bind("owl", NS_OWL)
 graph.bind("obo", NS_OBO) 
 graph.bind("rdf", NS_RDF) 
-graph.bind("rdfs", RDFS) # RDFS is already defined by rdflib
+graph.bind("rdfs", RDFS) 
 graph.bind("xsd", NS_XSD) 
 
 graph.bind("exc", NS_EXC)
@@ -90,6 +89,10 @@ DIFFERENTIA = {
     NS_CCO.ont00001966: "links a measurement information content entity to the reading (specifically dependent continuant) that it specifies",
     NS_CCO.ont00001863: "links a measurement information content entity or a specifically dependent continuant to the unit that qualifies its value",
     NS_CCO.ont00001769: "associates a measurement information content entity with a numeric value literal",  
+}
+DATATYPE_PROPERTY_DEFS = {
+    NS_CCO.ont00001769: "has not yet had its differentiating factor specified",
+    NS_EXPROP.hasTimestamp: "has timestamp",
 }
 
 _defined_terms = set()

@@ -152,9 +152,10 @@ def _whole_word_replace(text: str, token: str, replacement: str) -> str:
             return text
         pattern = r'(?i)(^|[^A-Za-z0-9_])(' + re.escape(token) + r')([^A-Za-z0-9_]|$)'
         return re.sub(pattern, r'\1' + replacement + r'\3', text)
-
         new_body = _whole_word_replace(body, class_label, "this quality")
-    if local_token and local_token.lower() != class_label.lower():
+    
+def _whole_word_replace(text: str, token: str, replacement: str) -> str:    
+if local_token and local_token.lower() != class_label.lower():
         new_body = _whole_word_replace(new_body, local_token, "this class")
         return head + new_body
 

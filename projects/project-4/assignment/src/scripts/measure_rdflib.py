@@ -20,13 +20,11 @@ IRI_USES_MU       = URIRef("https://www.commoncoreontologies.org/ont00001863") #
 IRI_HAS_VALUE     = URIRef("https://www.commoncoreontologies.org/ont00001769") # has_value (MICE -> Literal Value)
 IRI_HAS_TIMESTAMP = URIRef("https://www.commoncoreontologies.org/ont00001767") # has_timestamp (MICE -> Literal Time)
 """
-
-script_dir = Path(home / runner / work / Ontology-Tradecraft-1 / projects / project-4 / assignment / src / scripts / measure_rdflib.py)
+script_dir = Path(__file__).parent
 root_dir = script_dir.parent
 
-CSV_FILE = root_dir /home / runner / work / Ontology-Tradecraft-1 / projects / project-4 / assignment / src / data / readings_normalized.csv
-OUT_FILE = root_dir /home / runner / work / Ontology-Tradecraft-1 / projects / project-4 / assignment / src / measure_cco.ttl
-
+CSV_FILE = root_dir / 'data' / 'readings_normalized.csv'
+OUT_FILE = root_dir / 'measure_cco.ttl'
 
 NS_EX   = Namespace("http://example.org/measurement/")
 NS_CCO  = Namespace("https://www.commoncoreontologies.org/CommonCoreOntologiesMerged/")

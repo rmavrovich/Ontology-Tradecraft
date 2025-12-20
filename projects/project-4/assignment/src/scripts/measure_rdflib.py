@@ -372,7 +372,7 @@ for c in seen_classes:
       definition = (
     f"{article_for(label_or_localname(c))} {label_or_localname(c)} is a "
     f"{label_or_localname(parent_of(c)) if parent_of(c) else 'parent class (unspecified)'} that "
-    f"{DIFFERENTIA.get(c, f"has not yet had its differentiating factor specified relative to {label_or_localname(parent_of(c)) if parent_of(c) else 'parent class (unspecified)' }")}"
+    f"{DIFFERENTIA.get(c, f"has not yet had its differentiating factor specified relative to {label_or_localname(parent_of(c)) if parent_of(c) else 'parent class (unspecified)'}")}"
 )
 
 ensure_clean_definition(c, definition)

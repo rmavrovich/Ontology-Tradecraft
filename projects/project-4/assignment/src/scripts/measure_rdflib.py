@@ -152,17 +152,16 @@ def make_non_self_referential(def_text: str, class_iri: URIRef) -> str:
     head = def_text[:split_idx + len(needle_used)]
     body = def_text[split_idx + len(needle_used):]
 
-def _whole_word_replace(text: str, token: str, replacement: str) -> str:
+    def _whole_word_replace(text: str, token: str, replacement: str) -> str:
         if not token:
             return text
         pattern = r'(?i)(^|[^A-Za-z0-9_])(' + re.escape(token) + r')([^A-Za-z0-9_]|$)'
         return re.sub(pattern, r'\1' + replacement + r'\3', text)
-        new_body = _whole_word_replace(body, class_label, "this quality")
+    new_body = _whole_word_replace(body, class_label, "this quality")
     
-def _whole_word_replace(text: str, token: str, replacement: str) -> str:    
     if local_token and local_token.lower() != class_label.lower():
         new_body = _whole_word_replace(new_body, local_token, "this class")
-        return head + new_body
+    return head + new_body
 
 def ensure_clean_definition(term_iri: URIRef, definition_text: str):
     
@@ -409,10 +408,39 @@ for p in seen_datatype_properties:
 graph.serialize(destination=OUT_FILE, format="turtle")
 
 
+# Define the IRIs as actual URIRefs (from the comment block)
+IRI_SDC = URIRef("http://purl.obolibrary.org/obo/BFO_0000020")
+IRI_ART = URIRef("https://www.commoncoreontologies.org/ont00000995")
+IRI_MICE = URIRef("https://www.commoncoreontologies.org/ont00001163")
+IRI_MU = URIRef("https://www.commoncoreontologies.org/ont00000120")
+IRI_BEARER_OF = URIRef("http://purl.obolibrary.org/obo/BFO_0000196")
+IRI_IS_MEASURE_OF = URIRef("https://www.commoncoreontologies.org/ont00001966")
+IRI_USES_MU = URIRef("https://www.commoncoreontologies.org/ont00001863")
+IRI_HAS_VALUE = URIRef("https://www.commoncoreontologies.org/ont00001769")
+IRI_HAS_TIMESTAMP = URIRef("https://www.commoncoreontologies.org/ont00001767")
+
+
+def generate_uris_for_row(row):
+    # Placeholder logic to generate URIs based on the row (adapt as needed to your ontology)
+    # This should create unique URIs for each entity based on row data
+    artifact_id = str(row['artifact_id']).strip().replace(" ", "_")
+    sdc_kind = str(row['sdc_kind']).strip().replace(" ", "_")
+    unit_label = str(row['unit_label']).strip().replace(" ", "_")
+    timestamp = str(row['timestamp']).strip().replace(" ", "_")
+
+    artifact_uri = URIRef(NS_EX + f"artifact_{artifact_id}")
+    sdc_uri = URIRef(NS_EX + f"sdc_{artifact_id}_{sdc_kind}")
+    mu_uri = URIRef(NS_EX + f"mu_{unit_label}")
+    mv_uri = URIRef(NS_EX + f"mv_{artifact_id}_{sdc_kind}_{timestamp}")
+    mice_uri = URIRef(NS_EX + f"mice_{artifact_id}_{sdc_kind}_{timestamp}")
+
+    return artifact_uri, sdc_uri, mu_uri, mv_uri, mice_uri
+
+
 def generate_triples(df, graph):
     seen_static_entities = set()
     for _, row in df.iterrows():
-        artifact_uri, sdc_uri, mu_uri, mv_uri, mice_uri = generate_triples(df, graph)
+        artifact_uri, sdc_uri, mu_uri, mv_uri, mice_uri = generate_uris_for_row(row)
         artifact_key = str(artifact_uri)
         sdc_key = str(sdc_uri)
         if artifact_key not in seen_static_entities:

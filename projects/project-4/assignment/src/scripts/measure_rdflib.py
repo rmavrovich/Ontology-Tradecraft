@@ -283,7 +283,7 @@ graph.add((NS_CCO.ont00001863, NS_OWL.inverseOf, NS_CCO.ont00001961))
 reading_cache = {}
 quality_class_cache = {}
 
-df = pd.read_csv(CSV_PATH)
+df = pd.read_csv(CSV_FILE)
 for _, row in df.iterrows():
     artifact_id_raw = str(row['artifact_id']).strip()
     sdc_kind_raw = str(row['sdc_kind']).strip()

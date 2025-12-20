@@ -229,8 +229,8 @@ def resolve_unit_and_value(unit_raw: str, value_in: float):
     if canon == "volt":
         return NS_CCO.ont00001450, value_in, True
     if canon == "ohm":
-        return URIRef(ex + "ohm"), value_in, False
-    return URIRef(ex + _slug(unit_raw)), value_in, False
+        return URIRef(NS_EX + "ohm"), value_in, False
+    return URIRef(NS_EX + _slug(unit_raw)), value_in, False
 
 EXPLICIT_CLASSES = [
     NS_CCO.ont00000441,
@@ -302,7 +302,7 @@ for _, row in df.iterrows():
     canon_kind_label, canon_kind_slug = canonicalize_kind(sdc_kind_raw)
     ts_slug = _slug(timestamp_raw)
         
-    artifact_uri = URIRef(ex + artifact_slug)
+    artifact_uri = URIRef(NS_EX + artifact_slug)
     graph.add((artifact_uri, NS_RDF.type, NS_CCO.ont00000995))
     graph.add((artifact_uri, RDFS.label, Literal(artifact_label, lang="en")))
 
@@ -314,7 +314,7 @@ for _, row in df.iterrows():
                 graph.add((qual_class_uri, NS_RDF.type, NS_OWL.Class))
                 graph.add((qual_class_uri, RDFS.label, Literal("Temperature", lang="en")))
             else:
-                qual_class_uri = URIRef(exc + canon_kind_slug)
+                qual_class_uri = URIRef(NS_EXC + canon_kind_slug)
                 quality_class_cache[canon_kind_slug] = qual_class_uri
                 graph.add((qual_class_uri, NS_RDF.type, NS_OWL.Class))
                 graph.add((qual_class_uri, RDFS.subClassOf, NS_OBO.BFO_0000020))
@@ -334,7 +334,7 @@ for _, row in df.iterrows():
         reading_uri = reading_cache[reading_key]
     else:
         reading_id = f"{artifact_slug}_{canon_kind_slug}_{ts_slug}"
-        reading_uri = URIRef(ex + reading_id)
+        reading_uri = URIRef(NS_EX + reading_id)
         reading_cache[reading_key] = reading_uri
 
     graph.add((reading_uri, NS_RDF.type, NS_OBO.BFO_0000020))
@@ -347,7 +347,7 @@ for _, row in df.iterrows():
     if not is_external_unit:
         graph.add((unit_uri, RDFS.label, Literal(unit_raw, lang="en")))
     mice_id = f"MICE_{artifact_slug}_{canon_kind_slug}_{ts_slug}"
-    mice_uri = URIRef(ex + mice_id)
+    mice_uri = URIRef(NS_EX + mice_id)
     graph.add((mice_uri, NS_RDF.type, NS_CCO.ont00001163))
     graph.add((mice_uri, RDFS.label, Literal(f"MICE for {artifact_label}_{canon_kind_label} @ {timestamp_raw}", lang="en")))
     graph.add((mice_uri, NS_CCO.ont00001769, Literal(value, datatype=XSD.decimal)))
@@ -444,7 +444,7 @@ def main():
     if not CSV_FILE.exists():
         print(f"Error: CSV file not found at {CSV_FILE.resolve()}. Ensure the ETL step ran successfully.")
         with open(OUT_FILE, 'w') as f:
-            f.write("@prefix ex: <http://example.org/measurement/> .\n")
+            f.write("@prefix NS_EX: <http://example.org/measurement/> .\n")
         return
     print(f"Loading data from {CSV_FILE}")
     df = pd.read_csv(CSV_FILE, dtype=str, keep_default_na=False) 

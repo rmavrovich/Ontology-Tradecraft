@@ -21,7 +21,7 @@ IRI_HAS_VALUE     = URIRef("https://www.commoncoreontologies.org/ont00001769") #
 IRI_HAS_TIMESTAMP = URIRef("https://www.commoncoreontologies.org/ont00001767") # has_timestamp (MICE -> Literal Time)
 """
 
-script_dir = Path('home' / 'runner' / 'work' / 'Ontology-Tradecraft' / 'Ontology-Tradecraft' / 'projects' / 'project-4' / 'assignment' / 'src' / 'scripts' / 'measure_rdflib.py')
+script_dir = Path('home' / 'runner' / 'work' / 'Ontology-Tradecraft-1' / 'Ontology-Tradecraft' / 'projects' / 'project-4' / 'assignment' / 'src' / 'scripts' / 'measure_rdflib.py')
 root_dir = script_dir.parent
 
 CSV_FILE = root_dir / 'src' / 'data' / 'readings_normalized.csv'

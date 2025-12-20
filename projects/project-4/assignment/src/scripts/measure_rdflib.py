@@ -370,7 +370,7 @@ for _, _, class_iri in graph.triples((None, NS_RDF.type, None)):
 for c in seen_classes:
     if not has_english_definition(c):
       definition = (
-    f"{article_for(label_or_localname(c))} {label_or_localname(c)} is a "
+    f"{article_for(label_or_localname(c))} {label_or_localname(c)} is a ")
     parent_label = (
     label_or_localname(parent_of(c))
     if parent_of(c)

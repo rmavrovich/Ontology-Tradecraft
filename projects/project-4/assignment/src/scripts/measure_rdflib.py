@@ -371,10 +371,16 @@ for c in seen_classes:
     if not has_english_definition(c):
       definition = (
     f"{article_for(label_or_localname(c))} {label_or_localname(c)} is a "
-    f"{label_or_localname(parent_of(c)) if parent_of(c) else 'parent class (unspecified)'} that "
-    f"{DIFFERENTIA.get(c, f"has not yet had its differentiating factor specified relative to {label_or_localname(parent_of(c)) if parent_of(c) else 'parent class (unspecified)'}")'}"
+    parent_label = (
+    label_or_localname(parent_of(c))
+    if parent_of(c)
+    else "parent class (unspecified)"
 )
 
+definition_tail = DIFFERENTIA.get(
+    c,
+    f"has not yet had its differentiating factor specified relative to {parent_label}"
+)
 ensure_clean_definition(c, definition)
 
 seen_object_properties = set()
